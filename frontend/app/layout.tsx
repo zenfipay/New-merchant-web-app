@@ -7,11 +7,11 @@ import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
 
 const neueHaas = localFont({
   src: [
-    {
-      path: "./fonts/NeueHaasDisplayLight.ttf",
-      weight: "300",
-      style: "normal",
-    },
+    // {
+    //   path: "./fonts/NeueHaasDisplayLight.ttf",
+    //   weight: "300",
+    //   style: "normal",
+    // },
     {
       path: "./fonts/NeueHaasDisplayMediu.ttf",
       weight: "500",

@@ -1,0 +1,24 @@
+{
+    "name": "Zenfipay Merchant App",
+    "short_name": "Zenfipay",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "landscape",
+    "background_color": "#FFFFFF",
+    "theme_color": "#20195F",
+    "description": "Merchant dashboard and management app",
+    "icons": [
+        {
+            "src": "/icons/logo-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/logo-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["business", "productivity"],
+    "display_override": ["window-controls-overlay", "standalone"]
+}

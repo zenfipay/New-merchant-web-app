@@ -1,3 +1,3 @@
 export default function Home() {
-  return<h1>Hello sucker!</h1>
+  return<h1 className="">Jade sucker!</h1>
 }

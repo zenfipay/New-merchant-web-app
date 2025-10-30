@@ -13,7 +13,7 @@ const neueHaas = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMedium.ttf",
+      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMediu.ttf",
       weight: "500",
       style: "normal",
     },

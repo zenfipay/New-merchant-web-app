@@ -8,22 +8,22 @@ import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
 const neueHaas = localFont({
   src: [
     {
-      path: "./fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayLight.ttf",
+      path: "./fonts/NeueHaasDisplayLight.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "./fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMediu.ttf",
+      path: "./fonts/NeueHaasDisplayMediu.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBold.ttf",
+      path: "./fonts/NeueHaasDisplayBold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "./fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBlack.ttf",
+      path: "./fonts/NeueHaasDisplayBlack.ttf",
       weight: "900",
       style: "normal",
     },

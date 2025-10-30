@@ -1,17 +1,41 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import DesktopOnly from "./components/DesktopOnly";
 import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const neueHaas = localFont({
+  src: [
+    {
+      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayLight.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMedium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBlack.ttf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-neue-haas",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
   subsets: ["latin"],
+  variable: "--font-inter-tight",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,29 +45,25 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icons/logo-192.png",
     apple: "/icons/logo-512.png",
-  }
+  },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   themeColor: "#20195F",
-}
-
-
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-    return (
+}) {
+  return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${neueHaas.variable} ${interTight.variable} antialiased`}>
         <DesktopOnly>
           {children}
-          <ServiceWorkerRegister />  
-        </DesktopOnly> 
+          <ServiceWorkerRegister />
+        </DesktopOnly>
       </body>
     </html>
   );

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
-import DesktopOnly from "./components/DesktopOnly";
-import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
+import DesktopOnly from "@/components/DesktopOnly";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const neueHaas = localFont({
   src: [
@@ -68,3 +68,12 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+// // src/app/admin/layout.tsx
+// import AdminLayout from '@/components/layout/AdminLayout';
+
+// export default function AdminAppLayout({ children }: { children: React.ReactNode }) {
+//   return <AdminLayout>{children}</AdminLayout>;
+// }

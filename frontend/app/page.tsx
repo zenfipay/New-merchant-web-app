@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+import ROUTES from "./routes";
+
 export default function Home() {
-  return<h1 className="">Jade sucker!</h1>
+  redirect(ROUTES.LOGIN)
 }

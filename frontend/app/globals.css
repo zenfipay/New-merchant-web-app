@@ -47,6 +47,28 @@ body {
   font-family: var(--font-neue-haas), sans-serif;
 }
 
+.underline-grow {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-grow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: currentColor; /* matches text color */
+  transition: width 0.4s ease;
+}
+
+.underline-grow:hover::after {
+  width: 100%;
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

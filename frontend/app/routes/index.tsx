@@ -9,6 +9,7 @@
 export const ROUTES = {
     DASHBOARD: '/dashboard',
     LOGIN: '/auth',
+    SIGNUP: '/auth/register',
     OWNER_BUSINESSES: '/dashboard/owner/businesses',
     ADMIN_BUSINESSES: '/dashboard/admin/businesses',
     BRANCH_MANAGER_BRANCH: '/dashboard/branch-manager/branches',

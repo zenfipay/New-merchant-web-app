@@ -8,15 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react"
 import { CustomButton } from "@/components/custom/CustomButton"
 import Image from "next/image"
+import { Input } from "@/components/custom/Input"
+import { Label } from "@/components/custom/Label"
+import { ErrorInfo } from "./components/ErrorMessage"
 
 import { useRouter } from "next/navigation"
 
-import { Input } from "@/components/custom/Input"
+import ROUTES from "@/routes"
 
-import ROUTES from "../routes"
-
-// import AuthFooter from "@/components/features/AuthFooter"
-import { Label } from "@/components/custom/Label"
 
 const SignInSchema = z.object({
     email: z.string().min(1, "Email is required").email("Invalid email address"),
@@ -42,7 +41,7 @@ export default function AuthSignInPage() {
 
     const onSubmit = ( data: z.infer<typeof SignInSchema>) => {
         console.log(data);
-        router.push(ROUTES.DASHBOARD)
+        router.push(ROUTES.OWNERDASHBOARD)
 
         reset();
     }
@@ -105,7 +104,7 @@ export default function AuthSignInPage() {
                             <div className="flex flex-col space-y-1">
                                 <Label htmlFor="email" text="Email address" />
                                 <Input type="text" placeholder="Enter email" className="h-10" {...register("email")} />
-                                {errors.email && <p className="text-red-500 text-xs font-inter font-medium">{errors.email.message}</p>}
+                                <ErrorInfo message={errors.email?.message} />
                             </div>
 
                             <div className="relative flex flex-col space-y-1">
@@ -119,8 +118,7 @@ export default function AuthSignInPage() {
                                 >
                                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
-
-                                {errors.password && <p className="text-red-500 text-xs font-inter font-medium">{errors.password.message}</p>}
+                                <ErrorInfo message={errors.password?.message} />
                             </div>
                         </div>
                         <Link href="" className="inline-block mt-4 font-medium text-[13px] text-[#20195F] underline-grow">

@@ -9,10 +9,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { CustomButton } from "@/components/custom/CustomButton";
 import { Eye, EyeOff } from "lucide-react"
-import BackButton from "../custom/BackButton";
+import BackButton from "@/components/custom/BackButton";
 import AuthSignInLink from "./SignInLink";
 import { Label } from "@/components/custom/Label";
-import { Input } from "../custom/Input";
+import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
 import { motion, AnimatePresence } from "framer-motion";
 

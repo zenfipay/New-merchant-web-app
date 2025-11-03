@@ -2,11 +2,11 @@
 
 
 import React, { useState } from 'react';
-import SignUpSection from './SignUpSection';
+import SignUpSection from './RegisterSection';
 import StatesSection from './StatesSection';
 import SettlementAndStaff from './SettlementAndStaff';
 
-import Spinner from '../custom/ZenfipaySpinner';
+import Spinner from '@/components/custom/ZenfipaySpinner';
 
 export default function MultiStepForm() {
 

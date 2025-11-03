@@ -2,7 +2,7 @@
 
 //  OWNERS TRANSACTION PAGE
 
-export default function Page() {
+export default function NotFound() {
     <>
         Emergency
     </>

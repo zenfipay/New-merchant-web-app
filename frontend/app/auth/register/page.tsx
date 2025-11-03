@@ -1,4 +1,4 @@
-import MultiStepForm from "@/components/features/MultiStepForm";
+import MultiStepForm from "../components/MultiStepForm";
 import RegisterLayout from "@/components/layout/RegisterLayout";
 
 export default function RegisterPage() {

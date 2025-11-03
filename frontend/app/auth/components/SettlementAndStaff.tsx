@@ -25,9 +25,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import BackButton from "@/components/custom/BackButton";
 import { Label } from "@/components/custom/Label";
-import { Input } from "../custom/Input";
+import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
-import ROUTES from "@/app/routes";
+import ROUTES from "@/routes";
 
 const settlementSchema = z.object({
     bankName: z.string().min(1, "You must select a bank")
@@ -82,7 +82,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
     // STAFF FORM
     const {
         control: staffControl,
-        setValue: setStaffValue,
+        // setValue: setStaffValue,
         register: registerStaff,
         handleSubmit: handleStaffSubmit,
         reset: resetStaff,
@@ -95,7 +95,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
 
     const handleOptionClick = ( option: "settlement" | "addStaff" | "later" | "showStaff" ) => {
         if ( option === "later") {
-            router.push(ROUTES.DASHBOARD)
+            router.push(ROUTES.OWNERDASHBOARD)
         } else {
             setStep(option)
         }
@@ -112,7 +112,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
         if(!staffAdded) {
             setStep("landing")
         } else {
-            router.push("/merchants")
+            router.push(ROUTES.OWNERDASHBOARD)
             onComplete();
         }
     };
@@ -140,7 +140,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
         if(!settlementAdded) {
             setStep("landing");
         } else {
-            router.push("/merchants")
+            router.push(ROUTES.OWNERDASHBOARD)
             onComplete();
         }
     }

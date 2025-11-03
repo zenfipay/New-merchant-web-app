@@ -1,5 +1,5 @@
 import { Toaster } from '@/components/ui/sonner';
-import AuthFooter from '../features/AuthFooter';
+import AuthFooter from '@/app/auth/components/AuthFooter';
 
 export default function AuthLayout({
     children,

@@ -28,9 +28,8 @@ import {
 
 
 import { Label } from "@/components/custom/Label";
-import { Input } from "../custom/Input";
+import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
-
 
 const businessProfileSchema = z.object({
     businessName: z.string().min(1, "Enter your business name"),

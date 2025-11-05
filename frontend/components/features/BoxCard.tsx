@@ -4,7 +4,6 @@ import Link from "next/link";
 import { CountUp } from "use-count-up";
 
 interface BoxCardProps extends React.HTMLAttributes<HTMLDivElement> {
-    icon?: string;
     title: string;
     href?: string;
     value: number;
@@ -17,7 +16,6 @@ type BoxCardPropsWithStatus = BoxCardProps & (
 );
 
 export const BoxCard = ({
-    icon,
     title,
     href,
     value,
@@ -29,10 +27,7 @@ export const BoxCard = ({
     return (
         <Box {...props}>
            <div className='w-full flex justify-between items-center'>
-                <div className="flex gap-2">
-                    <Image src={icon || "/"} alt={title} width={18} height={18} className="w-[18px] h-[18px] rounded-full" />
-                    <p className='font-inter font-medium text-[13px] leading-[100%] text-[#636363]'>{title}</p>
-                </div>
+                <p className='font-inter font-medium text-[13px] leading-[100%] text-[#636363]'>{title}</p>
                 {href && (
                     <Link href={href} className="transition-transform hover:translate-x-0.5">
                         <Image src="/icons/rarrBlue.svg" alt={`link to ${title}`} width={15} height={15} />

@@ -1,3 +1,125 @@
+// import "@/types/index"
+
+import { User } from "@/types/index";
+
+export const menuList = [
+  {
+    section: "Main",
+    items: [
+      { 
+        title: "Dashboard", 
+        icon: "/icons/dashboardIcon.svg", 
+        activeIcon: "/icons/activeDashboardIcon.svg", 
+        href: "/owner" 
+      },
+      { 
+        title: "Payments",  
+        icon: "/icons/paymentIcon.svg",   
+        activeIcon: "/icons/activePaymentsIcon.svg", 
+        href: "/owner/payments" 
+      },
+      { 
+        title: "Accounts",  
+        icon: "/icons/accountsIcon.svg",  
+        activeIcon: "/icons/activeAccountsIcon.svg",
+        href: "/owner/accounts" },
+      { 
+        title: "Points of sale", 
+        icon: "/icons/pointsofsaleIcon.svg", 
+        activeIcon: "/icons/activePointsofsaleIcon.svg", 
+        href: "/owner/point-of-sale" 
+      },
+      { 
+        title: "Reports",   
+        icon: "/icons/reportsIcon.svg",   
+        activeIcon: "/icons/activeReportsIcon.svg", 
+        href: "/owner/reports"
+       },
+       { 
+        title: "Activity log",   
+        icon: "/icons/activityLogIcon.svg",   
+        activeIcon: "/icons/activeActivityLogIcon.svg", 
+        href: "/owner/activityLog"
+       },
+    ],
+  },
+  {
+    section: "Other",
+    items: [
+      { 
+        title: "Settings", 
+        icon: "/icons/settingsIcon.svg", 
+        activeIcon: "/icons/activeSettingsIcon.svg", 
+        href: "/settings" 
+      },
+      { 
+        title: "Help & Support", 
+        icon: "/icons/helpIcon.svg", 
+        activeIcon: "/icons/activeHelpIcon.svg", 
+        href: "/help"
+      },
+      // { title: "Logout", icon: "/images/logoutIcon.svg", activeIcon: "/images/activeLogoutIcon.svg", href: "/logout" },
+    ],
+  }
+];
+
+
+export const mockUserData: User[] = [
+    {
+        firstName: "Emmanuel",
+        lastName: "Adeyera",
+        initials: "EA",
+        role: "Owner",
+        businessData: {
+            numberOfBusinesses: 2,
+            businessDetails: [
+                {
+                    businessName: "Jendol",
+                    businessId: 692673,
+                    numberOfBranches: 2,
+                    branchData: [
+                        {
+                            branchId: 1,
+                            branchLocation: "Agege",
+                            numberOfBranchManagers: 2,
+                            branchManagers: ["Oluwatimilehin", "John Doe"],
+
+                        },
+                        {
+                            branchId: 2,
+                            branchLocation: "Dopemu",
+                            numberOfBranchManagers: 2,
+                            branchManagers: ["Elegant", "Cruella"],
+
+                        }
+                    ]
+                },
+                {
+                    businessName: "Shoprite mall",
+                    businessId: 656445,
+                    numberOfBranches: 2,
+                    branchData: [
+                        {
+                            branchId: 1,
+                            branchLocation: "Ikeja",
+                            numberOfBranchManagers: 3,
+                            branchManagers: ["Isaac", "Jacob", "Israel"]
+                        },
+                        {
+                            branchId: 2,
+                            branchLocation: "Lekki",
+                            numberOfBranchManagers: 2,
+                            branchManagers: ["Divine", "Blessing"]
+                        }
+                    ]
+                }
+            ],
+        }
+
+    }
+]
+
+
 export const countryData = {
         country: "Nigeria",
         states: [
@@ -525,5 +647,45 @@ export const industries = [
     {
         id: 35,
         title: "Travel agency"
+    },
+]
+
+export const chartData = [
+    {
+        name: "Apr 1",
+        usdc: 0, //orange
+        usdt: 0, //green
+        cngn: 0, //blue
+    },
+    {
+        name: "Apr 7",
+        usdc: 39000,
+        usdt: 25000,
+        cngn: 12000,
+        amt: 1000,
+    },
+    {
+        name: "Apr 14",
+        usdc: 50000, 
+        usdt: 38000, 
+        cngn: 1850,
+    },
+    {
+        name: "Apr 21",
+        usdc: 5000, 
+        usdt: 4400, 
+        cngn: 1000, 
+    },
+    {
+        name: "Apr 28",
+        usdc: 96000, 
+        usdt: 65000, 
+        cngn: 37000, 
+    },
+    {
+        name: "Apr 35",
+        usdc: 83000, 
+        usdt: 62000, 
+        cngn: 39000, 
     },
 ]

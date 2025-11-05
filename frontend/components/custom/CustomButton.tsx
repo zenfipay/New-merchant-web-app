@@ -6,20 +6,21 @@ import { cva, type VariantProps } from "class-variance-authority"
 import{ Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center rounded-lg text-[15px] font-inter font-semibold cursor-pointer",
+    "inline-flex items-center justify-center rounded-lg text-[15px] font-inter font-semibold focus:outline-none focus:ring-2 focus:ring-[#D4E3FF] transition-colors duration-500 ease-in-out cursor-pointer",
     {
         variants: {
             variant: {
-                primary: "bg-[#014DFF] dark:bg-red-500 text-white",
-                secondary: "bg-white outline outline-[#eeeeee] text-[#014DFF]",
-                divider: "bg-[#FAFAFA] outline outline-[#eeeeee] text-black",
+                primary: "bg-[#014DFF] drop-shadow-3xl drop-shadow-[#0521D5] text-white hover:bg-[#0044E2] ",
+                secondary: "bg-white outline outline-[#eeeeee] drop-shadow-3xl drop-shadow-[#A4ACB9] text-black hover:bg-[#FAFAFA]",
+                secondaryBrand: "bg-white outline outline-[#eeeeee] drop-shadow-3xl drop-shadow-[#A4ACB9] text-[#014DFF] hover:bg-[#FAFAFA]",
+                divider: "bg-[#FAFAFA] outline outline-[#eeeeee] text-black hover:bg-[#F5F5F5]",
                 disabled: "bg-[#DCE1EC] text-white cursor-not-allowed",
-                destructive: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
+                destructive: "bg-white text-[#E41D24] hover:bg-[FFF0F1] focus:ring-red-500",
             },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-8 px-3 text-sm",
-                lg: "h-12 px-6 text-base"
+                default: "h-[38px] py-2.5 px-3 text-[15px]",
+                sm: "h-8 py-2 px-3 text-sm",
+                lg: "h-[42px] p-3 text-[15px]"
             },
         },
         defaultVariants: {

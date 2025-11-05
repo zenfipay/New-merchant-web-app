@@ -4,6 +4,7 @@ import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import DesktopOnly from "@/components/DesktopOnly";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import { UserProvider } from "@/context/UserContext";
 
 const neueHaas = localFont({
   src: [
@@ -61,7 +62,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${neueHaas.variable} ${interTight.variable} antialiased`}>
         <DesktopOnly>
-          {children}
+          <UserProvider>
+            {children}
+          </UserProvider>
           <ServiceWorkerRegister />
         </DesktopOnly>
       </body>

@@ -63,6 +63,20 @@ export const menuList = [
   }
 ];
 
+export const transactionData = [
+    {
+        paymentId: "0009823",
+        date: "",
+        amount: "",
+        token: "USDT (TRC-20)",
+        conversion: 180000,
+        pointOfSale: "POS-001",
+        customer: "0oisjkd0897ybducgvuqtw9",
+        status: ""
+
+    }
+]
+
 
 export const mockUserData: User[] = [
     {

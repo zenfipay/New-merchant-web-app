@@ -1,7 +1,9 @@
+import EmptyTransaction from "@/components/custom/NoTransactions";
+
 export default function Accounts() {
     return (
         <div >
-            OWNER payments
+            <EmptyTransaction />
         </div>
     )
 }

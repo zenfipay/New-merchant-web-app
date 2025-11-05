@@ -55,7 +55,7 @@ export default function AuthSignInPage() {
                 <div className="h-full w-[598px] flex flex-col justify-between p-6">
                     <div className="p-6">
                         <div className="w-full space-y-3">
-                            <h1 className="w-[438px] text-4xl font-medium leading-10 tracking-[-0.4px] text-[#014DFF]">One dashboard. All your payments.</h1>
+                            <h1 className="w-[438px] text-4xl font-neue font-medium leading-10 tracking-[-0.4px] text-[#014DFF]">One dashboard. All your payments.</h1>
                             <p className="w-[375px] font-inter font-medium text-[15px] leading-[100%] tracking-[0px] text-[#636363]">Track sales, manage devices, and withdraw to your bank with ease.</p>
                         </div>
                         {/* <div className="w-full rounded-lg overflow-hidden relative mt-[29px]">
@@ -76,7 +76,7 @@ export default function AuthSignInPage() {
                 {/* FORM CONTAINER */}
                 <div className=" flex flex-col gap-8 py-6 px-8">
                     <div className="flex flex-row justify-between">
-                        <h1 className="text-2xl font-medium leading-8 tracking-[-0.4px] text-[#212121]"> Staff sign in</h1>
+                        <h1 className="text-2xl font-neue font-medium leading-8 tracking-[-0.4px] text-[#212121]"> Staff sign in</h1>
                         <Link href={ROUTES.SIGNUP} className="flex flex-row justify-around items-center gap-1 py-2 px-3 font-inter font-semibold text-[13px] outline outline-[#eeeeee] rounded-lg drop-shadow-2xl drop-shadow-[#a4acb9]">
                             Sign up
                             <Image src="/icons/rarr.svg" alt="right arrow icon" width={12} height={12} />

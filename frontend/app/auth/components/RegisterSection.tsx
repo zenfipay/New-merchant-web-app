@@ -186,7 +186,7 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                     {/* HEADERS */}
                     { step === 1 && (
                         <header className="flex flex-row justify-between items-center">
-                            <h2 className="text-2xl font-medium leading-8 tracking-[-0.4px]">
+                            <h2 className="text-2xl font-neue font-medium leading-8 tracking-[-0.4px]">
                                 Create your profile
                             </h2>
                             <AuthSignInLink />

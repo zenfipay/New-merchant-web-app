@@ -44,7 +44,10 @@
 }
 
 body {
-  font-family: var(--font-neue-haas), sans-serif;
+  font-family: var(--font-inter-tight), sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #101010;
 }
 
 .underline-grow {

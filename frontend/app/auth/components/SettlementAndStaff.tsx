@@ -202,7 +202,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                 <div className="space-y-8">
                 {/* HEADER TEXT */}
                 <div className="space-y-1">
-                    <h2 className="font-medium text-3xl leading-8 text-[#212121]">You&apos;re almost there!</h2>
+                    <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">You&apos;re almost there!</h2>
                     <p className="font-inter font-normal text-[13px] text-[#636363] leading-[100%] tracking-[0]">Complete the following steps to unlock full access. You can choose to complete them later.</p>
                 </div>
 
@@ -276,7 +276,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
             {step === "settlement" && (
                 <div className="mt-6 space-y-8">
 
-                    <h2 className="font-medium text-3xl leading-8 text-[#212121]">Add settlement account</h2>
+                    <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add settlement account</h2>
 
                     <form onSubmit={handleSettlementSubmit(onSubmitSettlement)} className="space-y-6">
                        <div className="">
@@ -356,7 +356,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                     {staffList.length > 0 && (
                         <div className=""></div>
                     )}
-                    <h2 className="font-medium text-3xl leading-8 text-[#212121]">Add staff account</h2>
+                    <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add staff account</h2>
                     
 
                     <form onSubmit={handleStaffSubmit(onSubmitStaff)} className="mx-1 space-y-6">
@@ -448,7 +448,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
 
                     {/* HEADER */}
                     <div className="flex flex-row justify-between items-center">
-                        <h2 className="font-semibold text-2xl leading-8 tracking-[-0.4px] text-[#212121]">Add your staff</h2>
+                        <h2 className="font-neue font-semibold text-2xl leading-8 tracking-[-0.4px] text-[#212121]">Add your staff</h2>
                         <CustomButton
                             variant="divider"
                             size="sm"

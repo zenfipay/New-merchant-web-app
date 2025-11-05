@@ -98,7 +98,7 @@ type BusinessFormData = z.infer<typeof businessDataSchema>
 //     { id: "NIN", label: "NIN Document" },
 // ]
 
-export default function StatesSection( { onBack, onComplete }: { onBack: () => void; onComplete: () => void}) {
+export default function StatesSection( { onBack, onComplete }: { onBack?: () => void; onComplete?: () => void}) {
 
     const [ step, setStep ] = useState(1);
     const [ selectedState, setSelectedState ] = useState<string | null>(null);
@@ -204,7 +204,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack: () => v
         alert("Form successfully submitted");
 
         reset();
-        onComplete();
+        onComplete?.();
     };
 
     return (
@@ -240,7 +240,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack: () => v
                     <div className="">
                         {/* HEADER */}
                         <div className="flex flex-row justify-between items-center">
-                            <h2 className="font-medium text-2xl leading-8 tracking-[-0.4px]">Business profile</h2>
+                            <h2 className="font-neue font-medium text-2xl leading-8 tracking-[-0.4px]">Business profile</h2>
                             <AuthSignInLink />
                         </div>
 
@@ -394,7 +394,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack: () => v
 
                         {/* HEADER */}
                         <div className="flex flex-row justify-between items-center">
-                            <h2 className="font-medium text-2xl leading-8 tracking-[-0.4px]">Business address</h2>
+                            <h2 className="font-neue font-medium text-2xl leading-8 tracking-[-0.4px]">Business address</h2>
                             <AuthSignInLink />
                         </div>
 
@@ -495,7 +495,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack: () => v
 
                         {/* HEADER */}
                         <div className="flex flex-row justify-between items-center">
-                            <h2 className="font-medium text-2xl leading-8 tracking-[-0.4px]">Business documents</h2>
+                            <h2 className="font-neue font-medium text-2xl leading-8 tracking-[-0.4px]">Business documents</h2>
                             <AuthSignInLink />
                         </div>
 

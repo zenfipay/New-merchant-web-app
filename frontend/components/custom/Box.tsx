@@ -13,7 +13,7 @@ export const Box = ({
     ...props
 }: BoxProps) => {
     return (
-        <div className={cn("bg-white w-1/4 h-[115px] flex flex-col justify-between rounded-lg border border-[#F6F6F6] py-4 px-5 gap-2", className)} {...props}>
+        <div className={cn("bg-white w-1/4 h-[115px] flex flex-col justify-between rounded-lg border border-[#F6F6F6] py-4 px-5 gap-2 hover:scale-105 hover:outline-none hover:ring-1 hover:ring-[#EEF3FF] transition-transform duration-700", className)} {...props}>
             {children}
         </div>
     )

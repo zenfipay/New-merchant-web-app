@@ -266,7 +266,7 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                         <div className="flex flex-col gap-10 mt-20">
                             <div className="flex flex-row justify-between items-center">
                                 <div className="flex flex-col gap-1">
-                                    <h2 className="text-2xl leading-8 font-medium">Verify account</h2>
+                                    <h2 className="font-neue text-2xl leading-8 font-medium">Verify account</h2>
                                     <div className="flex flex-col items-start text-[13px]">
                                         <p className="font-inter font-normal text-[#636363]">
                                             Enter the 6-digit code we just sent to

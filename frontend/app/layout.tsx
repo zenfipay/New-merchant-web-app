@@ -63,7 +63,9 @@ export default function RootLayout({
       <body className={`${neueHaas.variable} ${interTight.variable} antialiased`}>
         <DesktopOnly>
           <UserProvider>
-            {children}
+            <div className="scrollbar-custom">
+              {children}
+            </div>
           </UserProvider>
           <ServiceWorkerRegister />
         </DesktopOnly>

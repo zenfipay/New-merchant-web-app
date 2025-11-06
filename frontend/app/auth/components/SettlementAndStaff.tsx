@@ -203,7 +203,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                 {/* HEADER TEXT */}
                 <div className="space-y-1">
                     <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">You&apos;re almost there!</h2>
-                    <p className="font-inter font-normal text-[13px] text-[#636363] leading-[100%] tracking-[0]">Complete the following steps to unlock full access. You can choose to complete them later.</p>
+                    <p className="font-normal text-[#636363] leading-[100%] tracking-[0]">Complete the following steps to unlock full access. You can choose to complete them later.</p>
                 </div>
 
                 {/* STEPS */}
@@ -279,7 +279,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                     <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add settlement account</h2>
 
                     <form onSubmit={handleSettlementSubmit(onSubmitSettlement)} className="space-y-6">
-                       <div className="">
+                       <div className="flex flex-col gap-2">
                             <Label htmlFor="bankName" text="Bank" />
                             <Controller
                                 control={settlementControl}
@@ -356,13 +356,13 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                     {staffList.length > 0 && (
                         <div className=""></div>
                     )}
-                    <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add staff account</h2>
+                    <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add your staff</h2>
                     
 
                     <form onSubmit={handleStaffSubmit(onSubmitStaff)} className="mx-1 space-y-6">
                         <div className="bg-[#EEF3FF] w-full flex flex-row items-center gap-2 py-2 px-4 border border-[#CDDCFF] rounded-xl">
                             <Image src="/icons/infoIcon.svg" alt="info icon" width={16} height={16} />
-                            <p className="font-inter font-medium text-[10px] text-[#636363]">
+                            <p className="font-medium text-[10px] text-[#636363]">
                                 When you add a staff member, they&apos;ll receive an email invitation to join your business account.
                             </p>
                         </div>
@@ -456,7 +456,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                             className="flex flex-row justify-center items center gap-1"
                         >
                             <Image src="/icons/addIcon.svg" alt="add vector beside add another text" width={16} height={16} />
-                            Add staff
+                            Add another
                         </CustomButton>
                     </div>
                    <div className="mt-8 space-y-6">
@@ -467,7 +467,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                         >
                             {/* NAME AND ROLE */}
                             <div className="flex flex-col gap-1">
-                                <p className="font-inter font-medium text-[13px]">{staff.staffFirstName} {staff.staffLastName}</p>
+                                <p className="font-medium">{staff.staffFirstName} {staff.staffLastName}</p>
                                 <span className="inline-block font-inter font-medium text-[10px] text-[#7D7D7D]">{staff.role}</span>
                             </div>
 

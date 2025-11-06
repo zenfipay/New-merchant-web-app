@@ -35,7 +35,7 @@ export default function Sidebar() {
   const otherItems = menuList.find((s) => s.section === "Other")?.items ?? [];
 
   return (
-    <aside className="flex flex-col h-screen bg-white border-r border-[#F5F5F5] justify-between">
+    <div className="flex flex-col h-screen bg-white border-r border-[#F5F5F5] justify-between">
       {/* PROFILE HEADER && MAIN MENU */}
       <div className="">
         <BusinessSelection />
@@ -48,7 +48,7 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   onClick={() => setActiveItem(item.title)}
-                  className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 font-inter font-medium text-[11px] transition-all duration-300 ease-out hover:bg-[#FAFAFA]
+                  className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FAFAFA]
                     ${activeItem === item.title ? "bg-[#EEF3FF] text-[#20195F]" : "text-[#636363]"}`}
                 >
                   <Image
@@ -74,20 +74,20 @@ export default function Sidebar() {
               <Link
                 href={item.href}
                 onClick={() => setActiveItem(item.title)}
-                className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 font-inter font-medium text-[11px] transition-all duration-300 ease-out hover:bg-[#FAFAFA]
+                className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FAFAFA]
                   ${activeItem === item.title ? "bg-[#EEF3FF] text-[#20195F]" : "text-[#636363]"}`}
               >
                 <Image src={activeItem === item.title ? item.activeIcon : item.icon} alt={item.title} width={18} height={18} className={activeItem ? "text-brand" : "text-[#636363]"} />
-                <span className="">{item.title}</span>
+                <span className="text-[13px]">{item.title}</span>
               </Link>
             </li>
           ))}
         </ul>
-        <div className="h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 font-inter font-medium text-[11px] transition-all duration-300 ease-out hover:bg-[#FFF0F1] hover:text-[#E41D24] cursor-pointer">
-          <Image src='/icons/logoutIcon.svg' alt="Logout icon" width={18} height={18} className="" />
-          <span className="">Logout</span>
+        <div className="h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FFF0F1] hover:text-[#E41D24] cursor-pointer">
+          <Image src='/icons/activeLogoutIcon.svg' alt="Logout icon" width={18} height={18} className="" />
+          <span className="text-[13px] text-[#E41D24]">Logout</span>
         </div>
       </div>
-    </aside>
+    </div>
   );
 }

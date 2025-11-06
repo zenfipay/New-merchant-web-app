@@ -14,6 +14,7 @@ const buttonVariants = cva(
                 secondary: "bg-white outline outline-[#eeeeee] drop-shadow-3xl drop-shadow-[#A4ACB9] text-black hover:bg-[#FAFAFA]",
                 secondaryBrand: "bg-white outline outline-[#eeeeee] drop-shadow-3xl drop-shadow-[#A4ACB9] text-[#014DFF] hover:bg-[#FAFAFA]",
                 divider: "bg-[#FAFAFA] outline outline-[#eeeeee] text-black hover:bg-[#F5F5F5]",
+                blankBrand: "bg-transparent text-[#014DFF]",
                 disabled: "bg-[#DCE1EC] text-white cursor-not-allowed",
                 destructive: "bg-white text-[#E41D24] hover:bg-[FFF0F1] focus:ring-red-500",
             },

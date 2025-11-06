@@ -49,6 +49,9 @@ body {
   font-size: 13px;
   color: #101010;
 }
+.shadow-bottom {
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.08); /* x-offset | y-offset | blur | color */
+}
 
 .underline-grow {
   position: relative;
@@ -63,13 +66,69 @@ body {
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background-color: currentColor; /* matches text color */
+  background-color: currentColor;
   transition: width 0.4s ease;
 }
 
 .underline-grow:hover::after {
   width: 100%;
 }
+
+/* .scrollable::-webkit-scrollbar {
+  width: 2px;
+}
+.scrollable::-webkit-scrollbar {
+  background-color: red;
+  border-radius: 1px;
+} */
+
+/* @layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: blue;
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: rgb(107 114 128);
+  }
+} */
+
+.scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: blue;
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: rgb(107 114 128);
+  }
 
 
 :root {

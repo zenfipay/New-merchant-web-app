@@ -1,5 +1,7 @@
 "use client"
 
+import { useState, useEffect } from 'react'
+
 // import { Input } from "@/components/custom/Input";
 import { DashboardCard } from "@/components/features/DashboardCard";
 import { BoxCard } from "@/components/features/BoxCard";
@@ -10,10 +12,14 @@ import { GetTimeGreeting } from "@/utils/greeting";
 import { CurrentDate } from "@/utils/formatDate";
 import { CustomButton } from "@/components/custom/CustomButton";
 import DashboardChart from "@/components/features/DashboardChart";
+import { NoHoverCard } from "@/components/features/NoHoverCard";
+import { Notification } from '@/components/features/Notification';
 
 export default function OwnerDashboard() {
 
     const { user } = useUser();
+
+    const [ close, setClose ] = useState<boolean>(false);
 
     return (
         <main className="py-3 px-5 space-y-3">
@@ -43,6 +49,23 @@ export default function OwnerDashboard() {
                 </CustomButton>
             </div>
 
+            {!close && (
+                <Notification
+                    icon="/icons/infoIconBlue.svg"
+                    text="This dashboard provides a unified overview of sales analytics and account balances for all branches of the same business"
+                >
+                    <CustomButton
+                        variant="blankBrand"
+                        size="sm"
+                        onClick={() => setClose(true)}
+                        className='flex justify-evenly gap-1'
+                    >
+                        Close
+                        <Image src="/icons/closeIconBlue.svg" alt="close notification" width={16} height={16} />
+                    </CustomButton>
+                </Notification>
+            )}
+
             {/*  */}
             <div className="flex items-center gap-2">
                 <DashboardCard 
@@ -68,10 +91,9 @@ export default function OwnerDashboard() {
                     value={2}
                     subTitle="1 active"
                 />
-                <DashboardCard
+                <NoHoverCard
                     title="Avg. Payment Value"
                     value={103}
-                    currency="USD"
                     status="loss"
                     rate={6}
                     subTitle="today"

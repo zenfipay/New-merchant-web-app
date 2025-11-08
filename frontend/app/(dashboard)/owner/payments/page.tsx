@@ -12,6 +12,10 @@ import { useState } from "react";
 import { Notification } from "@/components/features/Notification";
 import { CustomButton } from "@/components/custom/CustomButton";
 import Image from "next/image";
+import RateChecker from "@/components/features/RateChecker";
+import PaymentNotificationCarousel from "@/components/features/PaymentNotificationSlider";
+import PaymentTabs from "@/components/features/PaymentTabs";
+import Divider from "@/components/custom/divider";
 const branchesList = [
     {
         id:0,
@@ -80,19 +84,10 @@ export default function OwnerPayments() {
     const [ selectedBranch, setSelectedBranch ] = useState("All branches")
 
     return (
-        <section>
+        <section className="space-y-6">
             {/* NOTIFICATION */}
-            <Notification
-                icon="/icons/checkmark.svg"
-                text="$20.00 USDT settled from transactionID"
-                subText="3mins ago"
-            >
-                <CustomButton
-                    variant="secondaryBrand"
-                    size="sm"
-                    text="Print receipt"
-                />
-            </Notification>
+            <PaymentNotificationCarousel />
+
             <div className="w-full flex justify-between items-center">
                 {/* BRANCH SELECTION */}
                 <div className="w-fit flex justify-evenly items-center gap-3">
@@ -108,7 +103,8 @@ export default function OwnerPayments() {
                             ))}
                         </SelectContent>
                     </Select>
-                    <div className="w-px h-5 bg-[#EEEEEE]" />
+                    {/* <div className="w-px h-5 bg-[#EEEEEE]" /> */}
+                    <Divider />
                     {branchesList.length > 0 ? (
                         <div>
                             <p className="text-[#7D7D7D] leading-[100%]">
@@ -134,6 +130,15 @@ export default function OwnerPayments() {
                     <Image src="/icons/rarrBlack.svg" alt="right arrow black" width={12} height={12} />
                 </CustomButton>
 
+            </div>
+
+            <div className="space-y-2">
+                <h5 className="">Rate checker</h5>
+                <RateChecker />
+            </div>
+
+            <div className="mt-10">
+                <PaymentTabs />
             </div>
         </section>
     )

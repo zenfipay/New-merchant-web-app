@@ -15,6 +15,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { CustomButton } from "../custom/CustomButton"
+import SearchBar from "../custom/SearchBar"
 
 export default function ProfileHeader() {
   const pathname = usePathname()
@@ -33,7 +34,7 @@ export default function ProfileHeader() {
 
       <div className="flex items-center gap-3.5">
         {/* Optional search input */}
-        <Input type="text" placeholder="Search..." className="w-[205px] h-8" />
+        <SearchBar />
 
         <div className="flex items-center gap-2">
 

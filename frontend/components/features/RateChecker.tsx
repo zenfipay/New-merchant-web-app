@@ -29,7 +29,7 @@ export default function RateChecker() {
                     <Input
                         type="number"
                         placeholder="0.00"
-                        className="w-26 bg-transparent border-0 font-neue text-[28px] leading-9 tracking-[0.4px] focus:border-none"
+                        className="w-26 bg-transparent border-0 font-neue text-[28px] leading-9 tracking-[0.4px] focus:border-none text-[#014DFF]"
                     />
                     <span className="font-neue text-[15px] leading-5 text-[#101010]">NGN</span>
                 </div>

@@ -29,3 +29,18 @@ export interface User {
   role: string;
   businessData: BusinessData;
 }
+
+export interface payment {
+  customerId: string;
+  chain: string;
+  paymentID: string;
+  date: string;
+  amount: number;
+  stableCoin: string;
+  token: string;
+  conversion: string;
+  pointOfSale: string;
+  branch: string;
+  status: string;
+  exchangeRate: string;
+};

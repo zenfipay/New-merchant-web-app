@@ -105,6 +105,13 @@ export const Payout = ({
         setPayoutStep(2)
     }
 
+    const closeBtn = () => {
+        setOpenPayout(false);
+        resetCryptoPayout();
+        resetNGNPayout();
+        setPayoutStep(1);
+    }
+
 
     return (
         <div className=''>
@@ -128,7 +135,7 @@ export const Payout = ({
                             <CustomButton
                                 variant="secondary"
                                 size="sm"
-                                onClick={() => setOpenPayout(false)}
+                                onClick={closeBtn}
                             >
                                 <Image src="/icons/closeIconBlack.svg" alt="close icon" width={16} height={16} />
                             </CustomButton>
@@ -328,7 +335,7 @@ export const Payout = ({
                                         size="sm"
                                         text="Close"
                                         className='w-1/2'
-                                        onClick={() => setOpenPayout(false)}
+                                        onClick={closeBtn}
                                     />
                                 </div>
                             </div>

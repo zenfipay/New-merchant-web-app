@@ -313,7 +313,7 @@ export const Payout = ({
 
                         {payoutStep === 2 && (
                             <div className='w-full flex flex-col justify-center items-center py-6 px-8 space-y-6'>
-                                <div className=''>
+                                <div className='flex flex-col justify-center items-center'>
                                     <AnimatedCheckmark />
                                     <div className='w-[254px] text-center'>
                                         <p className='font-neue text-2xl'>Payout Successful!</p>

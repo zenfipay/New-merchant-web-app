@@ -2,8 +2,7 @@ import { Box } from "../custom/Box";
 import Image from "next/image";
 import Link from "next/link";
 import { CountUp } from "use-count-up";
-
-type Currency = "USD" | "NGN" | "GBP" | "EUR";
+import { formatCurrency, Currency } from "@/utils/formatCurrency";
 
 interface DashboardCardProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
@@ -17,22 +16,6 @@ type DashboardCardPropsWithStatus = DashboardCardProps & (
     | { status: "profit" | "loss"; rate: number }
     | { status?: never; rate?: never }
 );
-
-const formatCurrency = (value: number, currency?: Currency): string => {
-    // No currency - just format the number
-    if (!currency) {
-        return new Intl.NumberFormat("en-US", {
-            minimumFractionDigits: 0,
-        }).format(value);
-    }
-    
-    // Format with the specified currency
-    return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: currency,
-        minimumFractionDigits: 0
-    }).format(value);
-};
 
 export const DashboardCard = ({
     title,

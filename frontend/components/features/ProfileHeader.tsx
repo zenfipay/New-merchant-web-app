@@ -1,4 +1,5 @@
 "use client"
+import * as React from 'react'
 
 import { usePathname } from "next/navigation"
 import { menuList } from "@/lib/data"
@@ -21,6 +22,7 @@ export default function ProfileHeader() {
   const pathname = usePathname()
   const { user } = useUser()
 
+  const [ searchTerm, setSearchTerm ] = React.useState('')
   const allMenuItems = menuList.flatMap((section) => section.items)
   const currentPage = allMenuItems.find((item) => item.href === pathname)
   const pageTitle = currentPage?.title || ""
@@ -34,13 +36,16 @@ export default function ProfileHeader() {
 
       <div className="flex items-center gap-3.5">
         {/* Optional search input */}
-        <SearchBar />
+        <SearchBar
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
 
         <div className="flex items-center gap-2">
 
           <Avatar className="bg-[#EEF3FF] w-[30px] h-[30px] rounded-md p-1.5 ring ring-[#CDDCFF] flex items-center justify-center">
             <AvatarFallback className="font-inter font-semibold text-[13px] text-[#20195F]">
-              {user.initials}
+              EA
             </AvatarFallback>
           </Avatar>
 

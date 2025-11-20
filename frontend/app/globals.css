@@ -208,3 +208,29 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.polygon-anim {
+  stroke-dasharray: 500; /* approximate total length of polygon */
+  stroke-dashoffset: 500;
+  animation: draw 1s forwards ease-in-out;
+}
+
+.polygon-anim:nth-child(1) {
+  animation-delay: 0s;
+}
+.polygon-anim:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.polygon-anim:nth-child(3) {
+  animation-delay: 1s;
+}
+.polygon-anim:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

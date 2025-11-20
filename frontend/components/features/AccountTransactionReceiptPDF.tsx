@@ -1,5 +1,6 @@
+// components/features/AccountReceiptPDF.tsx
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import { payment } from '@/types';
+import { accountTransactions } from '@/types';
 
 const styles = StyleSheet.create({
   page: { padding: 30, fontFamily: 'Helvetica' },
@@ -21,22 +22,22 @@ const styles = StyleSheet.create({
   value: { fontWeight: 'bold', fontSize: 12 },
 });
 
-export const PaymentReceiptPDF = ({ data }: { data: payment }) => (
+export const AccountReceiptPDF = ({ data }: { data: accountTransactions }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
-        <Text style={styles.title}>Payment Receipt</Text>
+        <Text style={styles.title}>Transaction Receipt</Text>
       </View>
 
       <View style={styles.section}>
-        <View style={styles.row}><Text style={styles.label}>Payment ID:</Text><Text style={styles.value}>{data.paymentId}</Text></View>
+        <View style={styles.row}><Text style={styles.label}>Transaction ID:</Text><Text style={styles.value}>{data.transactionId}</Text></View>
         <View style={styles.row}><Text style={styles.label}>Status:</Text><Text style={styles.value}>{data.status}</Text></View>
-        <View style={styles.row}><Text style={styles.label}>Amount:</Text><Text style={styles.value}>{data.amount} {data.stableCoin}</Text></View>
+        <View style={styles.row}><Text style={styles.label}>Type:</Text><Text style={styles.value}>{data.type}</Text></View>
+        <View style={styles.row}><Text style={styles.label}>Amount:</Text><Text style={styles.value}>{data.amount}</Text></View>
         <View style={styles.row}><Text style={styles.label}>Date:</Text><Text style={styles.value}>{data.date}</Text></View>
+        <View style={styles.row}><Text style={styles.label}>From:</Text><Text style={styles.value}>{data.from}</Text></View>
+        <View style={styles.row}><Text style={styles.label}>To:</Text><Text style={styles.value}>{data.to}</Text></View>
         <View style={styles.row}><Text style={styles.label}>Branch:</Text><Text style={styles.value}>{data.branch}</Text></View>
-        <View style={styles.row}><Text style={styles.label}>Customer ID:</Text><Text style={styles.value}>{data.customerId}</Text></View>
-        <View style={styles.row}><Text style={styles.label}>Chain:</Text><Text style={styles.value}>{data.chain}</Text></View>
-        <View style={styles.row}><Text style={styles.label}>Exchange Rate:</Text><Text style={styles.value}>₦{data.exchangeRate}</Text></View>
       </View>
     </Page>
   </Document>

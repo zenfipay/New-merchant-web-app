@@ -9,12 +9,13 @@ interface NoHoverCardProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
     href?: string;
     value: number;
-    subTitle: string;
+    subTitle?: string;
+    currency?: string;
     className?: string;
 }
 
 type NoHoverCardPropsWithStatus = NoHoverCardProps & (
-    | { status: "profit" | "loss"; rate: number }
+    | { status?: "profit" | "loss"; rate: number }
     | { status?: never; rate?: never }
 );
 
@@ -25,6 +26,7 @@ export const NoHoverCard = ({
     status,
     rate,
     subTitle,
+    currency,
     className,
     ...props
 }: NoHoverCardPropsWithStatus ) => {
@@ -40,7 +42,8 @@ export const NoHoverCard = ({
             </div>
 
             <div className='flex flex-col gap-1'>
-                <p className='font-inter font-semibold text-[19px] leading-[100%] text-[#101010]'>
+                <p className='flex font-inter font-semibold text-[19px] leading-[100%] text-[#101010]'>
+                    <span className="">{currency}</span>
                     <CountUp
                         isCounting
                         end={value}

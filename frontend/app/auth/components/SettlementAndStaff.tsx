@@ -148,14 +148,12 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
    useEffect(() => {
     let isMounted = true;
 
-    // Only proceed if the account number is fully typed (10 digits)
     if (accountNumber && accountNumber.length === 10) {
         const fetchAccountName = async () => {
         try {
             setIsFetchingName(true);
             setAccountName(null);
 
-            // Simulate network delay
             await new Promise((resolve) => setTimeout(resolve, 1500));
 
             if (isMounted) {
@@ -170,11 +168,9 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
 
         fetchAccountName();
     } else {
-        // Reset if number is incomplete
         if (isMounted) setAccountName(null);
     }
 
-    // Cleanup to prevent memory leaks if user types fast or component unmounts
     return () => {
         isMounted = false;
     };
@@ -310,7 +306,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <Label htmlFor="accoutnNumber" text="Account number" />
+                            <Label htmlFor="accountNumber" text="Account number" />
                             <Input 
                                 type="number" 
                                 placeholder="12345677889" 

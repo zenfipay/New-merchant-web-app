@@ -10,22 +10,22 @@ import { useSidebarStore } from "@/store/useSidebarStore";
 import BusinessSelection from "../features/BusinessSelection";
 
 export default function Sidebar() {
-  // selectors: choose only what we need to avoid unnecessary re-renders
+
   const activeItem = useSidebarStore((s) => s.activeItem);
   const setActiveItem = useSidebarStore((s) => s.setActiveItem);
 
-  // sync with current pathname so the UI highlights correctly when user navigates
+
   const pathname = usePathname();
 
   useEffect(() => {
     if (!pathname) return;
-    // map pathname to title. Simple strategy: find menu item with matching href
+
     const flattened = menuList.flatMap((section) => section.items);
     const match = flattened.find((it) => it.href === pathname);
     if (match) {
       setActiveItem(match.title);
     } else {
-      // optional: if no exact match, you can match startsWith
+     
       const prefixMatch = flattened.find((it) => pathname.startsWith(it.href));
       if (prefixMatch) setActiveItem(prefixMatch.title);
     }

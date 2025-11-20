@@ -46,7 +46,7 @@ export const PaymentReceipt = React.forwardRef<HTMLDivElement, { payment: paymen
             <div className="border border-gray-300 rounded-lg p-4 my-6">
                 <div className="flex justify-between py-2">
                     <span className="text-gray-600">Payment ID:</span>
-                    <span className="font-semibold">{payment.paymentID}</span>
+                    <span className="font-semibold">{payment.paymentId}</span>
                 </div>
                 <div className="flex justify-between py-2">
                     <span className="text-gray-600">Date:</span>

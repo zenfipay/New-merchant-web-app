@@ -1,140 +1,198 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useDebounce } from "use-debounce";
+import { useReactToPrint } from "react-to-print";
 
-// import { Input } from "@/components/custom/Input";
 import { DashboardCard } from "@/components/features/DashboardCard";
 import { BoxCard } from "@/components/features/BoxCard";
-import Image from "next/image";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import DashboardChart from "@/components/features/DashboardChart";
+import { NoHoverCard } from "@/components/features/NoHoverCard";
+import { Notification } from "@/components/features/Notification";
+import StableCoinConverter from "@/components/features/StablecoinConverter";
+import { PaymentTable } from "@/components/features/paymentTable";
+import { PaymentReceiptPDF } from "@/components/features/PaymentReceiptPDF";
+import { pdf } from "@react-pdf/renderer";
+
 import { useUser } from "@/context/UserContext";
 import { GetTimeGreeting } from "@/utils/greeting";
 import { CurrentDate } from "@/utils/formatDate";
+import { isDateInRange } from "@/utils/dateRange";
+import { useBranchStore } from "@/store/branchStore";
 import { CustomButton } from "@/components/custom/CustomButton";
-import DashboardChart from "@/components/features/DashboardChart";
-import { NoHoverCard } from "@/components/features/NoHoverCard";
-import { Notification } from '@/components/features/Notification';
+
+import { mockUserData } from "@/lib/data";
+import { payment } from "@/types";
 
 export default function OwnerDashboard() {
+  const { user } = useUser();
+  const { selectedBranch } = useBranchStore();
 
-    const { user } = useUser();
+  const [close, setClose] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [dateFilter, setDateFilter] = useState<string>("");
+  const [tokenFilter, setTokenFilter] = useState<string>("");
+  const [pointOfSaleFilter, setPointOfSaleFilter] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debouncedSearch] = useDebounce(searchTerm, 300);
 
-    const [ close, setClose ] = useState<boolean>(false);
+  const [selectedPayments, setSelectedPayments] = useState<string[]>([]);
+  const [selectedPayment, setSelectedPayment] = useState<payment | null>(null);
+  const [printReceipt, setPrintReceipt] = useState(false);
+  const printRef = useRef<HTMLDivElement>(null);
 
-    return (
-        <main className="py-3 px-5 space-y-3">
+  const allPayments = useMemo(() => {
+    return mockUserData.flatMap((user) =>
+      user.businessData.flatMap((business) =>
+        business.branchData.flatMap((branch) =>
+          branch.paymentData.map((payment) => ({
+            ...payment,
+            branchLocation: branch.branchLocation,
+            businessName: business.businessName,
+          }))
+        )
+      )
+    );
+  }, []);
 
-            {/* WELCOME HEADER */}
-            <div className="w-full flex justify-between py-3">
-                {/* NAME & DATE */}
-                <div className="flex items-center gap-2.5">
-                    <Avatar className="bg-[#EEF3FF] h-8 w-8 rounded-full drop-shadow-3xl drop-shadow-[#000000]">
-                        <AvatarFallback className="w-8 h-8 bg-[#EEF3FF] font-inter font-semibold text-[#20195f]">{user.initials}</AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-0.5">
-                        <p className="font-inter font-semibold text-[15px] leading-[100%] text-[#101010]">
-                            <GetTimeGreeting />,&nbsp;
-                            {user.firstName}
-                        </p>
-                        <p className="font-inter font-medium text-[11px] leading-[100%] text-[#636363]">
-                            {CurrentDate()}
-                        </p>
-                    </div>
-                </div>
+  const filteredPayments = useMemo(() => {
+    return allPayments.filter(
+      (p) =>
+        (selectedBranch === "All branches" || p.branchLocation === selectedBranch) &&
+        (statusFilter === "all" || p.status.toLowerCase() === statusFilter) &&
+        (!dateFilter || isDateInRange(p.date, dateFilter)) &&
+        (!tokenFilter || p.token === tokenFilter) &&
+        (!pointOfSaleFilter || p.pointOfSale === pointOfSaleFilter) &&
+        (!debouncedSearch || p.paymentId.toLowerCase().includes(debouncedSearch.toLowerCase()))
+    );
+  }, [
+    allPayments,
+    selectedBranch,
+    statusFilter,
+    dateFilter,
+    tokenFilter,
+    pointOfSaleFilter,
+    debouncedSearch,
+  ]);
 
-                <CustomButton variant="secondary" size="sm" className="flex justify-evenly gap-1">
-                    <Image src="/icons/exportReportIcon.svg" alt="export reports icon" width={16} height={16} />
-                    Export reports
-                    <Image src="/icons/rarrBlack.svg" alt="go to export reports arrow" width={12} height={12} />
-                </CustomButton>
-            </div>
+  const paymentIDsMemo = useMemo(
+    () => filteredPayments.map((p) => p.paymentId),
+    [filteredPayments]
+  );
 
-            {!close && (
-                <Notification
-                    icon="/icons/infoIconBlue.svg"
-                    text="This dashboard provides a unified overview of sales analytics and account balances for all branches of the same business"
-                >
-                    <CustomButton
-                        variant="blankBrand"
-                        size="sm"
-                        onClick={() => setClose(true)}
-                        className='flex justify-evenly gap-1'
-                    >
-                        Close
-                        <Image src="/icons/closeIconBlue.svg" alt="close notification" width={16} height={16} />
-                    </CustomButton>
-                </Notification>
-            )}
+  const handleDownload = async (payment: payment) => {
+    const blob = await pdf(<PaymentReceiptPDF data={payment} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `receipt-${payment.paymentId}.pdf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
-            {/*  */}
-            <div className="flex items-center gap-2">
-                <DashboardCard 
-                    title="Total Sales"
-                    href="/"
-                    value={12450000}
-                    currency="USD"
-                    status="profit"
-                    rate={0.5}
-                    subTitle="today"
-                />
-                <BoxCard
-                    title="No. of Payments"
-                    href="/"
-                    value={5000}
-                    status="profit"
-                    rate={2}
-                    subTitle="today"
-                />
-                <BoxCard
-                    title="No. of POS"
-                    href="/"
-                    value={2}
-                    subTitle="1 active"
-                />
-                <NoHoverCard
-                    title="Avg. Payment Value"
-                    value={103}
-                    status="loss"
-                    rate={6}
-                    subTitle="today"
-                />
-            </div>
-            <DashboardChart />
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    onAfterPrint: () => setPrintReceipt(false),
+  });
 
-            <div className="w-full flex gap-3 py-6 px-5 sapce-y-3">
-                {/* NGN ACCOUNT CARD */}
-                <div className="w-1/2 h-36 flex flex-col justify-between py-5 px-4 rounded-lg border border-[#F5F5F5]">
-                    <div className="flex gap-2">
-                        <Image src="/icons/NGNflag.svg" alt="Nigerian flag icon" width={18} height={18} />
-                        <p className="font-inter font-medium text-[13px]">NGN account</p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="">
-                            <p className="font-inter font-semibold text-[20px] text-[#20195F] leading-7">0.00</p>
-                            <span className="font-inter font-normal text-[11px]">Nigerian Naira</span>
-                        </div>
-                        <CustomButton variant="primary" size="sm" text="Payout" />
-                    </div>
-                </div>
+  useEffect(() => {
+    if (printReceipt && selectedPayment) {
+      setTimeout(() => handlePrint?.(), 100);
+    }
+  }, [printReceipt, selectedPayment, handlePrint]);
 
-                {/* USD ACCOUNT CARD */}
-                <div className="w-1/2 h-36 flex flex-col justify-between py-5 px-4 rounded-lg border border-[#F5F5F5]">
-                    <div className="flex gap-2">
-                        <Image src="/icons/NGNflag.svg" alt="Nigerian flag icon" width={18} height={18} />
-                        <p className="font-inter font-medium text-[13px]">NGN account</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <div className="">
-                            <p className="font-inter font-semibold text-[20px] text-[#20195F] leading-7">0.00</p>
-                            <span className="font-inter font-normal text-[11px]">Nigerian Naira</span>
-                        </div>
-                        <figure className="flex gap-1 items-center">
-                            <CustomButton variant="secondary" size="sm" text="Convert to NGN" />
-                            <CustomButton variant="primary" size="sm" text="Payout" />
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </main>
-    )
+  return (
+    <main className="py-3 space-y-3">
+      {/* WELCOME HEADER */}
+      <div className="w-full flex justify-between py-3">
+        <div className="flex items-center gap-2.5">
+          <div className="bg-[#EEF3FF] h-8 w-8 rounded-full flex items-center justify-center">
+            <span className="font-inter font-semibold text-[#20195f]">
+            </span>
+          </div>
+          <div className="space-y-0.5">
+            <p className="font-inter font-semibold text-[15px] leading-[100%] text-[#101010]">
+              <GetTimeGreeting />, {user.firstName}
+            </p>
+            <p className="font-inter font-medium text-[11px] leading-[100%] text-[#636363]">
+              {CurrentDate()}
+            </p>
+          </div>
+        </div>
+
+        <CustomButton variant="secondary" size="sm" className="flex justify-evenly gap-1">
+          <Image src="/icons/exportReportIcon.svg" alt="export reports icon" width={16} height={16} />
+          Export reports
+          <Image src="/icons/rarrBlack.svg" alt="go to export reports arrow" width={12} height={12} />
+        </CustomButton>
+      </div>
+
+      {!close && (
+        <Notification
+          icon="/icons/infoIconBlue.svg"
+          text="This dashboard provides a unified overview of sales analytics and account balances for all branches of the same business"
+        >
+          <CustomButton
+            variant="blankBrand"
+            size="sm"
+            onClick={() => setClose(true)}
+            className="flex justify-evenly gap-1"
+          >
+            Close
+            <Image src="/icons/closeIconBlue.svg" alt="close notification" width={16} height={16} />
+          </CustomButton>
+        </Notification>
+      )}
+
+      {/* DASHBOARD CARDS */}
+      <div className="flex items-center gap-2">
+        <DashboardCard title="Total Sales" href="/" value={12450000} currency="USD" status="profit" rate={0.5} subTitle="today" />
+        <BoxCard title="No. of Payments" href="/" value={5000} status="profit" rate={2} subTitle="today" />
+        <BoxCard title="No. of POS" href="/" value={2} subTitle="1 active" />
+        <NoHoverCard title="Avg. Payment Value" value={103} status="loss" rate={6} subTitle="today" />
+      </div>
+
+      <DashboardChart />
+      <StableCoinConverter />
+
+      {/* PAYMENT TABLE */}
+      <div className="my-6 py-3 space-y-6">
+        <div className="flex justify-between items-center">
+          <p>Recent payments</p>
+          <Link href="/owner/payments">
+            <CustomButton variant="secondary" size="sm">
+              <Image src="/icons/rightArrowBlue.svg" alt="arrow that links to transactions" width={14} height={14} />
+            </CustomButton>
+          </Link>
+        </div>
+
+        <PaymentTable
+          payments={filteredPayments.slice(0, 5)}
+          selectedPayments={selectedPayments}
+          onSelectAll={(checked) => setSelectedPayments(checked ? paymentIDsMemo.slice(0, 5) : [])}
+          onSelectRow={(id, checked) =>
+            setSelectedPayments((prev) => (checked ? [...prev, id] : prev.filter((x) => x !== id)))
+          }
+          onAction={(action, payment) => {
+            if (action === "print") {
+              setSelectedPayment(payment);
+              setPrintReceipt(true);
+            }
+            if (action === "download") handleDownload(payment);
+          }}
+        />
+      </div>
+
+      
+      {printReceipt && selectedPayment && (
+        <div className="hidden">
+          <div ref={printRef}>
+            <PaymentReceiptPDF data={selectedPayment} />
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }

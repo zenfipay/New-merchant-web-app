@@ -34,7 +34,11 @@ export default function MultiStepForm() {
     return (
         <div className='transition-all duration-500 ease-in-out'>
             {
-                loading ? <Spinner /> : (
+                loading ? (
+                    <div className='fixed inset-0 flex items-center justify-center bg-white'>
+                        <Spinner />
+                    </div>
+                ) : (
                     <>
                         { step === 1 && (
                             <SignUpSection onComplete={handleNextStep} />

@@ -23,7 +23,7 @@ import Image from 'next/image'
 export default function DashboardChart() {
 
     return (
-        <div className='w-full p-4 space-y-8'>
+        <div className='w-full py-4 space-y-8'>
             {/* SALES REPORT CONTAINER */}
             <div className='w-full flex justify-between items-start'>
                 {/* AMOUNT*/}
@@ -59,9 +59,9 @@ export default function DashboardChart() {
                             </CustomButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='w-[115px]'>
-                            <DropdownMenuItem className='font-inter font-medium text-[13px] hover:bg-[#EEF3FF] hover:text-[#014DFF] hover:rounded-md cursor-pointer'>Daily</DropdownMenuItem>
-                            <DropdownMenuItem className='font-inter font-medium text-[13px] hover:bg-[#EEF3FF] hover:text-[#014DFF] hover:rounded-md cursor-pointer' >Monthly</DropdownMenuItem>
-                            <DropdownMenuItem className='font-inter font-medium text-[13px] hover:bg-[#EEF3FF] hover:text-[#014DFF] hover:rounded-md cursor-pointer' >Yearly</DropdownMenuItem>
+                            <DropdownMenuItem className='font-inter font-medium text-[13px] data-highlighted:bg-[#EEF3FF] data-highlighted:text-[#014DFF] cursor-pointer'>Daily</DropdownMenuItem>
+                            <DropdownMenuItem className='font-inter font-medium text-[13px] data-highlighted:bg-[#EEF3FF] data-highlighted:text-[#014DFF] cursor-pointer' >Monthly</DropdownMenuItem>
+                            <DropdownMenuItem className='font-inter font-medium text-[13px] data-highlighted:bg-[#EEF3FF] data-highlighted:text-[#014DFF] cursor-pointer' >Yearly</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

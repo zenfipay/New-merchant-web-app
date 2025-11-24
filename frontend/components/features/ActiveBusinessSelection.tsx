@@ -11,14 +11,15 @@ import {
 
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar"
 
-// import Link from "next/link"
+import Link from "next/link"
 import { CustomButton } from "../custom/CustomButton"
 import Image from "next/image"
+import ROUTES from "@/routes"
 
 const branchData = [
   {
     title: "Add new branch",
-    href: "/auth/addBranch",
+    href: ROUTES.ADD_BRANCH,
   },
   {
     title: "Ikeja branch",
@@ -33,7 +34,7 @@ const branchData = [
 const businessData = [
   {
     title: "Add new business",
-    href: "/auth/addBusiness",
+    href: ROUTES.ADD_BUSINESS,
   },
   {
     title: "MR Biggs'",
@@ -109,10 +110,12 @@ export default function DialogSelection() {
                     {branchData.map((branch) => (
                       <DropdownMenuItem key={branch.title} className="w-full rounded-none px-0 border-b last:border-0">
                         {branch.title === "Add new branch" ? (
-                          <div className="w-full flex items-center gap-1 py-1 px-1">
-                            <Image src="/icons/addIconBlue.svg" alt="add icon" width={14} height={14} />
-                            {branch.title}
-                          </div>
+                          <Link href={branch.href}>
+                            <div className="w-full flex items-center gap-1 py-1 px-1">
+                              <Image src="/icons/addIconBlue.svg" alt="add icon" width={14} height={14} />
+                              {branch.title}
+                            </div>
+                          </Link>
                         ): (
                           <div className="w-full flex justify-between items-center py-1 px-1">
                             <p className="">{branch.title}</p>
@@ -143,10 +146,12 @@ export default function DialogSelection() {
                     {businessData.map((business) => (
                       <DropdownMenuItem key={business.title} className="w-full rounded-none px-0 border-b last:border-0">
                         {business.title === "Add new business" ? (
-                          <div className="w-full flex items-center gap-1 py-1 px-1">
-                            <Image src="/icons/addIconBlue.svg" alt="add icon" width={14} height={14} />
-                            {business.title}
-                          </div>
+                          <Link href={business.href}>
+                            <div className="w-full flex items-center gap-1 py-1 px-1">
+                              <Image src="/icons/addIconBlue.svg" alt="add icon" width={14} height={14} />
+                              {business.title}
+                            </div>
+                          </Link>
                         ): (
                           <div className="w-full flex justify-between items-center py-1 px-1">
                             <p className="">{business.title}</p>

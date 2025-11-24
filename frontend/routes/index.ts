@@ -14,6 +14,8 @@ export const ROUTES = {
     ADMIN_BUSINESSES: '/dashboard/admin/businesses',
     BRANCH_MANAGER_BRANCH: '/dashboard/branch-manager/branches',
     STAFF_BRANCH: '/dashboard/staff/branches/',
+    ADD_BRANCH: '/auth/add-branch',
+    ADD_BUSINESS: '/auth/add-business',
 }
 
 export default ROUTES

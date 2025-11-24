@@ -12,7 +12,6 @@ import AuthSignInLink from "./SignInLink";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Controller } from "react-hook-form";
-// import CountrySelect, { countries } from "./countries";
 
 
 import { countryData, industries } from "@/lib/data";
@@ -40,12 +39,10 @@ const businessProfileSchema = z.object({
     }),
     businessType: z.enum(["Sole proprietorship", "Limited Liability Company (LLC)", "Private Limited Company (Ltd)", "Freelancer"]),
     businessIndustry: z.string().min(1, "Select a business type"),
-    // countryOfOperation: z.string().min(1, "Select a country"),
     proofOfBusiness: z.string().url("Enter a valid url").min(1, "This field cannot be empty")
 })
 
 const businessAddressSchema = z.object({
-    // country: z.string().min(1, "Please select a country"),
     country: z.literal("Nigeria"),
     address: z.string().min(1, "Input your address"),
     city: z.string().min(1, "Select a city"),
@@ -92,19 +89,10 @@ const businessDataSchema = businessProfileSchema.merge(businessAddressSchema).me
 
 type BusinessFormData = z.infer<typeof businessDataSchema>
 
-// const documentOptions = [
-//     {id: "CAC", label: "CAC Document"},
-//     { id: "Proof of residence", label: "Proof of residence"},
-//     { id: "NIN", label: "NIN Document" },
-// ]
-
 export default function StatesSection( { onBack, onComplete }: { onBack?: () => void; onComplete?: () => void}) {
 
     const [ step, setStep ] = useState(1);
     const [ selectedState, setSelectedState ] = useState<string | null>(null);
-    // const [ selectedType, setSelectedType ] = useState<string | null>(null);
-    // const [ filePreview, setFilePreview ] = useState<string | null>(null);
-
     const [ industrySearch, setIndustrySearch ] = useState("")
 
     const cities = selectedState ? countryData.states.find((s) => s.state === selectedState)?.cities || [] : [];
@@ -162,7 +150,6 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                     businessPhoneNumber: values.businessPhoneNumber,
                     businessType: values.businessType,
                     businessIndustry: values.businessIndustry,
-                    // countryOfOperation: values.countryOfOperation
                     proofOfBusiness: values.proofOfBusiness,
                 }
             : step === 2
@@ -193,11 +180,6 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
         const isValid = await validateStep();
         if (isValid) setStep((prev) => prev + 1);
     };
-
-    // const prevStep = () => {
-
-    //     setStep((prev) => prev - 1);
-    // }
 
     const onSubmit = ( data: BusinessFormData ) => {
         console.log("Submitted: ", data);
@@ -312,7 +294,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                             </Select>
                                         )}
                                     />
-                                    {/* <ErrorInfo message={errors.businessType?.message} /> */}
+                                    <ErrorInfo message={errors.businessType?.message} />
                                 </div>
                                 
                                 {/* BUSINESS INDUSTRY */}
@@ -370,7 +352,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                             );
                                         }}
                                     />
-                                    {/* <ErrorInfo message={errors.businessIndustry?.message} /> */}
+                                    <ErrorInfo message={errors.businessIndustry?.message} />
                                 </div>
                             </div>
 
@@ -398,18 +380,19 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                             <AuthSignInLink />
                         </div>
 
+                        {/* COUNTRY */}
                         <div className="flex flex-col gap-1">
                             <Label htmlFor="country" text="Country" />
                             <input 
                                 type="text" 
                                 placeholder="" 
-                                readOnly 
-                                value="Nigeria" 
+                                readOnly
                                 {...register("country")} 
-                                className="h-[42px] border border-[#eeeeee] p-3 rounded-lg font-inter font-medium text-[13px] focus:border-none focus:ring-0"
+                                className="h-[42px] border border-[#eeeeee] p-3 rounded-lg font-inter font-medium text-[13px] focus:border focus:border-[#eeeeee]"
                             />
                         </div>
 
+                        {/* ADDRESS */}
                         <div className="flex flex-col gap-2">
                             <Label htmlFor="address" text="Address" />
                             <Input
@@ -422,7 +405,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                         </div>
 
                         {/* SELECT STATE */}
-                        <div className="flex-flex-col gap-2">
+                        <div className="flex flex-col gap-2">
                             <Label htmlFor="state" text="State" />
                             <Controller 
                                 control={control}

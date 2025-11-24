@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { menuList } from "@/lib/data";
 
 import { useSidebarStore } from "@/store/useSidebarStore";
-import BusinessSelection from "../features/BusinessSelection";
+import BusinessSelection from "./ActiveBusinessSelection";
 
 export default function Sidebar() {
 
@@ -84,8 +84,10 @@ export default function Sidebar() {
           ))}
         </ul>
         <div className="h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FFF0F1] hover:text-[#E41D24] cursor-pointer">
-          <Image src='/icons/activeLogoutIcon.svg' alt="Logout icon" width={18} height={18} className="" />
-          <span className="text-[13px] text-[#E41D24]">Logout</span>
+          <Link href="/">
+            <Image src='/icons/activeLogoutIcon.svg' alt="Logout icon" width={18} height={18} className="" />
+            <span className="text-[13px] text-[#E41D24]">Logout</span>
+          </Link>
         </div>
       </div>
     </div>

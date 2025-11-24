@@ -26,7 +26,6 @@ export default function MultiStepForm() {
         setLoading(true)
         await new Promise((resolve) => setTimeout(resolve, 3000));
         setLoading(false)
-        // setStep((prev) => prev + 1);
         alert("Signup process completed successfully!");
     }
 

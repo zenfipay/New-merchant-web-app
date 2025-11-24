@@ -63,11 +63,9 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
     // SETTLEMENT FORM
     const {
         control: settlementControl,
-        // setValue: setSettlementValue,
         register: registerSettlement,
         handleSubmit: handleSettlementSubmit,
         reset: resetSettlement,
-        // trigger: triggerSettlementValidation,
         formState: { errors: settlementErrors, isValid: isSettlementFormValid},
     } = useForm<SettlementFormData>({
         resolver: zodResolver(settlementSchema),
@@ -82,7 +80,6 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
     // STAFF FORM
     const {
         control: staffControl,
-        // setValue: setStaffValue,
         register: registerStaff,
         handleSubmit: handleStaffSubmit,
         reset: resetStaff,
@@ -100,9 +97,6 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
             setStep(option)
         }
     }
-    // const handleAddStaff = ( step: "addStaff" | "staffList" ) => {
-    //     setAddStaffStep("addStaff");
-    // }
 
     const onSubmitSettlement = ( data: SettlementFormData ) => {
         console.log("Settlement account added: ", data);

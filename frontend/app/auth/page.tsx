@@ -52,16 +52,15 @@ export default function AuthSignInPage() {
             {/* LEFT SIDE */}
             <div className="min-h-screen w-[45%] bg-[#EEF3FF] flex flex-col justify-between p-8">
             
-                <div className="h-full w-[598px] flex flex-col justify-between p-6">
+                <div className="h-full flex flex-col justify-between p-6">
                     <div className="p-6">
-                        <div className="w-full space-y-3">
-                            <h1 className="w-[438px] text-4xl font-neue font-medium leading-10 tracking-[-0.4px] text-[#014DFF]">One dashboard. All your payments.</h1>
-                            <p className="w-[375px] font-inter font-medium text-[15px] leading-[100%] tracking-[0px] text-[#636363]">Track sales, manage devices, and withdraw to your bank with ease.</p>
+                        <div className="w-full xl:w-10/12 space-y-3">
+                            <h1 className="text-4xl font-neue font-medium leading-10 tracking-[-0.4px] text-[#014DFF]">One dashboard. All your payments.</h1>
+                            <p className="font-inter font-medium text-[15px] leading-[100%] tracking-[0px] text-[#636363]">Track sales, manage devices, and withdraw to your bank with ease.</p>
                         </div>
-                        {/* <div className="w-full rounded-lg overflow-hidden relative mt-[29px]">
-                            <Image src="/images/onboardingimage.jpg" alt="hand holding device image" className="w-full h-full object-cover [clip-path:polygon(0_0,100%_0,100%_100%,40px_100%,0_calc(100%-40px))]" width={200} height={200} />
-                        </div> */}
-                        <Image src="/images/onboardingImage.png" alt="hand holding device" width={560} height={374} className="mt-[29px]"/>
+                        <div className="w-full mx-auto overflow-hidden ">
+                            <Image src="/images/onboardingImage.png" alt="hand holding device" width={560} height={374} className="mt-[29px]"/>
+                        </div>
                     </div>
                     <div className="w-full flex flex-row justify-between">
                         <Image src="/icons/logo.svg" alt="Zenfipay Logo" width={120} height={200} />

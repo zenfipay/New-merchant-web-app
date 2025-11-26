@@ -51,7 +51,7 @@ export const StableCoinConverter = ({
 
     const {
         register: register,
-        handleSubmit: hanldeSubmit,
+        handleSubmit: handleSubmit,
         reset: reset,
         formState: { errors: errors, isValid: isValid },
     } = useForm<ConversionFormData>({
@@ -147,7 +147,7 @@ export const StableCoinConverter = ({
                                     />
                                 </div>
 
-                                <form onSubmit={hanldeSubmit(onConversionSubmit)} className='space-y-3'>
+                                <form onSubmit={handleSubmit(onConversionSubmit)} className='space-y-3'>
                                     {/* AMOUNT TO BE CONVERTED */}
                                     <div className='flex flex-col gap-2'>
                                         <Label htmlFor='payoutAmount' text="Enter amount to payout" />
@@ -167,7 +167,10 @@ export const StableCoinConverter = ({
                                                 text="Max"
                                                 type="button"
                                                 className='absolute right-2 rounded-md'
-                                                onClick={() => console.log("yay")}
+                                                onClick={() => {
+                                                    setConvertPrice(balance.toString());
+                                                    reset({ convertAmount: balance.toString()})
+                                                }}
                                             />
                                         </div>
                                         <ErrorInfo message={errors.convertAmount?.message} />

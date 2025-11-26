@@ -40,7 +40,7 @@ export default function PayoutComponent() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    })
+    }, [openCoinSelector])
 
     return (
         <div className="">

@@ -219,6 +219,7 @@ export const PayoutStableCoin = ({
                                     <p className='text-[#636363]'>
                                         {amount}{" "}{selectedStableCoin} sent successfully to {walletAddress}
                                     </p>
+                                    {accountType}
                                 </div>
 
                                 {/* BUTTONS */}

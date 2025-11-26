@@ -12,7 +12,7 @@ import {
 
 import { PayoutNGN } from './PayoutNGN';
 import { PayoutStableCoin } from './PayoutStableCoin';
-import { StableCoinConverter } from './StableCoinConverter';
+import { StableCoinConverter } from './CoinConverter';
 import { stableCoinsData } from '@/lib/data';
 import { CustomCheckbox } from '../custom/CustomCheckbox';
 import DividerHorizontal from '../custom/dividerHorizontal';

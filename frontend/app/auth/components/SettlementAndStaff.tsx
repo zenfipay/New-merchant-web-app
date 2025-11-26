@@ -279,7 +279,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                                         onValueChange={field.onChange}
                                         value={field.value}
                                     >
-                                        <SelectTrigger className="w-full font-inter font-medium text-[13px] cursor-pointer">
+                                        <SelectTrigger className="w-full cursor-pointer">
                                             <SelectValue placeholder="Select" />
                                         </SelectTrigger>
                                         <SelectContent className="">

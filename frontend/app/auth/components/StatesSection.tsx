@@ -288,7 +288,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                                 <SelectContent className="font-inter font-medium text-[13px] text-[#101010]">
                                                     <SelectItem value="Sole proprietorship">Sole proprietorship</SelectItem>
                                                     <SelectItem value="Limited Liability Company (LLC)">Limited Liability Company (LLC)</SelectItem>
-                                                    <SelectItem value="Privated Limited Company (Ltd)">Privated Limited Company (Ltd)</SelectItem>
+                                                    <SelectItem value="Private Limited Company (Ltd)">Private Limited Company (Ltd)</SelectItem>
                                                     <SelectItem value="Freelancer">Freelancer</SelectItem>
                                                 </SelectContent>
                                             </Select>

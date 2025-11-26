@@ -7,7 +7,7 @@ import { pos } from '@/types';
 
 import { CustomButton } from '../custom/CustomButton';
 import Image from 'next/image';
-import DividerHorizontal from '../custom/dividerHorizontal';
+import DividerHorizontal from '../custom/dividerHorizontal'
 
 interface posTableProps {
     pointsOfSale: pos[];

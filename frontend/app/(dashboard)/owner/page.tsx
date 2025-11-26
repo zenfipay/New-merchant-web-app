@@ -1,42 +1,34 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useDebounce } from "use-debounce";
-import { useReactToPrint } from "react-to-print";
 
 import { DashboardCard } from "@/components/features/DashboardCard";
-import { BoxCard } from "@/components/features/BoxCard";
 import DashboardChart from "@/components/features/DashboardChart";
 import { NoHoverCard } from "@/components/features/NoHoverCard";
 import { Notification } from "@/components/features/Notification";
-import StableCoinConverter from "@/components/features/StablecoinConverter";
+import StableCoinConverter from "@/components/features/PayoutComponent";
 import { PaymentTable } from "@/components/features/paymentTable";
 import { PaymentReceiptPDF } from "@/components/features/PaymentReceiptPDF";
+import { CustomButton } from "@/components/custom/CustomButton";
 import { pdf } from "@react-pdf/renderer";
 
+import Image from "next/image";
+import Link from "next/link";
+
+import { useReactToPrint } from "react-to-print";
 import { useUser } from "@/context/UserContext";
 import { GetTimeGreeting } from "@/utils/greeting";
 import { CurrentDate } from "@/utils/formatDate";
-import { isDateInRange } from "@/utils/dateRange";
 import { useBranchStore } from "@/store/branchStore";
-import { CustomButton } from "@/components/custom/CustomButton";
-
 import { mockUserData } from "@/lib/data";
 import { payment } from "@/types";
+
 
 export default function OwnerDashboard() {
   const { user } = useUser();
   const { selectedBranch } = useBranchStore();
 
   const [close, setClose] = useState(false);
-  const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [dateFilter, setDateFilter] = useState<string>("");
-  const [tokenFilter, setTokenFilter] = useState<string>("");
-  const [pointOfSaleFilter, setPointOfSaleFilter] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [debouncedSearch] = useDebounce(searchTerm, 300);
 
   const [selectedPayments, setSelectedPayments] = useState<string[]>([]);
   const [selectedPayment, setSelectedPayment] = useState<payment | null>(null);
@@ -59,22 +51,12 @@ export default function OwnerDashboard() {
 
   const filteredPayments = useMemo(() => {
     return allPayments.filter(
-      (p) =>
-        (selectedBranch === "All branches" || p.branchLocation === selectedBranch) &&
-        (statusFilter === "all" || p.status.toLowerCase() === statusFilter) &&
-        (!dateFilter || isDateInRange(p.date, dateFilter)) &&
-        (!tokenFilter || p.token === tokenFilter) &&
-        (!pointOfSaleFilter || p.pointOfSale === pointOfSaleFilter) &&
-        (!debouncedSearch || p.paymentId.toLowerCase().includes(debouncedSearch.toLowerCase()))
+      () =>
+        (selectedBranch === "All branches")
     );
   }, [
     allPayments,
     selectedBranch,
-    statusFilter,
-    dateFilter,
-    tokenFilter,
-    pointOfSaleFilter,
-    debouncedSearch,
   ]);
 
   const paymentIDsMemo = useMemo(
@@ -149,8 +131,8 @@ export default function OwnerDashboard() {
       {/* DASHBOARD CARDS */}
       <div className="flex items-center gap-2">
         <DashboardCard title="Total Sales" href="/" value={12450000} currency="USD" status="profit" rate={0.5} subTitle="today" />
-        <BoxCard title="No. of Payments" href="/" value={5000} status="profit" rate={2} subTitle="today" />
-        <BoxCard title="No. of POS" href="/" value={2} subTitle="1 active" />
+        <DashboardCard title="No. of Payments" href="/" value={5000} status="profit" rate={2} subTitle="today" />
+        <DashboardCard title="No. of POS" href="/" value={0o2} subTitle="1 active" />
         <NoHoverCard title="Avg. Payment Value" value={103} status="loss" rate={6} subTitle="today" />
       </div>
 

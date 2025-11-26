@@ -24,7 +24,7 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
   onSelectRow,
   onAction,
 }) => {
-  // Define columns
+
   const columns: TableColumn<payment>[] = [
     { key: "paymentID", label: "Payment" },
     { key: "date", label: "Date" },
@@ -69,7 +69,6 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
     },
   ];
 
-  // Helper functions
   const getStatusColor = (status: string) => {
     switch (status) {
       case "settled":

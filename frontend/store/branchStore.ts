@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { persist } from 'zustand/middleware'
 
 type BranchStore = {
-    selectedBranch: string
-    setSelectedBranch: ( branch: string ) => void
+    selectedBranch: "ALL" | string
+    setSelectedBranch: ( branch: "ALL" | string ) => void
 }
 
 export const useBranchStore = create<BranchStore>()(
     persist(
         (set) => ({
-            selectedBranch: 'All branches',
+            selectedBranch: 'ALL',
             setSelectedBranch: (branch) => set({ selectedBranch: branch })
         }),
         {

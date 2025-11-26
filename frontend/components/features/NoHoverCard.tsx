@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CountUp } from "use-count-up";
 import { cn } from "@/utils";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 interface NoHoverCardProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
@@ -48,6 +49,7 @@ export const NoHoverCard = ({
                         isCounting
                         end={value}
                         duration={1}
+                        formatter={(val) => formatCurrency(val)}
                     />
                 </p>
                 <div className="h-[13px] flex gap-0.5 font-inter font-medium text-[11px]">

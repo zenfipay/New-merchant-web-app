@@ -6,9 +6,6 @@ import { PosTable } from './posTable';
 import { useDebounce } from 'use-debounce';
 import { useBranchStore } from '@/store/branchStore';
 
-import { pos } from '@/types';
-
-
 import { mockUserData } from '@/lib/data';
 import { Pagination } from './paginationComponent';
 import SearchBar from '../custom/SearchBar';
@@ -21,7 +18,7 @@ export default function PosTableWrapper() {
     const [ searchTerm, setSearchTerm ] = useState<string>("");
     const [ debouncedSearch ] = useDebounce(searchTerm, 300);
 
-    const [ selectedPointsOfSales, setSelectedPointsOfSale ] = useState<string[]>([])
+    const [ selectedPointsOfSale, setSelectedPointsOfSale ] = useState<string[]>([])
 
     const { selectedBranch } = useBranchStore()
 
@@ -45,8 +42,8 @@ export default function PosTableWrapper() {
     const filteredPointsOfSale = useMemo(() => {
         return allPointsOfSale.filter(
             (point) =>
-            (selectedBranch === "All branches" || point.branchLocation === selectedBranch ) &&
-            (statusFilter === "all" || point.status.toLowerCase() === statusFilter ) &&
+            (selectedBranch === "ALL" || point.branchLocation === selectedBranch ) &&
+            (statusFilter === "all" || point.status.toLowerCase() === statusFilter.toLowerCase() ) &&
             (!debouncedSearch || point.deviceId.toLowerCase().includes(debouncedSearch.toLowerCase()))
         )
     }, [allPointsOfSale, selectedBranch, statusFilter, debouncedSearch])
@@ -54,9 +51,14 @@ export default function PosTableWrapper() {
     const deviceIDsMemo = useMemo(() => filteredPointsOfSale.map((p) => p.deviceId), [filteredPointsOfSale])
 
     const paginatedPointsOfSale = useMemo(() => {
-        const start = ( currentPage -1 )* pageSize;
+        const start = ( currentPage - 1 )* pageSize;
         return filteredPointsOfSale.slice(start, start + pageSize)
     }, [filteredPointsOfSale, currentPage])
+
+
+    React.useEffect(() => {
+        setCurrentPage(1)
+    }, [statusFilter, selectedBranch, debouncedSearch])
 
 
     return (
@@ -90,7 +92,7 @@ export default function PosTableWrapper() {
             {/* POS TABLE */}
             <PosTable
                 pointsOfSale={paginatedPointsOfSale}
-                selectedPointsOfSale={selectedPointsOfSales}
+                selectedPointsOfSale={selectedPointsOfSale}
                 onSelectAll={(checked) => setSelectedPointsOfSale(checked ? deviceIDsMemo : [])}
                 onSelectRow={(id, checked) =>
                     setSelectedPointsOfSale((prev) => (checked ? [...prev, id] : prev.filter((x) => x !== id)))
@@ -102,7 +104,7 @@ export default function PosTableWrapper() {
 
             <Pagination
                 currentPage={currentPage}
-                totalCount={selectedPointsOfSales.length}
+                totalCount={filteredPointsOfSale.length}
                 pageSize={pageSize}
                 onPageChange={setCurrentPage}
             />

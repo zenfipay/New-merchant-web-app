@@ -20,6 +20,11 @@ export default function BranchSelector() {
         user.businessData.flatMap(business => business.branchData)
     )
 
+    // const filteredBranches = selectedBranch === "ALL"
+    // ? branchList
+    // : branchList.filter(branch => branch.branchLocation === selectedBranch)
+
+
     return (
         <>    {/* BRANCH SELECTION */}
             <div className="w-fit flex justify-evenly items-center gap-3">
@@ -28,6 +33,13 @@ export default function BranchSelector() {
                         <SelectValue placeholder="All branches" />
                     </SelectTrigger>
                     <SelectContent>
+                        <SelectItem
+                            value="ALL"
+                            key="ALL"
+                            className="data-highlighted:bg-[#EEF3FF] flex justify-between items-center"
+                        >
+                            All branches
+                        </SelectItem>
                         {branchList.map((branch) => (
                             <SelectItem
                                 value={branch.branchLocation}

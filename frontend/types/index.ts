@@ -40,6 +40,10 @@ export interface branchMetrics {
   status: string;
 }
 
+export interface BranchMetricsTableProps {
+  branchMetrics: branchMetrics[];
+}
+
 export interface payment {
   branch: string;
   customerId: string;
@@ -126,4 +130,34 @@ export interface SearchBarProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+}
+
+export interface PayoutProps {
+  accountType: string;
+  balance: number;
+  icon: string;
+  selectedStableCoin?: string;
+}
+
+export interface StableCoin {
+  label: string;
+  conversionRate: number;
+  icon?: string;
+  items?: {
+    label: string;
+    value: string;
+  }[];
+  
+}
+
+export interface ActivityFiltersProps {
+    filters: {
+        date: string;
+        staff: string;
+    }
+    setFilters: React.Dispatch<SetStateAction<{
+        date: string;
+        staff: string;
+    }>>;
+    uniqueStaff: string[];
 }

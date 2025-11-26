@@ -28,7 +28,6 @@ export default function AccountTableWrapper() {
     const [debouncedSearch] = useDebounce(searchTerm, 300);
 
     const [ selectedTransactions, setSelectedTransactions ] = useState<string[]>([]);
-    // const [ selectedTransaction, setSelectedTransaction ] = useState<accountTransactions & { branchLocation?: string } | null>(null);
 
     const { selectedBranch } = useBranchStore()
 
@@ -56,7 +55,7 @@ export default function AccountTableWrapper() {
     const filteredTransactions = useMemo(() => {
         return allTransactions.filter(
             (t) =>
-            (selectedBranch === "All branches" || t.branchLocation === selectedBranch) &&
+            (selectedBranch === "ALL" || t.branchLocation === selectedBranch) &&
             (statusFilter === "all" || t.status.toLowerCase() === statusFilter) &&
             (!filters.date || isDateInRange(t.date, filters.date)) &&
             (!filters.account || t.from === filters.account) &&
@@ -123,7 +122,7 @@ export default function AccountTableWrapper() {
 
             <Pagination
                 currentPage={currentPage}
-                totalCount={selectedTransactions.length}
+                totalCount={filteredTransactions.length}
                 pageSize={pageSize}
                 onPageChange={setCurrentPage}
             />      

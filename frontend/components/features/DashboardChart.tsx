@@ -89,6 +89,7 @@ export default function DashboardChart() {
                     width="auto" 
                     stroke=""
                     tick={{ fill: '#3F3F3F', fontSize: 13, fontWeight: 500, fontFamily: "var(--font-inter), serif" }}
+                    tickCount={8}
                 />
                 <Tooltip />
                 {/* <Legend /> */}

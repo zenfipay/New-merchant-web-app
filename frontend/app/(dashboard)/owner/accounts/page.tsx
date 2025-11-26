@@ -4,7 +4,7 @@ import * as React from 'react'
 import ExportReportBtn from "@/components/custom/ExportButton";
 import BranchSelector from "@/components/features/BranchSelector";
 import { NoHoverCard } from "@/components/features/NoHoverCard";
-import StableCoinConverter from "@/components/features/StablecoinConverter";
+import StableCoinConverter from "@/components/features/PayoutComponent";
 import AccountTableWrapper from '@/components/features/AccountTableWrapper';
 
 export default function Accounts() {

@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation"
 import { menuList } from "@/lib/data"
 import { useUser } from "@/context/UserContext"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Input } from "../custom/Input"
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -35,7 +34,7 @@ export default function ProfileHeader() {
       </h1>
 
       <div className="flex items-center gap-3.5">
-        {/* Optional search input */}
+        
         <SearchBar
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -88,20 +87,32 @@ export default function ProfileHeader() {
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem className="flex flex-col items-start gap-2 py-3">
-                <div className="w-full flex justify-between items-center">
+              <DropdownMenuItem 
+                className="
+                  flex flex-col items-start px-1 pb-2
+                  bg-transparent
+                  hover:bg-transparent
+                  focus:bg-transparent
+                  active:bg-transparent
+                  data-[state=highlighted]:bg-transparent
+                "
+              >
+                <div className="bg-[#EEF3FF] w-full flex justify-between items-center py-2.5 px-3 rounded-xl">
                   <div className="flex flex-col items-start">
                     <p className="text-sm font-medium text-[#101010]">
-                      Device PIN
+                      Staff PIN
                     </p>
-                    <p className="text-[13px] font-semibold">0567</p>
+                    <p className=" text-[#014DFF] text-[13px] font-semibold">0567</p>
                   </div>
-                  <CustomButton variant="secondary" type="button">
-                    Copy
-                  </CustomButton>
+                  <CustomButton 
+                    variant="secondaryBrand" 
+                    size="sm"
+                    type="button"
+                    text="Copy"
+                  />
                 </div>
 
-                <p className="text-xs text-[#7D7D7D] leading-snug">
+                <p className="font-normal text-[10px] text-[#3F3F3F] leading-[100%]">
                   This PIN allows you to log in to any assigned POS device and
                   accept payments securely.
                 </p>

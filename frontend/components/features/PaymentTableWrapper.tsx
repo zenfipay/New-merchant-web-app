@@ -59,12 +59,11 @@ export default function PaymentTabs() {
     [allPayments]
   );
 
-  // FILTER PAYMENTS
   const filteredPayments = useMemo(
     () =>
       allPayments.filter(
         (p) =>
-          (selectedBranch === "All branches" || p.branchLocation === selectedBranch) &&
+          (selectedBranch === "ALL" || p.branchLocation === selectedBranch) &&
           (statusFilter === "all" || p.status.toLowerCase() === statusFilter) &&
           (!filters.date || isDateInRange(p.date, filters.date)) &&
           (!filters.token || p.token === filters.token) &&

@@ -10,26 +10,7 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { PaymentStatusBadge } from './PaymentStatusBadge';
 import DividerHorizontal from '../custom/dividerHorizontal';
 import { CurrentDate } from '@/utils/formatDate';
-
-type StableCoin = {
-    label: "USDT" | "USDC" | "CNGN";
-    conversionRate: number;
-}
-
-const stableCoins: StableCoin[] = [
-    {
-        label: "USDT",
-        conversionRate: 1570.31,
-    },
-    {
-        label: "USDC",
-        conversionRate: 2500.10,
-    },
-    {
-        label: "CNGN",
-        conversionRate: 1250.50,
-    },
-]
+import { stableCoinsData } from '@/lib/data';
 
 export default function RateChecker() {
 
@@ -40,11 +21,11 @@ export default function RateChecker() {
     }
     const [ renderStep, setRenderStep ] = React.useState<RenderStep>(RenderStep.NONE)
     const [ purchasePrice, setPurchasePrice ] = React.useState<string>("");
-    const [ selectedCoin, setSelectedCoin ] = React.useState<"USDT" | "USDC" | "CNGN" | null>(null);
+    const [ selectedCoin, setSelectedCoin ] = React.useState<string | null>(null);
     const [ convertedAmount, setConvertedAmount ] = React.useState<number | null>(null);
 
     const shouldAnimate = convertedAmount !== null && purchasePrice !== "" && selectedCoin !== null;
-    const rate = stableCoins.find((coin) => coin.label === selectedCoin)?.conversionRate;
+    const rate = stableCoinsData.find((coin) => coin.label === selectedCoin)?.conversionRate;
 
     React.useEffect(() => {
         if (!selectedCoin) return;
@@ -53,7 +34,7 @@ export default function RateChecker() {
             return;
         }
 
-        const coinData = stableCoins.find((coin) => coin.label === selectedCoin);
+        const coinData = stableCoinsData.find((coin) => coin.label === selectedCoin);
         if(!coinData) return;
 
         const result = Number(purchasePrice) * coinData.conversionRate
@@ -120,7 +101,7 @@ export default function RateChecker() {
                     <span className="font-neue text-[15px] leading-5 text-[#101010]">{selectedCoin}</span>
                 </div>
                 <div className='flex items-center gap-2.5'>
-                    {stableCoins.map((coin) => (
+                    {stableCoinsData.map((coin) => (
                         <label key={coin.label} htmlFor={coin.label} className='bg-white w-[90px] h-8 flex items-center gap-4 px-3 py-2 rounded-md text-[12px]'>
                             {coin.label}
                             <CustomCheckbox

@@ -1,6 +1,7 @@
 // import "@/types/index"
 
 import { User } from "@/types/index";
+import { StableCoin } from "@/types/index";
 
 export const menuList = [
   {
@@ -39,7 +40,7 @@ export const menuList = [
         title: "Activity log",   
         icon: "/icons/activityLogIcon.svg",   
         activeIcon: "/icons/activeActivityLogIcon.svg", 
-        href: "/owner/activityLog"
+        href: "/owner/activity-log"
        },
     ],
   },
@@ -50,7 +51,7 @@ export const menuList = [
         title: "Settings", 
         icon: "/icons/settingsIcon.svg", 
         activeIcon: "/icons/activeSettingsIcon.svg", 
-        href: "/settings" 
+        href: "/owner/settings" 
       },
       { 
         title: "Help & Support", 
@@ -81,7 +82,7 @@ export const mockUserData: User[] = [
                         branchManagers: ["Oluwatimilehin", "John Doe"],
                         paymentData: [
                             {
-                                paymentId:`00123${Math.floor(Math.random()*1000)}`,
+                                paymentId:`000123456789`,
                                 date: "03 July, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDT (TRC-20)",
@@ -95,7 +96,7 @@ export const mockUserData: User[] = [
                                 stableCoin: "USDT",
                             },
                             {
-                                paymentId:`00124${Math.floor(Math.random()*1000)}`,
+                                paymentId:`000123456788`,
                                 date: "03 August, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "cNGN (TRC-20)",
@@ -109,7 +110,7 @@ export const mockUserData: User[] = [
                                 stableCoin: "USDT",
                             },
                             {
-                                paymentId:`00125${Math.floor(Math.random()*1000)}`,
+                                paymentId:`000123456787`,
                                 date: "03 September, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDC (TRC-20)",
@@ -123,7 +124,7 @@ export const mockUserData: User[] = [
                                 stableCoin: "USDT",
                             },
                             {
-                                paymentId:`00126${Math.floor(Math.random()*1000)}`,
+                                paymentId:`000123456786`,
                                 date: "03 November, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDT (TRC-20)",
@@ -140,7 +141,7 @@ export const mockUserData: User[] = [
                         ],
                         accountTransactions: [
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `0987654321`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Conversion",
                                 branch: "Agege branch",
@@ -150,7 +151,7 @@ export const mockUserData: User[] = [
                                 status: "successful",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `0987654322`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -160,7 +161,7 @@ export const mockUserData: User[] = [
                                 status: "pending",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `0987654323`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Auto-settlement",
                                 branch: "Agege branch",
@@ -173,7 +174,7 @@ export const mockUserData: User[] = [
                         ],
                         pointsOfSale: [
                             {
-                                deviceId: "0019283670",
+                                deviceId: "123456",
                                 pointOfSale: "POS-001",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -182,7 +183,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283671",
+                                deviceId: "123455",
                                 pointOfSale: "POS-002",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Jacob Suleiman",
@@ -191,7 +192,7 @@ export const mockUserData: User[] = [
                                 status: "offline",
                             },
                             {
-                                deviceId: "0019283672",
+                                deviceId: "123454",
                                 pointOfSale: "POS-003",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "David Suleiman",
@@ -200,7 +201,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283673",
+                                deviceId: "123453",
                                 pointOfSale: "POS-004",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -209,7 +210,7 @@ export const mockUserData: User[] = [
                                 status: "disabled",
                             },
                             {
-                                deviceId: "0019283674",
+                                deviceId: "123452",
                                 pointOfSale: "POS-005",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -227,7 +228,7 @@ export const mockUserData: User[] = [
                         branchManagers: ["Elegant", "Cruella"],
                         paymentData: [
                             {
-                                paymentId:`00123${Math.floor(Math.random()*1000)}`,
+                                paymentId:`000123456779`,
                                 date: "03 July, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDT (TRC-20)",
@@ -243,7 +244,7 @@ export const mockUserData: User[] = [
                         ],
                         accountTransactions: [
                             {
-                                transactionId: `00981${Math.floor(Math.random()*1000)}`,
+                                transactionId: `000123456769`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Conversion",
                                 branch: "Agege branch",
@@ -253,7 +254,7 @@ export const mockUserData: User[] = [
                                 status: "successful",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `000123456759`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Auto-settlement",
                                 branch: "Agege branch",
@@ -263,7 +264,7 @@ export const mockUserData: User[] = [
                                 status: "pending",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `000123456749`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -275,7 +276,7 @@ export const mockUserData: User[] = [
                         ],
                         pointsOfSale: [
                             {
-                                deviceId: "0019283670",
+                                deviceId: "0987654320",
                                 pointOfSale: "POS-001",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -284,7 +285,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283671",
+                                deviceId: "90987654322",
                                 pointOfSale: "POS-002",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Jacob Suleiman",
@@ -293,7 +294,7 @@ export const mockUserData: User[] = [
                                 status: "offline",
                             },
                             {
-                                deviceId: "0019283672",
+                                deviceId: "0987654323",
                                 pointOfSale: "POS-003",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "David Suleiman",
@@ -302,7 +303,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283673",
+                                deviceId: "0987654324",
                                 pointOfSale: "POS-004",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -311,7 +312,7 @@ export const mockUserData: User[] = [
                                 status: "disabled",
                             },
                             {
-                                deviceId: "0019283674",
+                                deviceId: "0987654325",
                                 pointOfSale: "POS-005",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -328,13 +329,13 @@ export const mockUserData: User[] = [
                 businessId: 656445,
                 branchData: [
                     {
-                        branchId: 1,
+                        branchId: 3,
                         branchLocation: "Ikeja",
                         numberOfBranchManagers: 3,
                         branchManagers: ["Isaac", "Jacob", "Israel"],
                         paymentData: [
                             {
-                                paymentId:`00123${Math.floor(Math.random()*1000)}`,
+                                paymentId:`1029384756`,
                                 date: "03 July, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDT (TRC-20)",
@@ -350,7 +351,7 @@ export const mockUserData: User[] = [
                         ],
                         accountTransactions: [
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `5647382910`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -360,7 +361,7 @@ export const mockUserData: User[] = [
                                 status: "successful",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `5647382901`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -370,7 +371,7 @@ export const mockUserData: User[] = [
                                 status: "failed",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `6574839211`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -382,7 +383,7 @@ export const mockUserData: User[] = [
                         ],
                         pointsOfSale: [
                             {
-                                deviceId: "123456789",
+                                deviceId: "110200",
                                 pointOfSale: "POS-001",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -391,7 +392,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283671",
+                                deviceId: "112322",
                                 pointOfSale: "POS-002",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Jacob Suleiman",
@@ -400,7 +401,7 @@ export const mockUserData: User[] = [
                                 status: "offline",
                             },
                             {
-                                deviceId: "0019283672",
+                                deviceId: "10992",
                                 pointOfSale: "POS-003",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "David Suleiman",
@@ -409,7 +410,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283673",
+                                deviceId: "413562",
                                 pointOfSale: "POS-004",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -418,7 +419,7 @@ export const mockUserData: User[] = [
                                 status: "disabled",
                             },
                             {
-                                deviceId: "0019283674",
+                                deviceId: "119909",
                                 pointOfSale: "POS-005",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -429,13 +430,13 @@ export const mockUserData: User[] = [
                         ]
                     },
                     {
-                        branchId: 2,
+                        branchId: 4,
                         branchLocation: "Lekki",
                         numberOfBranchManagers: 2,
                         branchManagers: ["Divine", "Blessing"],
                         paymentData: [
                             {
-                                paymentId:`00123${Math.floor(Math.random()*1000)}`,
+                                paymentId:`0000000000`,
                                 date: "03 July, 2025 09:42 PM",
                                 amount: 120.00,
                                 token: "USDT (TRC-20)",
@@ -451,7 +452,7 @@ export const mockUserData: User[] = [
                         ],
                         accountTransactions: [
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `1111111111`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -461,7 +462,7 @@ export const mockUserData: User[] = [
                                 status: "failed",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `2222222222`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -471,7 +472,7 @@ export const mockUserData: User[] = [
                                 status: "failed",
                             },
                             {
-                                transactionId: `00987${Math.floor(Math.random()*1000)}`,
+                                transactionId: `3333333333`,
                                 date: "09 September, 2025 06:00 AM",
                                 type: "Payout",
                                 branch: "Agege branch",
@@ -483,7 +484,7 @@ export const mockUserData: User[] = [
                         ],
                         pointsOfSale: [
                             {
-                                deviceId: "0019283670",
+                                deviceId: "119220",
                                 pointOfSale: "POS-001",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -492,7 +493,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283671",
+                                deviceId: "111111",
                                 pointOfSale: "POS-002",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Jacob Suleiman",
@@ -501,7 +502,7 @@ export const mockUserData: User[] = [
                                 status: "offline",
                             },
                             {
-                                deviceId: "0019283672",
+                                deviceId: "222222",
                                 pointOfSale: "POS-003",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "David Suleiman",
@@ -510,7 +511,7 @@ export const mockUserData: User[] = [
                                 status: "active",
                             },
                             {
-                                deviceId: "0019283673",
+                                deviceId: "333333",
                                 pointOfSale: "POS-004",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -519,7 +520,7 @@ export const mockUserData: User[] = [
                                 status: "disabled",
                             },
                             {
-                                deviceId: "0019283674",
+                                deviceId: "444444",
                                 pointOfSale: "POS-005",
                                 dateCreated: "01 March, 2025 12:00 AM",
                                 staffAssigned: "Grace Suleiman",
@@ -533,6 +534,39 @@ export const mockUserData: User[] = [
             }
         ],
     }
+]
+
+export const branchMetricsData = [
+    {
+        rank: 1,
+        branch: "Agege",
+        totalSales: 2000000,
+        numberOfPayments: 2500,
+        growth: "+18.6%",
+        topCashier: "Emmanuel Adeyera",
+        date: "03 November, 2025 09:42 PM",
+        status:"active",
+    },
+    {
+        rank: 2,
+        branch: "Ketu",
+        totalSales: 2000000,
+        numberOfPayments: 2500,
+        growth: "+18.6%",
+        topCashier: "Emmanuel Adeyera",
+        date: "03 November, 2025 09:42 PM",
+        status:"active",
+    },
+    {
+        rank: 3,
+        branch: "Ikoyi",
+        totalSales: 2000000,
+        numberOfPayments: 2500,
+        growth: "+18.6%",
+        topCashier: "Emmanuel Adeyera",
+        date: "03 November, 2025 09:42 PM",
+        status:"inactive",
+    },
 ]
 
 
@@ -1104,4 +1138,66 @@ export const chartData = [
         usdt: 62000, 
         cngn: 39000, 
     },
+]
+
+
+export const stableCoinsData: StableCoin[] = [
+    {
+        label: "USDT",
+        conversionRate: 1570.31,
+        icon: "/icons/USDTflag.svg",
+        items: [
+            {
+                label: "TRC-20",
+                value: "USDT(TRC-20)",
+            },
+            {
+                label: "Solana",
+                value: "USDT(Solana)",
+            },
+            {
+                label: "Base",
+                value: "USDT(Base)",
+            },
+        ]
+    },
+    {
+        label: "USDC",
+        conversionRate: 1570.31,
+        icon: "/icons/USDCflag.svg",
+        items: [
+            {
+                label: "TRC-20",
+                value: "USDC(TRC-20)",
+            },
+            {
+                label: "Solana",
+                value: "USDC(Solana)",
+            },
+            {
+                label: "Base",
+                value: "USDC(Base)",
+            },
+        ]
+    },
+    {
+        label: "CNGN",
+        conversionRate: 1570.31,
+        icon: "/icons/NGNflag.svg",
+        items: [
+            {
+                label: "TRC-20",
+                value: "CNGN(TRC-20)",
+            },
+            {
+                label: "Solana",
+                value: "CNGN(Solana)",
+            },
+            {
+                label: "Base",
+                value: "CNGN(Base)",
+            },
+        ]
+    },
+
 ]

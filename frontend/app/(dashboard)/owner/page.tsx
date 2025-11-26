@@ -6,7 +6,7 @@ import { DashboardCard } from "@/components/features/DashboardCard";
 import DashboardChart from "@/components/features/DashboardChart";
 import { NoHoverCard } from "@/components/features/NoHoverCard";
 import { Notification } from "@/components/features/Notification";
-import StableCoinConverter from "@/components/features/PayoutComponent";
+import PayoutComponent from "@/components/features/PayoutComponent";
 import { PaymentTable } from "@/components/features/paymentTable";
 import { PaymentReceiptPDF } from "@/components/features/PaymentReceiptPDF";
 import { CustomButton } from "@/components/custom/CustomButton";
@@ -137,7 +137,7 @@ export default function OwnerDashboard() {
       </div>
 
       <DashboardChart />
-      <StableCoinConverter />
+      <PayoutComponent />
 
       {/* PAYMENT TABLE */}
       <div className="my-6 py-3 space-y-6">

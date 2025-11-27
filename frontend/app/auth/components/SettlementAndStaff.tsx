@@ -29,20 +29,7 @@ import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
 import ROUTES from "@/routes";
 
-const settlementSchema = z.object({
-    bankName: z.string().min(1, "You must select a bank")
-        .refine((val) => val, { message: "Invalid" }),
-    accountNumber: z.string().trim().regex(/^\d{10}$/g, {
-        message: "Enter a valid account number"
-    })
-})
-
-const addStaffSchema = z.object({
-    staffFirstName: z.string().min(1, "Field cannot be empty"),
-    staffLastName: z.string().min(1, "Field cannot be empty"),
-    staffEmail: z.string().min(1, "Field cannot be empty").email("Enter a valid email address"),
-    role: z.enum(["co-owner", "Admin/GM", "Branch manager", "Staff"])
-})
+import { settlementSchema, addStaffSchema } from "@/lib/schemas";
 
 
 type SettlementFormData = z.infer<typeof settlementSchema>

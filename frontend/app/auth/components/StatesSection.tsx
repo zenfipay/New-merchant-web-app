@@ -30,60 +30,7 @@ import { Label } from "@/components/custom/Label";
 import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
 
-const businessProfileSchema = z.object({
-    businessName: z.string().min(1, "Enter your business name"),
-    businessEmail: z.string().min(1, "Enter your business email address").email("Enter a valid email address"),
-    countryCode: z.literal("+234"),
-    businessPhoneNumber: z.string().trim().regex(/^\d{10}$/g, {
-        message: "Enter a valid phone number",
-    }),
-    businessType: z.enum(["Sole proprietorship", "Limited Liability Company (LLC)", "Private Limited Company (Ltd)", "Freelancer"]),
-    businessIndustry: z.string().min(1, "Select a business type"),
-    proofOfBusiness: z.string().url("Enter a valid url").min(1, "This field cannot be empty")
-})
-
-const businessAddressSchema = z.object({
-    country: z.literal("Nigeria"),
-    address: z.string().min(1, "Input your address"),
-    city: z.string().min(1, "Select a city"),
-    state: z.string().min(1, "Select your state of business"),
-    zipCode: z.string().regex(/^\d{6}$/, {
-        message: "Must be 6 digits"
-    }),
-})
-
-
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ACCEPTED_FILE_TYPES = [
-    "image/jpeg",
-    "image/png",
-    "application/pdf",
-];
-
-const businessDocumentsSchema = z.object({
-    cacDocument: z
-        .any()
-        .refine((val) => val instanceof File, {
-            message: "Please upload a valid file for CAC document"
-        })
-        .refine((val) => val instanceof File && val.size <= MAX_FILE_SIZE, {
-            message: "File size must be less than 5MB",
-        })
-        .refine((val) => val instanceof File && ACCEPTED_FILE_TYPES.includes(val.type), {
-            message: "File must be a JPEG, PNG or PDF"
-        }),
-        directorId: z
-            .any()
-            .refine((val) => val instanceof File, {
-                message: "Please upload a valid file for Director ID"
-            })
-            .refine((val) => val instanceof File && val.size <= MAX_FILE_SIZE, {
-                message: "File size must be less than 5MB"
-            })
-            .refine((val) => val instanceof File && ACCEPTED_FILE_TYPES.includes(val.type), {
-                message: 'File must be JPEG, PNG, or PDF'
-            })
-})
+import { businessProfileSchema, businessAddressSchema, businessDocumentsSchema } from "@/lib/schemas";
 
 const businessDataSchema = businessProfileSchema.merge(businessAddressSchema).merge(businessDocumentsSchema);
 

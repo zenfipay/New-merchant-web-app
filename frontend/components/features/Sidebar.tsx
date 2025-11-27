@@ -83,8 +83,11 @@ export default function Sidebar() {
             </li>
           ))}
         </ul>
-        <div className="h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FFF0F1] hover:text-[#E41D24] cursor-pointer">
-          <Link href="/">
+        <div className="flex flex-col pt-3 gap-1">
+          <Link 
+            href="/"
+            className="h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FFF0F1] hover:text-[#E41D24] cursor-pointer"
+          >
             <Image src='/icons/activeLogoutIcon.svg' alt="Logout icon" width={18} height={18} className="" />
             <span className="text-[13px] text-[#E41D24]">Logout</span>
           </Link>

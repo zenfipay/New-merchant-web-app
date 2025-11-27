@@ -16,24 +16,7 @@ import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
 import { motion, AnimatePresence } from "framer-motion";
 
-const signUpFormSchema = z.object({
-    firstName: z.string().min(1, "This field cannot be empty"),
-    lastName: z.string().min(1, "This field cannot be empty"),
-    email: z.string().min(1, "This field cannot be empty").email("Invalid email"),
-    password: z
-        .string()
-        .min(8, "Password must be at least 8 characters")
-        .regex(/[a-z]/, "Must contain lower case letter")
-        .regex(/[A-Z]/, "Must contain Upper case letter")
-        .regex(/\d/, "Must contain a number")
-        .regex(/[^A-Za-z0-9]/, "Must contain a special character")
-})
-
-const verifyAccountSchema = z.object({
-    verification: z.string().regex(/^\d{6}$/, {
-        message: "Invalid input",
-    }),
-})
+import { signUpFormSchema, verifyAccountSchema } from "@/lib/schemas";
 
 const combinedSchema = signUpFormSchema.merge(verifyAccountSchema)
 
@@ -218,6 +201,8 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                                     <ErrorInfo message={errors.lastName?.message} />
                                 </div>
                             </div>
+
+                            {/* EMAIL */}
                             <div className="w-full flex flex-col space-y-1">
                                 <Label htmlFor="email" text="Email address" />
                                 <Input
@@ -228,6 +213,8 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                                 />
                                 <ErrorInfo message={errors.email?.message} />
                             </div>
+
+                            {/* PASSWORD */}
                             <div className="relative w-full flex flex-col space-y-1">
                                 <Label htmlFor="password" text="Password" />
                                 <Input
@@ -252,11 +239,11 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                             <div className="flex flex-col gap-2">
                                 <span className="inline-block text-[11px] font-inter font-medium text-[#3f3f3f]">Password must contain:</span>
                                 <div className="grid grid-cols-2 gap-y-3">
-                                {renderCheck(checks.length, "8 characters")}
-                                {renderCheck(checks.upperLower, "Upppercase & lowercase")}
-                                {renderCheck(checks.number, "1 number")}
-                                {renderCheck(checks.special, "1 special character")}
-                            </div>
+                                    {renderCheck(checks.length, "8 characters")}
+                                    {renderCheck(checks.upperLower, "Upppercase & lowercase")}
+                                    {renderCheck(checks.number, "1 number")}
+                                    {renderCheck(checks.special, "1 special character")}
+                                </div>
                             </div>
                         </div>
                     )}

@@ -24,20 +24,7 @@ import {
 } from '@/components/ui/select';
 import SettlementAndStaff from '../components/SettlementAndStaff'
 
-const newBranchSchema = z.object({
-    branchName: z.string().min(1, 'Enter your branch name'),
-    countryCode: z.literal("+234"),
-    branchContactNumber: z.string().trim().regex(/^\d{10}$/g, {
-        message: "Enter a valid phone number",
-    }),
-    branchAddress: z.string().min(1, 'Input your address'),
-    branchCountry: z.literal("Nigeria"),
-    branchState: z.string().min(1, "Select your state of business" ),
-    branchCity: z.string().min(1, "Select a city"),
-    branchZipCode: z.string().regex(/^\d{6}$/, {
-        message: "Must be 6 digits"
-    }),
-})
+import { newBranchSchema } from '@/lib/schemas'
 
 type newBranchData = z.infer<typeof newBranchSchema>
 

@@ -155,7 +155,10 @@ export const PayoutStableCoin = ({
                                                 size="sm"
                                                 text="Max"
                                                 className='absolute right-2 top-[5px]'
-                                                onClick={() => console.log("yay")}
+                                                onClick={() => {
+                                                    setAmount(balance)
+                                                    reset({ payoutAmount: balance.toString()})
+                                                }}
                                             />
                                         </div>
                                         <ErrorInfo message={errors.payoutAmount?.message} />

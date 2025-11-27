@@ -13,16 +13,11 @@ import { Label } from "@/components/custom/Label"
 import { ErrorInfo } from "./components/ErrorMessage"
 
 import { useRouter } from "next/navigation"
+import { signInSchema } from "@/lib/schemas"
 
 import ROUTES from "@/routes"
 
-
-const SignInSchema = z.object({
-    email: z.string().min(1, "Email is required").email("Invalid email address"),
-    password: z.string().min(1, "Password is required"),
-})
-
-type SignInData = z.infer<typeof SignInSchema>;
+type SignInData = z.infer<typeof signInSchema>;
 
 export default function AuthSignInPage() {
 
@@ -35,11 +30,11 @@ export default function AuthSignInPage() {
         handleSubmit,
         formState: { errors, isValid, }, reset
     } = useForm<SignInData>({
-        resolver: zodResolver(SignInSchema),
+        resolver: zodResolver(signInSchema),
         mode: "onChange",
     })
 
-    const onSubmit = ( data: z.infer<typeof SignInSchema>) => {
+    const onSubmit = ( data: z.infer<typeof signInSchema>) => {
         console.log(data);
         router.push(ROUTES.OWNERDASHBOARD)
 

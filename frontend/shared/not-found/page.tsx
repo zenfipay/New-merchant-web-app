@@ -4,6 +4,6 @@
 
 export default function NotFound() {
     <>
-        Emergency
+        PAGE NOT FOUND
     </>
 }

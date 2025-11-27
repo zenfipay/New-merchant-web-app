@@ -15,7 +15,7 @@ export default function AuthLayout({
                 closeButton 
                 toastOptions={{
                     classNames: {
-                        toast: "bg-[#E0F3D5] rounded-xl flex items-center justify-start gap-2 font-inter font-medium text-[11px] text-[#101010] border border-[#E0F3D5] drop-shadow-lg",
+                        toast: "bg-[#E0F3D5] dark:bg-[#E0F3D5] rounded-xl flex items-center justify-start gap-2 font-inter font-medium text-[11px] text-[#101010] border border-[#E0F3D5] drop-shadow-lg",
                         closeButton: "order-last"
                     }
                 }}

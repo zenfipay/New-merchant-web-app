@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import Image from "next/image";
 import { PaymentStatusBadge } from "./PaymentStatusBadge";
@@ -12,9 +13,9 @@ import { InfoDiv } from "../custom/infoDiv";
 interface PaymentTableProps {
   payments: payment[];
   selectedPayments: string[];
-  onSelectAll: (checked: boolean) => void;
-  onSelectRow: (id: string, checked: boolean) => void;
-  onAction: (action: string, payment: payment) => void;
+  onSelectAll: ( checked:boolean ) => void;
+  onSelectRow: ( id:string, checked:boolean ) => void;
+  onAction: ( action:string, payment:payment ) => void;
 }
 
 export const PaymentTable: React.FC<PaymentTableProps> = ({
@@ -50,7 +51,7 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
     },
   ];
 
-  // Define actions
+  
   const actions: TableAction<payment>[] = [
     {
       label: "Print receipt",
@@ -97,7 +98,7 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
 
   const renderDetailsPanel = (payment: payment, onClose: () => void) => (
     <div className="absolute top-4 right-[30px] bg-white w-[400px] h-[715px] border border-white rounded-3xl overflow-hidden">
-      <div className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
+      <header className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
         <p className="text-[#636363] text-[11px] tracking-[1.4px]">
           PAYMENT DETAILS
         </p>
@@ -113,7 +114,7 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
             height={16}
           />
         </div>
-      </div>
+      </header>
 
       {/* CONTENT */}
       <div className="p-6">
@@ -139,12 +140,13 @@ export const PaymentTable: React.FC<PaymentTableProps> = ({
 
         {payment.status !== "successful" && (
           <div className=''>
-            {payment.status === "pending" ? (
-              <InfoDiv text="Settlement will be processed after confirmation" />
-            ): payment.status === "failed" ? (
-              <InfoDiv text="Payment failed & no funds were received. Please contact support if this persists." />
-            ): (
-              <p></p>
+            {payment.status !== 'settled' && (
+              <InfoDiv 
+                text={
+                  payment.status === 'pending' ? 
+                  'Settlement will be processed after confirmation' : 
+                  'Payment failed & no funds were received. Please contact support if this persists.'} 
+              />
             )}
           </div>
         )}

@@ -83,184 +83,179 @@ export const PosTable: React.FC<posTableProps> = ({
     };
 
     const renderDetailsPanel = (pointOfSale: pos, onClose: () => void) => (
-        <div className="absolute top-4 right-[30px] bg-white w-[400px] h-[715px] border border-white rounded-3xl overflow-hidden">
-            <div className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
-            <p className="text-[#636363] text-[11px] tracking-[1.4px]">
-                TRANSACTION DETAILS
-            </p>
-            <div
-                onClick={onClose}
-                className="bg-white w-7 h-7 rounded-[5px] p-2 cursor-pointer"
-            >
-                <Image
-                role="button"
-                src="/icons/closeIconBlack.svg"
-                alt="close icon"
-                width={16}
-                height={16}
-                />
-            </div>
-            </div>
-    
-            {/* CONTENT */}
-            <div className="p-6">
-            {/* FIRST SECTION */}
-            <div className="space-y-2">
-                <div
-                className={`w-fit h-6 flex items-center gap-1 p-1.5 text-[12px] ring-2 rounded-md leading-[100%] ${getStatusColor(
-                    pointOfSale.status
-                )}`}
-                >
-                <Image
-                    src={getStatusIcon(pointOfSale.status)}
-                    alt={`${pointOfSale.status} icon`}
-                    width={14}
-                    height={14}
-                />
-                {pointOfSale.status.charAt(0).toUpperCase() + pointOfSale.status.slice(1)}
-                </div>
-                <p className="text-2xl font-semibold leading-[100%] text-[#20195F]">
-                {pointOfSale.pointOfSale}
+        <div className='absolute top-4 right-[30px] bg-white w-[400px] h-[715px] border border-white rounded-3xl overflow-hidden'>
+            <header className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
+                <p className="text-[#636363] text-[11px] tracking-[1.4px]">
+                    PAYMENT DETAILS
                 </p>
-            </div>
-    
-            {pointOfSale.status !== "successful" && (
-                <div className="bg-[#FFF0E0] py-2 px-4 flex justify-start items-center gap-2 mt-3 border border-[#F5D0A5] rounded-xl">
-                <Image
-                    src="/icons/infoIconBlack.svg"
-                    alt="info icon"
-                    width={16}
-                    height={16}
-                />
-                {pointOfSale.status === "pending" ? (
-                    <p className="text-[11px]">
-                    Settlement will be processed after confirmation
-                    </p>
-                ) : pointOfSale.status === "failed" ? (
-                    <p className="text-[11px]">
-                    Payment failed & no funds were received. Please contact support
-                    if this persists.
-                    </p>
-                ) : (
-                    <p></p>
-                )}
-                </div>
-            )}
-    
-            <DividerHorizontal />
-    
-            {/* BOXES CONTAINER */}
-            <div className="space-y-3.5">
-                {/* BOX 1 */}
-                <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Branch</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.branch}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Payment ID</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.deviceId}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Date</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.dateCreated}</p>
-                </div>
-                </div>
-    
-                {/* BOX 2 */}
-                <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Conversion</p>
-                    <p className="text-[#2B2B2B]">
-                    ₦ {pointOfSale.pointOfSale}
-                    </p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Exchange rate</p>
-                    <p className="text-[#2B2B2B]">
-                    ₦{pointOfSale.deviceId} / {pointOfSale.pointOfSale}
-                    </p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Customer</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.deviceId}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">POS</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.pointOfSale}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p className="text-[#636363]">Chain</p>
-                    <p className="text-[#2B2B2B]">{pointOfSale.branch}</p>
-                </div>
-                </div>
-            </div>
-    
-            <DividerHorizontal />
-    
-            {/* BUTTONS */}
-            <div className="space-y-3">
-                <p className="text-[11px] text-[#7D7D7D]">More actions</p>
-                {pointOfSale.status === "settled" && (
-                <CustomButton
-                    onClick={() => onAction("print", pointOfSale)}
-                    variant="secondary"
-                    className="w-full justify-between items-center font-medium text-[13px]"
+                <div
+                    onClick={onClose}
+                    className="bg-white w-7 h-7 rounded-[5px] p-2 cursor-pointer"
                 >
-                    Print receipt
                     <Image
-                    src="/icons/rightArrowBlue.svg"
-                    alt="print receipt arrow"
+                    role="button"
+                    src="/icons/closeIconBlack.svg"
+                    alt="close icon"
                     width={16}
                     height={16}
                     />
-                </CustomButton>
-                )}
-                <CustomButton
-                variant="secondary"
-                className="w-full justify-between items-center font-medium text-[13px]"
+                </div>
+            </header>
+        
+            {/* CONTENT */}
+            <div className="p-6 space-y-2">
+
+                {/* STATUS AND POS NAME */}
+                <div className="space-y-2">
+                    <div
+                    className={`w-fit h-6 flex items-center gap-1 p-1.5 text-[12px] ring-2 rounded-md leading-[100%] ${getStatusColor(
+                        pointOfSale.status
+                    )}`}
+                    >
+                    <Image
+                        src={getStatusIcon(pointOfSale.status)}
+                        alt={`${pointOfSale.status} icon`}
+                        width={14}
+                        height={14}
+                    />
+                    {pointOfSale.status.charAt(0).toUpperCase() + pointOfSale.status.slice(1)}
+                    </div>
+                    <p className="text-2xl font-semibold leading-[100%] text-[#20195F]">
+                    {pointOfSale.pointOfSale}
+                    </p>
+                </div>
+                
+        
+                <DividerHorizontal />
+        
+                {/* BOXES CONTAINER */}
+                <div className=" overflow-y-auto space-y-3.5">
+                    {/* BOX 1 */}
+                    <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Branch</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.branch}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Date registered</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.dateCreated}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Device ID</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.deviceId}</p>
+                        </div>
+                    </div>
+        
+                    {/* BOX 2 */}
+                    <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Sync status</p>
+                            <p className="text-[#2B2B2B]">
+                            {pointOfSale.syncStatus}
+                            </p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Last sync</p>
+                            <p className="text-[#2B2B2B]">
+                            {pointOfSale.lastActive}
+                            </p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Device type</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.deviceType}</p>
+                        </div>
+                    </div>
+
+                    {/* BOX 3 */}
+                    <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Assigned staff</p>
+                            <p className="text-[#2B2B2B]">
+                            {pointOfSale.staffAssigned}
+                            </p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Role</p>
+                            <p className="text-[#2B2B2B]">
+                                {pointOfSale.role}
+                            </p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Last login</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.lastActive}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-[#636363]">Email address</p>
+                            <p className="text-[#2B2B2B]">{pointOfSale.emailAddress}</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <DividerHorizontal />
+        
+                {/* BUTTONS */}
+                <div className="space-y-3">
+                    <p className="text-[11px] text-[#7D7D7D]">More actions</p>
+                    {pointOfSale.status === "settled" && (
+                    <CustomButton
+                        onClick={() => onAction("print", pointOfSale)}
+                        variant="secondary"
+                        className="w-full justify-between items-center font-medium text-[13px]"
+                    >
+                        Print receipt
+                        <Image
+                        src="/icons/rightArrowBlue.svg"
+                        alt="print receipt arrow"
+                        width={16}
+                        height={16}
+                        />
+                    </CustomButton>
+                    )}
+                    <CustomButton
+                    variant="secondary"
+                    className="w-full justify-between items-center font-medium text-[13px]"
+                    >
+                    View on blockchain
+                    <Image
+                        src="/icons/rightArrowBlue.svg"
+                        alt="go to print receipt"
+                        width={16}
+                        height={16}
+                    />
+                    </CustomButton>
+                    {pointOfSale.status === "failed" && (
+                    <CustomButton
+                        variant="secondary"
+                        className="w-full justify-between items-center font-medium text-[13px]"
+                    >
+                        Contact support
+                        <Image
+                        src="/icons/rightArrowBlue.svg"
+                        alt="Contact support arrow"
+                        width={16}
+                        height={16}
+                        />
+                    </CustomButton>
+                    )}
+                </div>
+            </div>
+        
+                {/* STICKY BOTTOM */}
+                <button
+                title="download receipt"
+                type="button"
+                onClick={() => onAction("download", pointOfSale)}
+                className="bg-[#FAFAFA] w-full h-12 flex items-center gap-1 py-4 px-6"
                 >
-                View on blockchain
                 <Image
-                    src="/icons/rightArrowBlue.svg"
-                    alt="go to print receipt"
+                    src="/icons/downloadIconBlueWithUnderline.svg"
+                    alt="download receipt icon"
                     width={16}
                     height={16}
                 />
-                </CustomButton>
-                {pointOfSale.status === "failed" && (
-                <CustomButton
-                    variant="secondary"
-                    className="w-full justify-between items-center font-medium text-[13px]"
-                >
-                    Contact support
-                    <Image
-                    src="/icons/rightArrowBlue.svg"
-                    alt="Contact support arrow"
-                    width={16}
-                    height={16}
-                    />
-                </CustomButton>
-                )}
+                Download receipt
+                </button>
             </div>
-            </div>
-    
-            {/* STICKY BOTTOM */}
-            <button
-            title="download receipt"
-            type="button"
-            onClick={() => onAction("download", pointOfSale)}
-            className="bg-[#FAFAFA] w-full h-12 flex items-center gap-1 py-4 px-6"
-            >
-            <Image
-                src="/icons/downloadIconBlueWithUnderline.svg"
-                alt="download receipt icon"
-                width={16}
-                height={16}
-            />
-            Download receipt
-            </button>
-        </div>
         );
 
     return (

@@ -1,32 +1,44 @@
 "use client"
-
+import * as React from 'react'
 import BranchSelector from "@/components/features/BranchSelector"
-// import { ActivityLogFilters } from "@/components/features/ActivityLogFilters"
+import { ActivityLogFilters } from "@/components/features/ActivityLogFilters"
 import Divider from "@/components/custom/divider"
 import ExportReportBtn from "@/components/custom/ExportButton"
-// import { ActivityFiltersProps } from "@/types"
 import { NoHoverCard } from "@/components/features/NoHoverCard"
 import { BranchMetricsTable } from "@/components/features/BranchMetricsTable"
-// import { mockUserData } from "@/lib/data"
 import { branchMetricsData } from "@/lib/data"
 import DashboardChart from "@/components/features/DashboardChart"
 import ReportsPaymentTabs from "@/components/features/ReportsPaymentTableWrapper"
 
 
-export default function Accounts({
-    
-}) {
+export default function Accounts() {
+
+    const [ filters, setFilters ] = React.useState({
+        date: '',
+        staff: '',
+    })
+
+    const uniqueStaff = [
+        'Alice Johnson',
+        'Bob Smith',
+        'Charlie Brown',
+        'Diana Prince',
+        'Ethan Hunt',
+        'Fiona Gallagher',
+        'George Clooney',
+        'Hannah Montana',
+    ]
     return (
         <div className="mt-2.5 space-y-3">
             <header className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <BranchSelector />
                     <Divider />
-                    {/* <ActivityLogFilters
+                    <ActivityLogFilters
                         filters={filters}
                         setFilters={setFilters}
                         uniqueStaff={uniqueStaff}
-                    /> */}
+                    />
                 </div>
 
                 <ExportReportBtn />

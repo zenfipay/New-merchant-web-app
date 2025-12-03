@@ -28,7 +28,8 @@ export default function AuthSignInPage() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid, }, reset
+        reset,
+        formState: { errors, isValid, isSubmitting },
     } = useForm<SignInData>({
         resolver: zodResolver(signInSchema),
         mode: "onChange",
@@ -36,7 +37,11 @@ export default function AuthSignInPage() {
 
     const onSubmit = ( data: z.infer<typeof signInSchema>) => {
         console.log(data);
-        router.push(ROUTES.OWNERDASHBOARD)
+        const passwordLower = data.password.toLowerCase()
+
+        if( passwordLower === 'owner') router.push(ROUTES.OWNERDASHBOARD)
+        if(passwordLower === 'cashier') router.push(ROUTES.CASHIERDASHBOARD)
+        
 
         reset();
     }
@@ -103,12 +108,17 @@ export default function AuthSignInPage() {
 
                             <div className="relative flex flex-col space-y-1">
                                 <Label htmlFor="password" text="Password" />
-                                <Input type={ showPassword ? "text" : "password" } placeholder="Enter password" className="h-10" {...register("password")} />
+                                <Input 
+                                    type={ showPassword ? "text" : "password" } 
+                                    placeholder="Enter password" 
+                                    className="h-10" 
+                                    {...register("password")}
+                                />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-3 top-9 cursor-pointer transition-transform duration-300 ease-in-out"
-                                    tabIndex={-1}
+                                    tabIndex={0}
                                 >
                                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
@@ -121,7 +131,7 @@ export default function AuthSignInPage() {
 
                         <CustomButton
                             type="submit"
-                            disabled={!isValid}
+                            disabled={!isValid && isSubmitting}
                             className="w-full mt-12"
                             variant={`${isValid ? "primary" : "disabled"}`}
                             text="Continue"

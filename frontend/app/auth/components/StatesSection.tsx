@@ -229,7 +229,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                         name="businessType"
                                         render={({ field }) => (
                                             <Select {...field} onValueChange={(val)=> setValue("businessType", val as BusinessFormData["businessType"])}>
-                                                <SelectTrigger className="w-full font-inter font-medium text-[13px] text-[#101010] cursor-pointer">
+                                                <SelectTrigger className="w-full cursor-pointer">
                                                     <SelectValue placeholder="Select Business type" />
                                                 </SelectTrigger>
                                                 <SelectContent className="font-inter font-medium text-[13px] text-[#101010]">

@@ -4,6 +4,9 @@
 
 export default function Page() {
     <>
-        Emergency
+        create store:
+        1. filter
+        2. search
+        3.
     </>
 }

@@ -16,6 +16,8 @@ export const ROUTES = {
     STAFF_BRANCH: '/dashboard/staff/branches/',
     ADD_BRANCH: '/auth/add-branch',
     ADD_BUSINESS: '/auth/add-business',
+
+    CASHIERDASHBOARD: '/cashier',
 }
 
 export default ROUTES

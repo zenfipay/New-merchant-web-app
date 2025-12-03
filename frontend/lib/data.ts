@@ -1,7 +1,6 @@
 // import "@/types/index"
 
-import { User } from "@/types/index";
-import { StableCoin } from "@/types/index";
+import { User, StableCoin, settlementAccounts, staffProps } from "@/types/index";
 
 export const menuList = [
   {
@@ -59,7 +58,6 @@ export const menuList = [
         activeIcon: "/icons/activeHelpIcon.svg", 
         href: "/help"
       },
-      // { title: "Logout", icon: "/images/logoutIcon.svg", activeIcon: "/images/activeLogoutIcon.svg", href: "/logout" },
     ],
   }
 ];
@@ -76,10 +74,40 @@ export const mockUserData: User[] = [
                 numberOfBranches: 2,
                 branchData: [
                     {
+                        dateCreated: "03 July, 2025 9:45 PM",
                         branchId: 1,
                         branchLocation: "Agege",
                         numberOfBranchManagers: 2,
-                        branchManagers: ["Oluwatimilehin", "John Doe"],
+                        branchManagers: ["Oluwatimilehin Adedimeji", "John Doe"],
+                        numberOfStaff: 4,
+                        numberOfPOS: 4,
+                        branchStatus: "active",
+                        staff: [
+                            {
+                                id: 123450,
+                                firstName: "Emmanuel",
+                                lastName: "Adeyera",
+                                role: "Admin",
+                                emailAddress: "adeyera08@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 123451,
+                                firstName: "Emmanuel",
+                                lastName: "Owolola",
+                                role: "cashier",
+                                emailAddress: "emmaowo@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 123452,
+                                firstName: "Emmanuel",
+                                lastName: "Odulana",
+                                role: "cashier",
+                                emailAddress: "theboyodulana@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                        ],
                         paymentData: [
                             {
                                 paymentId:`000123456789`,
@@ -181,6 +209,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'iPad',
+                                role: 'cashier',
+                                emailAddress: 'socialmedia@myrroh.com',
                             },
                             {
                                 deviceId: "123455",
@@ -190,6 +222,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Custom device',
+                                role: 'admin',
+                                emailAddress: 'jsuleiman90@gmail.com',
                             },
                             {
                                 deviceId: "123454",
@@ -199,6 +235,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Custom device',
+                                role: 'owner',
+                                emailAddress: 'davidpageig@gmail.com',
                             },
                             {
                                 deviceId: "123453",
@@ -208,6 +248,10 @@ export const mockUserData: User[] = [
                                 branch: "ikoyi branch",
                                 lastActive: "14 November, 2025 11:00 AM",
                                 status: "disabled",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "123452",
@@ -217,15 +261,49 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                         ]
 
                     },
                     {
+                        dateCreated: "03 July, 2025 9:45 PM",
                         branchId: 2,
                         branchLocation: "Dopemu",
                         numberOfBranchManagers: 2,
-                        branchManagers: ["Elegant", "Cruella"],
+                        branchManagers: ["Elegant Adeola", "Cruella Cinderella"],
+                        numberOfStaff: 1,
+                        numberOfPOS: 7,
+                        branchStatus: "active",
+                        staff: [
+                            {
+                                id: 123450,
+                                firstName: "John",
+                                lastName: "Doe",
+                                role: "Admin",
+                                emailAddress: "jd@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 223450,
+                                firstName: "John",
+                                lastName: "Agada",
+                                role: "cashier",
+                                emailAddress: "jagada@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 323450,
+                                firstName: "John",
+                                lastName: "the baptist",
+                                role: "Admin",
+                                emailAddress: "voiceofonecryinginthewilderness@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                        ],
                         paymentData: [
                             {
                                 paymentId:`000123456779`,
@@ -283,6 +361,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "90987654322",
@@ -292,6 +374,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "0987654323",
@@ -301,6 +387,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "0987654324",
@@ -310,6 +400,10 @@ export const mockUserData: User[] = [
                                 branch: "ikoyi branch",
                                 lastActive: "14 November, 2025 11:00 AM",
                                 status: "disabled",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "0987654325",
@@ -319,6 +413,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                         ]
                     }
@@ -329,10 +427,40 @@ export const mockUserData: User[] = [
                 businessId: 656445,
                 branchData: [
                     {
+                        dateCreated: "03 July, 2025 9:45 PM",
                         branchId: 3,
                         branchLocation: "Ikeja",
                         numberOfBranchManagers: 3,
-                        branchManagers: ["Isaac", "Jacob", "Israel"],
+                        branchManagers: ["Isaac Momodu", "Jacob Adenuga", "Israel Tamach"],
+                        numberOfStaff: 12,
+                        numberOfPOS: 6,
+                        branchStatus: "inactive",
+                        staff: [
+                            {
+                                id: 103450,
+                                firstName: "David",
+                                lastName: "Adedigba",
+                                role: "cashier",
+                                emailAddress: "daveadedigba@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 113450,
+                                firstName: "David",
+                                lastName: "the king",
+                                role: "Co-owner",
+                                emailAddress: "goliathslayer@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 123450,
+                                firstName: "David",
+                                lastName: "Wisdom",
+                                role: "Branch manager",
+                                emailAddress: "wizzyboy@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                        ],
                         paymentData: [
                             {
                                 paymentId:`1029384756`,
@@ -390,6 +518,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "112322",
@@ -399,6 +531,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'iPad',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "10992",
@@ -408,6 +544,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Custom device',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "413562",
@@ -417,6 +557,10 @@ export const mockUserData: User[] = [
                                 branch: "ikoyi branch",
                                 lastActive: "14 November, 2025 11:00 AM",
                                 status: "disabled",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "119909",
@@ -430,10 +574,40 @@ export const mockUserData: User[] = [
                         ]
                     },
                     {
+                        dateCreated: "03 July, 2025 9:45 PM",
                         branchId: 4,
                         branchLocation: "Lekki",
                         numberOfBranchManagers: 2,
-                        branchManagers: ["Divine", "Blessing"],
+                        branchManagers: ["Divine Ekwensu", "Blessing Ekerenmadu"],
+                        numberOfStaff: 4,
+                        numberOfPOS: 4,
+                        branchStatus: "active",
+                        staff: [
+                            {
+                                id: 120450,
+                                firstName: "Rebecca",
+                                lastName: "Omotayo",
+                                role: "Branch manager",
+                                emailAddress: "troublemaker@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 121450,
+                                firstName: "Rebecca",
+                                lastName: "Isaac",
+                                role: "Admin",
+                                emailAddress: "inheritancekid@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                            {
+                                id: 123450,
+                                firstName: "Rebecca",
+                                lastName: "Rebecca",
+                                role: "cashier",
+                                emailAddress: "rebeccax2@gmail.com",
+                                lastActive: '25 November, 2025 11:45 PM'
+                            },
+                        ],
                         paymentData: [
                             {
                                 paymentId:`0000000000`,
@@ -491,6 +665,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "111111",
@@ -500,6 +678,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "222222",
@@ -509,6 +691,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "333333",
@@ -518,6 +704,10 @@ export const mockUserData: User[] = [
                                 branch: "ikoyi branch",
                                 lastActive: "14 November, 2025 11:00 AM",
                                 status: "disabled",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                             {
                                 deviceId: "444444",
@@ -527,6 +717,10 @@ export const mockUserData: User[] = [
                                 branch: "Agege branch",
                                 lastActive: "14 November, 2025 12:00 PM",
                                 status: "offline",
+                                syncStatus: 'Up to date',
+                                deviceType: 'Android desktop',
+                                role: 'cashier',
+                                emailAddress: 'adeyera08@gmail.com',
                             },
                         ]
                     }
@@ -1200,4 +1394,66 @@ export const stableCoinsData: StableCoin[] = [
         ]
     },
 
+]
+
+export const SettlementAccountsData: settlementAccounts[] = [
+    {
+        branch: "Agege",
+        bankName: "Guaranty Trust Bank Limited",
+        accountNumber: "0123456789",
+        addedBy: "Grace Suleiman",
+        payoutsReceived: 1200000,
+        lastPayout: "14 November, 2025 12:00 PM",
+    },
+]
+
+export const staffData: staffProps[] = [
+    {
+        id: 123456,
+        firstName: 'Clark ',
+        lastName: 'Kent',
+        role: 'Owner',
+    },
+    {
+        id: 123457,
+        firstName: 'Bruce ',
+        lastName: 'Wayne',
+        role: 'Co-owner',
+    },
+    {
+        id: 123458,
+        firstName: 'Diana',
+        lastName: 'Prince',
+        role: 'Co-Owner',
+    },
+    {
+        id: 123459,
+        firstName: 'John',
+        lastName: 'Jones',
+        role: 'Admin',
+    },
+    {
+        id: 123455,
+        firstName: 'John',
+        lastName: 'Stewart',
+        role: 'Admin',
+    },
+    {
+        id: 123454,
+        firstName: 'Barry',
+        lastName: 'Allen',
+        role: 'Cashier',
+    },
+    {
+        id: 123453,
+        firstName: 'Bart',
+        lastName: 'Allen',
+        role: 'Cashier',
+    },
+    {
+        id: 123452,
+        firstName: 'Ralph',
+        lastName: 'Dibny',
+        role: 'Cashier',
+    },
 ]

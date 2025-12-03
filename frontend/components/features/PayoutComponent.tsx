@@ -25,6 +25,7 @@ export default function PayoutComponent() {
 
     const stableCoinGroup = stableCoinsData.find((coin) => coin.items?.some((item) => item.value === stableCoin));
     const stableCoinIcon = stableCoinGroup?.icon || "/icons/USAflag.svg"
+    const stableCoinLabel = stableCoinGroup?.label || "USD";
 
     const coinSelectorRef = React.useRef<HTMLDivElement>(null);
 
@@ -86,24 +87,29 @@ export default function PayoutComponent() {
 
                                     <div ref={coinSelectorRef} className='absolute z-60 bg-white w-[174px] drop-shadow-lg rounded-xl'>
                                         <ul className=''>
-                                            <li className='text-[12px] py-0.5 px-[9px]' onClick={() => setStableCoin("All stablecoin(USD)")}>
+                                            <li className='h-8 flex justify-between items-center text-[12px] py-2.5 px-[9px] rounded-lg cursor-pointer' onClick={() => setStableCoin("All stablecoin(USD)")}>
                                                 All stablecoins(USD)
+                                                <CustomCheckbox
+                                                    id={`checkbox-${"all-stablecoins"}`}
+                                                    checked={stableCoin === "All stablecoin(USD)"}
+                                                    onChange={() => setStableCoin("All stablecoin(USD)")}
+                                                />
                                             </li>
                                             <DividerHorizontal />
                                             {stableCoinsData.map((coin) => (
-                                                <li key={coin.label} className=''>
+                                                <li key={coin.label} className='py-2 border-b'>
                                                     <Accordion type="single" value={openAccordion} onValueChange={setOpenAccordion}>
                                                         <AccordionItem value={coin.label}>
-                                                            <AccordionTrigger className='text-[12px] py-0.5 px-[9px]'>{coin.label}</AccordionTrigger>
+                                                            <AccordionTrigger className={`text-[12px] py-0.5 px-[9px] ${stableCoin === coin.label ? 'bg-red-900' : ''}`}>{coin.label}</AccordionTrigger>
                                                             <AccordionContent>
-                                                                <ul className=''>
+                                                                <ul className='px-1'>
                                                                     {coin.items?.map((item) => {
                                                                         const isActive = stableCoin === item.value;
 
                                                                         return (
                                                                             <li 
                                                                                 key={item.value} 
-                                                                                className={`h-8 flex justify-between items-center text-[12px] py-1 px-[9px] rounded-lg cursor-pointer ${
+                                                                                className={`h-8 flex justify-between items-center text-[12px] py-1 px-[9px] rounded-md cursor-pointer ${
                                                                                     isActive ? "bg-[#EEF3FF]" : ""
                                                                                 }`}
                                                                                 onClick={() => setStableCoin(item.value)}
@@ -134,7 +140,7 @@ export default function PayoutComponent() {
                     <div className="flex justify-between items-center">
                         <div className="">
                             <p className="font-inter font-semibold text-[20px] text-[#20195F] leading-7">0.00</p>
-                            <span className="font-inter font-normal text-[11px]">United States Dollar ({stableCoinIcon})</span>
+                            <span className="font-inter font-normal text-[11px]">United States Dollar ({stableCoinLabel})</span>
                         </div>
                         {/* BUTTONS */}
                         <div className='flex items-center gap-3'>

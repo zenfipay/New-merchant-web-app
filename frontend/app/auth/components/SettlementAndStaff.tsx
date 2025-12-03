@@ -30,6 +30,7 @@ import { ErrorInfo } from "./ErrorMessage";
 import ROUTES from "@/routes";
 
 import { settlementSchema, addStaffSchema } from "@/lib/schemas";
+import Spinner from "@/components/custom/ZenfipaySpinnerSmall";
 
 
 type SettlementFormData = z.infer<typeof settlementSchema>
@@ -45,7 +46,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
    const [ staffList, setStaffList ] = useState<StaffFormData[]>([])
 
    const [ accountName, setAccountName ] = useState<string | null>(null);
-   const [ isFetchingName, setIsFetchingName ] = useState(false);
+   const [ isVerifying, setIsVerifying ] = useState(false);
 
     // SETTLEMENT FORM
     const {
@@ -60,10 +61,6 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
         reValidateMode: "onChange",
     });
 
-    const accountNumber = useWatch({
-        control: settlementControl,
-        name: "accountNumber",
-    })
     // STAFF FORM
     const {
         control: staffControl,
@@ -75,6 +72,17 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
         resolver: zodResolver(addStaffSchema),
         mode: "onChange",
         reValidateMode: "onChange",
+    })
+
+
+
+    const userAccountName = useWatch({
+        control: settlementControl,
+        name: 'bankName'
+    })
+    const accountNumber = useWatch({
+        control: settlementControl,
+        name: "accountNumber",
     })
 
     const handleOptionClick = ( option: "settlement" | "addStaff" | "later" | "showStaff" ) => {
@@ -126,36 +134,30 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
         }
     }
 
-   useEffect(() => {
-    let isMounted = true;
+    useEffect(() => {
+    if (userAccountName && accountNumber && accountNumber.length === 10) {
 
-    if (accountNumber && accountNumber.length === 10) {
         const fetchAccountName = async () => {
         try {
-            setIsFetchingName(true);
+            setIsVerifying(true);
             setAccountName(null);
 
             await new Promise((resolve) => setTimeout(resolve, 1500));
+            setIsVerifying(false);
+            setAccountName('Emmanuel Adedoyin Adeyera')
 
-            if (isMounted) {
-            setAccountName("John Adeyera Palmer");
-            }
         } catch (error) {
             console.error("Error fetching account name:", error);
         } finally {
-            if (isMounted) setIsFetchingName(false);
+            setIsVerifying(false)
         }
         };
 
         fetchAccountName();
     } else {
-        if (isMounted) setAccountName(null);
+        setIsVerifying(false)
     }
-
-    return () => {
-        isMounted = false;
-    };
-    }, [accountNumber]);
+    }, [userAccountName, accountNumber]);
 
 
     return (
@@ -295,32 +297,25 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                                 className={settlementErrors.accountNumber ? "border-[#FFC0C2]" : ""} 
                             />
                             <ErrorInfo message={settlementErrors.accountNumber?.message} />
-                            { accountName && accountNumber?.length === 10 && (
-                                <div
-                                    className="w-full bg-[#EEF3FF] px-3 py-[9.5px] text-brand font-inter font-semibold text-[11px] leading-8 rounded-xl"
-                                >
-                                    {isFetchingName && 
-                                        <div className="relative w-5 h-5 mx-auto">
-                                            <div className="absolute inset-0.5 rounded-full bg-linear-to-tr from-[#99ec64] to-[#20195f] animate-spin" />
-                                            <div className="absolute inset-[3px] bg-[#EEF3FF] rounded-full"></div>
-                                        </div>
-                                    }
-                                    {!isFetchingName && accountName && (
-                                        <span className="font-inter font-semibold text-[11px] text-[#014DFF]">{accountName.toUpperCase()}</span>
-                                    )}
-                                    {/* {!isFetchingName && !accountName && (
-                                        <span className="">Enter a valid account number</span>
-                                    )} */}
+                            {isVerifying ? (
+                                <div className='bg-[#EEF3FF] flex justify-center items-center p-3 rounded-2xl'>
+                                    <Spinner />
+                                </div>
+                            ): accountName && !isVerifying && (
+                                <div className='bg-[#EEF3FF] p-3 rounded-2xl'>
+                                    <p className='text-[#014DFF] font-semibold uppercase'>
+                                        Account Name: {accountName}
+                                    </p>
                                 </div>
                             )}
-                       </div>
+                        </div>
 
                        <CustomButton 
-                            variant={isSettlementFormValid ? "primary" : "disabled"}
+                            variant={isSettlementFormValid && accountName ? "primary" : "disabled"}
                             type="submit"
                             className="w-full"
                             text="Save account"
-                            disabled={!isSettlementFormValid}
+                            disabled={!isSettlementFormValid || !accountName}
                         />
 
                     </form>

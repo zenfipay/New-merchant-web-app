@@ -35,6 +35,7 @@ interface DataTableProps<T> {
   rowKey: keyof T;
   selectable?: boolean;
   detailsPanel?: (row: T, onClose: () => void) => React.ReactNode;
+  detailsButtonLabel?: string;
 }
 
 export function DataTable<T>({
@@ -47,6 +48,7 @@ export function DataTable<T>({
   rowKey,
   selectable = false,
   detailsPanel,
+  detailsButtonLabel,
 }: DataTableProps<T>) {
   const [showDetails, setShowDetails] = React.useState(false);
   const [selectedRow, setSelectedRow] = React.useState<T | null>(null);
@@ -157,7 +159,7 @@ export function DataTable<T>({
                             onClick={() => handleViewDetails(row)}
                             className="data-highlighted:bg-[#EEF3FF] data-highlighted:text-[#014DFF]"
                           >
-                            <span>View details</span>
+                            <span>{detailsButtonLabel || "View details"}</span>
                           </DropdownMenuItem>
                         )}
                       </DropdownMenuContent>

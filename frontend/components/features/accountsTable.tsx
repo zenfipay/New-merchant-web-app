@@ -63,8 +63,6 @@ export const AccountTable: React.FC<AccountTableProps> = ({
 
     const getStatusColor = (status: string) => {
         switch (status) {
-          case "settled":
-              return "bg-[#C4FFE2] ring-[#DCFFEE] text-[#5DA481]";
           case "successful":
             return "bg-[#C4FFE2] ring-[#DCFFEE] text-[#5DA481]";
           case "pending":
@@ -78,8 +76,6 @@ export const AccountTable: React.FC<AccountTableProps> = ({
 
     const getStatusIcon = (status: string) => {
         switch (status) {
-          case "settled":
-              return "/icons/settledPaymentIcon.svg";
           case "successful":
             return "/icons/settledPaymentIcon.svg";
           case "pending":
@@ -92,10 +88,11 @@ export const AccountTable: React.FC<AccountTableProps> = ({
     };
 
     const renderDetailsPanel = (account: accountTransactions, onClose: () => void) => (
-        <div className="absolute top-4 right-[30px] bg-white w-[400px] h-[715px] border border-white rounded-3xl overflow-hidden">
-          <div className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
+        <div className="absolute top-4 right-[30px] bg-white w-[400px] border border-white rounded-3xl overflow-hidden">
+          {/* HEADER */}
+          <header className="bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4">
             <p className="text-[#636363] text-[11px] tracking-[1.4px]">
-              TRANSACTION DETAILS
+              <span className='uppercase'>{account.type}</span> DETAILS
             </p>
             <div
               onClick={onClose}
@@ -109,11 +106,12 @@ export const AccountTable: React.FC<AccountTableProps> = ({
                 height={16}
               />
             </div>
-          </div>
+          </header>
     
           {/* CONTENT */}
-          <div className="p-6">
-            {/* FIRST SECTION */}
+          <div className="h-[575px] p-6 space-y-4">
+
+            {/* STATUS AND AMOUNT */}
             <div className="space-y-2">
               <div
                 className={`w-fit h-6 flex items-center gap-1 p-1.5 text-[12px] ring-2 rounded-md leading-[100%] ${getStatusColor(
@@ -131,6 +129,7 @@ export const AccountTable: React.FC<AccountTableProps> = ({
               <p className="text-2xl font-semibold leading-[100%] text-[#20195F]">
                 {formatCurrency(account.amount)}
               </p>
+              {}
             </div>
 
             {account.status !== "successful" && (
@@ -156,7 +155,7 @@ export const AccountTable: React.FC<AccountTableProps> = ({
                   <p className="text-[#2B2B2B]">{account.branch}</p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#636363]">Payment ID</p>
+                  <p className="text-[#636363]">Transaction ID</p>
                   <p className="text-[#2B2B2B]">{account.transactionId}</p>
                 </div>
                 <div className="flex justify-between">
@@ -168,28 +167,24 @@ export const AccountTable: React.FC<AccountTableProps> = ({
               {/* BOX 2 */}
               <div className="bg-white space-y-5 p-3 gap-3 rounded-xl border border-[#F6F6F6]">
                 <div className="flex justify-between">
-                  <p className="text-[#636363]">Conversion</p>
+                  <p className="text-[#636363]">Converted from</p>
                   <p className="text-[#2B2B2B]">
-                    ₦ {formatCurrency(account.amount)}
+                    {account.from}
                   </p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#636363]">Exchange rate</p>
+                  <p className="text-[#636363]">Converted to</p>
                   <p className="text-[#2B2B2B]">
-                    ₦{account.to} / {account.type}
+                    {account.to}
                   </p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#636363]">Customer</p>
-                  <p className="text-[#2B2B2B]">{account.transactionId}</p>
+                  <p className="text-[#636363]">NGN Received</p>
+                  <p className="text-[#2B2B2B]">₦{formatCurrency(account.amount)}</p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[#636363]">POS</p>
+                  <p className="text-[#636363]">Rate applied</p>
                   <p className="text-[#2B2B2B]">{account.type}</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-[#636363]">Chain</p>
-                  <p className="text-[#2B2B2B]">{account.branch}</p>
                 </div>
               </div>
             </div>
@@ -199,7 +194,7 @@ export const AccountTable: React.FC<AccountTableProps> = ({
             {/* BUTTONS */}
             <div className="space-y-3">
               <p className="text-[11px] text-[#7D7D7D]">More actions</p>
-              {account.status === "settled" && (
+              {account.status === "successful" && (
                 <CustomButton
                   onClick={() => onAction("print", account)}
                   variant="secondary"
@@ -214,18 +209,20 @@ export const AccountTable: React.FC<AccountTableProps> = ({
                   />
                 </CustomButton>
               )}
-              <CustomButton
-                variant="secondary"
-                className="w-full justify-between items-center font-medium text-[13px]"
-              >
-                View on blockchain
-                <Image
-                  src="/icons/rightArrowBlue.svg"
-                  alt="go to print receipt"
-                  width={16}
-                  height={16}
-                />
-              </CustomButton>
+              {account.status !== 'failed' &&(
+                  <CustomButton
+                  variant="secondary"
+                  className="w-full justify-between items-center font-medium text-[13px]"
+                >
+                  View on blockchain
+                  <Image
+                    src="/icons/rightArrowBlue.svg"
+                    alt="go to print receipt"
+                    width={16}
+                    height={16}
+                  />
+                </CustomButton>
+              )}
               {account.status === "failed" && (
                 <CustomButton
                   variant="secondary"

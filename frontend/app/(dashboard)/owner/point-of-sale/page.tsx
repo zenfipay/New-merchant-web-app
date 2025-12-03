@@ -3,7 +3,7 @@
 import ExportReportBtn from "@/components/custom/ExportButton"
 import BranchSelector from "@/components/features/BranchSelector"
 import { NoHoverCard } from "@/components/features/NoHoverCard"
-import PosTableWrapper from "@/components/features/posTableWrapper"
+import { PosTableWrapper } from "@/components/features/posTableWrapper"
 import { Notification } from "@/components/features/Notification"
 import { CustomButton } from "@/components/custom/CustomButton"
 
@@ -50,7 +50,12 @@ export default function PointsOfSale() {
                 />
             </div>
 
-            <PosTableWrapper />
+            <PosTableWrapper 
+                id={123456}
+                firstName='Barry'
+                lastName="Allen"
+                role='cashier'
+            />
         </div>
     )
 }

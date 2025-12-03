@@ -16,6 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, FieldErrors, useWatch } from 'react-hook-form';
 
 import { useLoadingStore } from '@/store/loadingStore';
+import { CopyButton } from '@/components/custom/CopyButton';
 
 
 const userInfoSchema = z.object({
@@ -222,13 +223,9 @@ export default function UserProfile() {
                         <div className='bg-[#EFF3FF] flex justify-between items-center py-2.5 px-6 rounded-xl'>
                             <div className=''>
                                 <span className='font-normal text-[#3F3F3F] text-[11px]'>Staff PIN</span>
-                                <p className='font-semibold text-[15px] text-[#014DFF]'>0567</p>
+                                <p id='staffPin' className='font-semibold text-[15px] text-[#014DFF]'>0567</p>
                             </div>
-                            <CustomButton
-                                variant="secondaryBrand"
-                                size="sm"
-                                text="Copy"
-                            />
+                            <CopyButton value='#staffPin' />
                         </div>
                         <span className='font-normal text-[#3F3F3F] text-[10px]'>
                             This PIN allows you to log in to any assigned POS device and accept payments securely

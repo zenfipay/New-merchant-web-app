@@ -114,3 +114,14 @@ export const addStaffSchema = z.object({
     staffEmail: z.string().min(1, "Field cannot be empty").email("Enter a valid email address"),
     role: z.enum(["co-owner", "Admin/GM", "Branch manager", "Staff"])
 })
+
+// ADD NEW SETTLEMENT ACCOUNT
+export const newSettlementAccountSchema = z.object({
+    branchName: z.string().min(1, "Select a branch")
+        .refine((val) => val, { message:"Invalid"}),
+    bankName: z.string().min(1, "Select a bank")
+        .refine((val) => val, { message: "Invalid"}),
+    accountNumber: z.string().trim().regex(/^\d{10}$/g, {
+        message: "Enter a valid account number"
+    })
+})

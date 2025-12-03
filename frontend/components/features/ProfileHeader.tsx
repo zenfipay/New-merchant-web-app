@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image"
 import Link from "next/link"
-import { CustomButton } from "../custom/CustomButton"
 import SearchBar from "../custom/SearchBar"
+import { CopyButton } from '../custom/CopyButton'
 
 export default function ProfileHeader() {
   const pathname = usePathname()
@@ -72,7 +72,7 @@ export default function ProfileHeader() {
             <DropdownMenuContent className="w-[236px] border border-[#F6F6F6] shadow-xl">
               <DropdownMenuItem>
                 <Link
-                  href="/"
+                  href="/owner/settings"
                   className="w-full flex justify-between items-center"
                 >
                   <p>View profile</p>
@@ -102,14 +102,9 @@ export default function ProfileHeader() {
                     <p className="text-sm font-medium text-[#101010]">
                       Staff PIN
                     </p>
-                    <p className=" text-[#014DFF] text-[13px] font-semibold">0567</p>
+                    <p id="staffPin" className=" text-[#014DFF] text-[13px] font-semibold">0567</p>
                   </div>
-                  <CustomButton 
-                    variant="secondaryBrand" 
-                    size="sm"
-                    type="button"
-                    text="Copy"
-                  />
+                  <CopyButton value='#staffPin' />
                 </div>
 
                 <p className="font-normal text-[10px] text-[#3F3F3F] leading-[100%]">

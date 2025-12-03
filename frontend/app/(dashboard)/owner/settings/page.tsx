@@ -4,8 +4,11 @@ import * as React from 'react';
 
 
 import { TabsHeader } from '@/components/features/TabsHeader';
-import UserProfile from '@/components/features/owner/settings/userProfile';
-import BusinessProfile from '@/components/features/owner/settings/businessProfile';
+import UserProfile from '@/components/features/settings/owner/userProfile';
+import BusinessProfile from '@/components/features/settings/owner/businessProfile';
+import AccountSetting from '@/components/features/settings/owner/accounts';
+import ManageBranches from '@/components/features/settings/owner/branches';
+import StaffAndRoles from '@/components/features/settings/owner/StaffAndRoles';
 
 const settingsNav = [
     {
@@ -18,15 +21,16 @@ const settingsNav = [
     },
     {
         id: "branches",
-        content:<p> BRANCHES </p>
+        content:<ManageBranches />
+        // content:<p> BRANCHES</p>
     },
     {
         id: "staffAndRoles",
-        content:<p> staffAndRoles </p>
+        content:<StaffAndRoles />
     },
     {
         id: "account",
-        content:<p> ACCOUNT </p>
+        content:<AccountSetting />
     },
     {
         id: "subscription",

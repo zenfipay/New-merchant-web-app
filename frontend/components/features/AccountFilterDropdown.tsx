@@ -115,9 +115,9 @@ export const AccountFilterDropdown: React.FC<accountFilterProps> = ({
 
                         {/* TYPE FILTER */}
                         <DropdownMenuSub>
-                            <DropdownMenuTrigger>
+                            <DropdownMenuSubTrigger>
                                 Type
-                            </DropdownMenuTrigger>
+                            </DropdownMenuSubTrigger>
                             <DropdownMenuPortal>
                                 <DropdownMenuSubContent sideOffset={10} alignOffset={-68}>
                                     {uniqueTypes.map((t) => (

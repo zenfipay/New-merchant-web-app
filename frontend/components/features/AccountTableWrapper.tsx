@@ -59,7 +59,7 @@ export default function AccountTableWrapper() {
             (statusFilter === "all" || t.status.toLowerCase() === statusFilter) &&
             (!filters.date || isDateInRange(t.date, filters.date)) &&
             (!filters.account || t.from === filters.account) &&
-            (!filters.type || t.type === filters.type) &&
+            (!filters.type || t.type.toLowerCase() === filters.type.toLowerCase()) &&
             (!debouncedSearch || t.transactionId.toLowerCase().includes(debouncedSearch.toLowerCase()))
         )
     }, [allTransactions, selectedBranch, statusFilter, filters, debouncedSearch])

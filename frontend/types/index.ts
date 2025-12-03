@@ -15,10 +15,20 @@ export interface Business {
   businessName: string;
   businessId: number;
   numberOfBranches?: number;
-  branchData: Branch[];
+  branchData: branch[];
 }
 
-export interface Branch {
+export interface staffInfo {
+  id: number;
+  firstName: string;
+  lastName: string;
+  role: string;
+  emailAddress: string;
+  lastActive: string;
+
+}
+export interface branch {
+  dateCreated: string;
   branchId: number;
   branchLocation: string;
   numberOfBranchManagers: number;
@@ -27,6 +37,10 @@ export interface Branch {
   accountTransactions: accountTransactions[];
   pointsOfSale: pos[];
   metrics?: branchMetrics[];
+  numberOfStaff: number;
+  numberOfPOS: number;
+  branchStatus: string;
+  staff: staffInfo[];
 }
 
 export interface branchMetrics {
@@ -42,6 +56,15 @@ export interface branchMetrics {
 
 export interface BranchMetricsTableProps {
   branchMetrics: branchMetrics[];
+}
+
+export interface branchesSettings {
+  dateCreated: string;
+  branch: string;
+  branchManager: string;
+  numberOfStaff: number;
+  numberOfPOS: number;
+  status: string;
 }
 
 export interface payment {
@@ -96,6 +119,15 @@ export interface accountTransactions {
   status: string;
 }
 
+export interface settlementAccounts {
+  branch: string;
+  bankName: string;
+  accountNumber: string;
+  addedBy: string;
+  payoutsReceived: number;
+  lastPayout: string;
+}
+
 export interface accountFilterProps {
   searchTerm : string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
@@ -123,6 +155,10 @@ export interface pos {
   branch: string;
   lastActive: string;
   status: string;
+  syncStatus?: string;
+  deviceType?: 'Android desktop' | 'iPad' | 'Custom device';
+  role?: string;
+  emailAddress?: string;
 
 }
 
@@ -160,4 +196,11 @@ export interface ActivityFiltersProps {
         staff: string;
     }>>;
     uniqueStaff: string[];
+}
+
+export interface staffProps {
+  id: number;
+  firstName: string;
+  lastName: string;
+  role: string;
 }

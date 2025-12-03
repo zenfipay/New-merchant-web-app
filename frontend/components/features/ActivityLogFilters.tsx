@@ -51,7 +51,7 @@ export const ActivityLogFilters: React.FC<ActivityFiltersProps> = ({
 
 
             {/* DATE FILTERS */}
-            <div className="">
+            <div className="flex items-center gap-3">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <CustomButton
@@ -73,7 +73,7 @@ export const ActivityLogFilters: React.FC<ActivityFiltersProps> = ({
                             >
                             {label}
                             <CustomCheckbox
-                                id={`checkbox-${date}`}
+                                id={`checkbox-${value}`}
                                 checked={date === value}
                                 onChange={() => updateFilter("date", value)}
                             />
@@ -97,7 +97,7 @@ export const ActivityLogFilters: React.FC<ActivityFiltersProps> = ({
             <Divider />
 
             {/* STAFF FILTERS */}
-            <div className="">
+            <div className="flex items-center gap-3">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <CustomButton

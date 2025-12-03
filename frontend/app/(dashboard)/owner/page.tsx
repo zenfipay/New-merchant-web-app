@@ -88,7 +88,7 @@ export default function OwnerDashboard() {
   return (
     <main className="py-3 space-y-3">
       {/* WELCOME HEADER */}
-      <div className="w-full flex justify-between py-3">
+      <header className="w-full flex justify-between py-3">
         <div className="flex items-center gap-2.5">
           <div className="bg-[#EEF3FF] h-8 w-8 rounded-full flex items-center justify-center">
             <span className="font-inter font-semibold text-[#20195f]">
@@ -109,7 +109,7 @@ export default function OwnerDashboard() {
           Export reports
           <Image src="/icons/rarrBlack.svg" alt="go to export reports arrow" width={12} height={12} />
         </CustomButton>
-      </div>
+      </header>
 
       {!close && (
         <Notification

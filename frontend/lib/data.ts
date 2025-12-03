@@ -10,36 +10,43 @@ export const menuList = [
         title: "Dashboard", 
         icon: "/icons/dashboardIcon.svg", 
         activeIcon: "/icons/activeDashboardIcon.svg", 
-        href: "/owner" 
+        href: "" ,
+        roles: ['owner', 'admin', 'branch-manager', 'cashier']
       },
       { 
         title: "Payments",  
         icon: "/icons/paymentIcon.svg",   
         activeIcon: "/icons/activePaymentsIcon.svg", 
-        href: "/owner/payments" 
+        href: "/payments" ,
+        roles: ['owner', 'cashier']
       },
       { 
         title: "Accounts",  
         icon: "/icons/accountsIcon.svg",  
         activeIcon: "/icons/activeAccountsIcon.svg",
-        href: "/owner/accounts" },
+        href: "/accounts" ,
+        roles: ['owner']
+      },
       { 
         title: "Points of sale", 
         icon: "/icons/pointsofsaleIcon.svg", 
         activeIcon: "/icons/activePointsofsaleIcon.svg", 
-        href: "/owner/point-of-sale" 
+        href: "/point-of-sale",
+        roles: ['owner'] 
       },
       { 
         title: "Reports",   
         icon: "/icons/reportsIcon.svg",   
         activeIcon: "/icons/activeReportsIcon.svg", 
-        href: "/owner/reports"
+        href: "/reports",
+        roles: ['owner']
        },
        { 
         title: "Activity log",   
         icon: "/icons/activityLogIcon.svg",   
         activeIcon: "/icons/activeActivityLogIcon.svg", 
-        href: "/owner/activity-log"
+        href: "/activity-log",
+        roles: ['owner', 'cashier']
        },
     ],
   },
@@ -50,23 +57,56 @@ export const menuList = [
         title: "Settings", 
         icon: "/icons/settingsIcon.svg", 
         activeIcon: "/icons/activeSettingsIcon.svg", 
-        href: "/owner/settings" 
+        href: "/settings",
+        roles: ['owner', 'admin', 'branch-manager', 'cashier'] 
       },
       { 
         title: "Help & Support", 
         icon: "/icons/helpIcon.svg", 
         activeIcon: "/icons/activeHelpIcon.svg", 
-        href: "/help"
+        href: "/help",
+        roles: ['owner', 'admin', 'branch-manager', 'cashier']
       },
     ],
   }
 ];
 
+export const getRoleBasedPath = ( role: string): string => {
+    switch (role.toLowerCase()) {
+        case 'owner':
+        return '/owner';
+        case 'cashier':
+        return '/cashier';
+        case 'admin':
+        return '/admin';
+        case 'branch-manager':
+        return '/branch-manager';
+        default:
+        return '/owner';
+    }
+}
+
+export const filterMenuByRole = ( userRole:string ) => {
+    const basePath = getRoleBasedPath(userRole);
+
+    return menuList.map(section => ({
+        ...section,
+        items: section.items.filter(item => item.roles?.includes(userRole))
+        .map(item => ({
+            ...item,
+            href: item.href.startsWith('/help')
+                ? item.href
+                : `${basePath}${item.href}`
+        }))
+    }))
+    .filter(section => section.items.length > 0)
+}
+
 export const mockUserData: User[] = [
     {
         firstName: "Emmanuel",
         lastName: "Adeyera",
-        role: "Owner",
+        role: "owner",
         businessData: [
             {
                 businessName: "Jendol",
@@ -721,6 +761,63 @@ export const mockUserData: User[] = [
                                 deviceType: 'Android desktop',
                                 role: 'cashier',
                                 emailAddress: 'adeyera08@gmail.com',
+                            },
+                        ]
+                    }
+                ]
+            }
+        ],
+    },
+    {
+        firstName: "Grace",
+        lastName: "Suleiman",
+        role: "cashier",
+        businessData: [
+            {
+                businessName: "Jendol",
+                businessId: 692673,
+                numberOfBranches: 1, // Cashier only sees their branch
+                branchData: [
+                    {
+                        dateCreated: "03 July, 2025 9:45 PM",
+                        branchId: 1,
+                        branchLocation: "Agege",
+                        numberOfBranchManagers: 2,
+                        branchManagers: ["Oluwatimilehin Adedimeji", "John Doe"],
+                        numberOfStaff: 4,
+                        numberOfPOS: 1, // Only their assigned POS
+                        branchStatus: "active",
+                        staff: [], // Cashiers don't see staff list
+                        paymentData: [
+                            {
+                                paymentId:`000123456789`,
+                                date: "03 July, 2025 09:42 PM",
+                                amount: 120.00,
+                                token: "USDT (TRC-20)",
+                                conversion: 180000.00,
+                                pointOfSale: "POS-001",
+                                branch: "Agege branch",
+                                status: "settled",
+                                customerId: "098976543213456789",
+                                chain: "TRC-20",
+                                exchangeRate: "1500",
+                                stableCoin: "USDT",
+                            },
+                        ],
+                        accountTransactions: [], // Cashiers don't see account transactions
+                        pointsOfSale: [
+                            {
+                                deviceId: "123456",
+                                pointOfSale: "POS-001",
+                                dateCreated: "01 March, 2025 12:00 AM",
+                                staffAssigned: "Grace Suleiman",
+                                branch: "Agege branch",
+                                lastActive: "14 November, 2025 12:00 PM",
+                                status: "active",
+                                syncStatus: 'Up to date',
+                                deviceType: 'iPad',
+                                role: 'cashier',
+                                emailAddress: 'socialmedia@myrroh.com',
                             },
                         ]
                     }

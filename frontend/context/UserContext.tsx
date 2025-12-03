@@ -7,16 +7,24 @@ import { mockUserData } from "@/lib/data";
 interface UserContextType {
     user: User;
     setUser: ( user: User ) => void;
+    simulateLogin: (role: "owner" | "cashier" | "admin") => void; 
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
 
-    const [ user, setUser ] = useState<User>(mockUserData[0])
+    const [ user, setUser ] = useState<User>(mockUserData[0]) 
+
+    const simulateLogin = (role: "owner" | "cashier" | "admin") => {
+        const foundUser = mockUserData.find(u => u.role === role);
+        if (foundUser) {
+            setUser(foundUser);
+        }
+    }
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, simulateLogin }}>
             {children}
         </UserContext.Provider>
     )

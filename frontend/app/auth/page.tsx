@@ -16,14 +16,18 @@ import { useRouter } from "next/navigation"
 import { signInSchema } from "@/lib/schemas"
 
 import ROUTES from "@/routes"
+import { useUser } from "@/context/UserContext"
+import { mockUserData } from "@/lib/data"
 
 type SignInData = z.infer<typeof signInSchema>;
 
 export default function AuthSignInPage() {
 
     const router = useRouter();
+    const { setUser } = useUser();
 
     const [ showPassword, setShowPassword ] = useState(false);
+    const [ loginError, setLoginError ] = useState('')
 
     const {
         register,
@@ -35,15 +39,34 @@ export default function AuthSignInPage() {
         mode: "onChange",
     })
 
-    const onSubmit = ( data: z.infer<typeof signInSchema>) => {
-        console.log(data);
-        const passwordLower = data.password.toLowerCase()
+    const onSubmit = async ( data: z.infer<typeof signInSchema>) => {
+        try {
+            console.log("Form submitted:", data);
+            setLoginError('')
+            
+            const passwordLower = data.password.toLowerCase()
 
-        if( passwordLower === 'owner') router.push(ROUTES.OWNERDASHBOARD)
-        if(passwordLower === 'cashier') router.push(ROUTES.CASHIERDASHBOARD)
-        
+            const foundUser = mockUserData.find(
+                user => user.role.toLowerCase() === passwordLower
+            )
 
-        reset();
+            if(foundUser) {
+                setUser(foundUser)
+
+                if (foundUser.role === "owner") {
+                    router.push(ROUTES.OWNERDASHBOARD);
+                } else if (foundUser.role === "cashier") {
+                    router.push(ROUTES.CASHIERDASHBOARD);
+                }
+
+                reset()
+            } else {
+                setLoginError('Invalid credentials. Try "owner" or "cashier"')
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            setLoginError('An error occurred. Please try again.')
+        }
     }
 
     return (
@@ -125,13 +148,18 @@ export default function AuthSignInPage() {
                                 <ErrorInfo message={errors.password?.message} />
                             </div>
                         </div>
+                        {loginError && (
+                            <div className="text-red-500 text-xs">
+                                {loginError}
+                            </div>
+                        )}
                         <Link href="" className="inline-block mt-4 font-medium text-[13px] text-[#20195F] underline-grow">
                             Reset password
                         </Link>
 
                         <CustomButton
                             type="submit"
-                            disabled={!isValid && isSubmitting}
+                            disabled={!isValid || isSubmitting}
                             className="w-full mt-12"
                             variant={`${isValid ? "primary" : "disabled"}`}
                             text="Continue"
@@ -146,6 +174,13 @@ export default function AuthSignInPage() {
                             Terms of service
                         </Link>
                     </div>
+
+                    {process.env.NODE_ENV === 'development' && (
+                        <div className="mt-4 p-3 bg-gray-100 rounded-md text-xs text-gray-600">
+                            <p className="font-semibold mb-1">Dev Mode - Test Credentials:</p>
+                            <p>Password: <span className="font-mono">owner</span> or <span className="font-mono">cashier</span></p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

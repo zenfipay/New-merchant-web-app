@@ -9,7 +9,7 @@ import { formatCurrency } from "@/utils/formatCurrency";
 interface NoHoverCardProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
     href?: string;
-    value: number;
+    value?: number;
     subTitle?: string;
     currency?: string;
     className?: string;

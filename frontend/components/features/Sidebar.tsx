@@ -4,35 +4,39 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { menuList } from "@/lib/data";
+import { filterMenuByRole } from "@/lib/data"; // Keep this import
 
 import { useSidebarStore } from "@/store/useSidebarStore";
 import BusinessSelection from "./ActiveBusinessSelection";
+import { useUser } from "@/context/UserContext";
 
 export default function Sidebar() {
 
   const activeItem = useSidebarStore((s) => s.activeItem);
   const setActiveItem = useSidebarStore((s) => s.setActiveItem);
 
-
   const pathname = usePathname();
+
+  const { user } = useUser(); // Change this line
+  
+  // Add this line - filter menu based on user role
+  const filteredMenuList = filterMenuByRole(user.role);
 
   useEffect(() => {
     if (!pathname) return;
 
-    const flattened = menuList.flatMap((section) => section.items);
+    const flattened = filteredMenuList.flatMap((section) => section.items); // Change menuList to filteredMenuList
     const match = flattened.find((it) => it.href === pathname);
     if (match) {
       setActiveItem(match.title);
     } else {
-     
-      const prefixMatch = flattened.find((it) => pathname.startsWith(it.href));
+      const prefixMatch = flattened.find((it) => it.href && pathname.startsWith(it.href));
       if (prefixMatch) setActiveItem(prefixMatch.title);
     }
-  }, [pathname, setActiveItem]);
+  }, [pathname, setActiveItem, filteredMenuList]); // Add filteredMenuList to dependencies
 
-  const mainItems = menuList.find((s) => s.section === "Main")?.items ?? [];
-  const otherItems = menuList.find((s) => s.section === "Other")?.items ?? [];
+  const mainItems = filteredMenuList.find((s) => s.section === "Main")?.items ?? []; // Change menuList to filteredMenuList
+  const otherItems = filteredMenuList.find((s) => s.section === "Other")?.items ?? []; // Change menuList to filteredMenuList
 
   return (
     <div className="flex flex-col h-screen bg-white border-r border-[#F5F5F5] justify-between">

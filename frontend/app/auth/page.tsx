@@ -1,23 +1,23 @@
 "use client"
 
-import Link from "next/link"
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react"
+import React, { useState } from 'react';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 import { CustomButton } from "@/components/custom/CustomButton"
 import Image from "next/image"
+import Link from "next/link"
 import { Input } from "@/components/custom/Input"
 import { Label } from "@/components/custom/Label"
 import { ErrorInfo } from "./components/ErrorMessage"
+import { Eye, EyeOff } from "lucide-react"
 
 import { useRouter } from "next/navigation"
 import { signInSchema } from "@/lib/schemas"
-
-import ROUTES from "@/routes"
 import { useUser } from "@/context/UserContext"
 import { mockUserData } from "@/lib/data"
+import ROUTES from "@/routes"
 
 type SignInData = z.infer<typeof signInSchema>;
 
@@ -175,12 +175,12 @@ export default function AuthSignInPage() {
                         </Link>
                     </div>
 
-                    {process.env.NODE_ENV === 'development' && (
+                    {/* {process.env.NODE_ENV === 'development' && (
                         <div className="mt-4 p-3 bg-gray-100 rounded-md text-xs text-gray-600">
                             <p className="font-semibold mb-1">Dev Mode - Test Credentials:</p>
                             <p>Password: <span className="font-mono">owner</span> or <span className="font-mono">cashier</span></p>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

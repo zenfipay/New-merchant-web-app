@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, FormProvider, FieldErrors, Controller } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, FormProvider, FieldErrors, Controller } from "react-hook-form";
+
+import { CustomButton } from "@/components/custom/CustomButton";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { CustomButton } from "@/components/custom/CustomButton";
 import { Eye, EyeOff } from "lucide-react"
 import BackButton from "@/components/custom/BackButton";
 import AuthSignInLink from "./SignInLink";
@@ -32,7 +33,8 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
 
     const methods = useForm<FormData>({
         resolver: zodResolver(combinedSchema),
-        mode: "onBlur",
+        mode: "onChange",
+        reValidateMode: "onChange",
     })
 
     const {
@@ -120,15 +122,15 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
         <FormProvider {...methods}>
 
             {/* NAV BUTTONS AT THE TOP */}
-            <div className="mt-5" >
+            <div className="" >
                 <AnimatePresence mode="wait">
                     {step === 1 ? (
                         <motion.div
-                        key="backButton"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{ duration: 0.2 }}
+                            key="backButton"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            transition={{ duration: 0.2 }}
                         >
                         <BackButton />
                         </motion.div>
@@ -222,7 +224,14 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                                     placeholder="Enter password"
                                     {...register("password")}
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        methods.setValue("password", e.target.value, {
+                                            shouldValidate: true,
+                                            shouldDirty: true,
+                                            shouldTouch: true,
+                                        })
+                                    }}
                                     className={errors.password ? "border-[#FFC0C2]" : ""}
                                 />
                                 <button

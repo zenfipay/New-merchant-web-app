@@ -4,49 +4,48 @@ import React, { useState, useEffect } from "react";
 import * as z from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller } from "react-hook-form";
+import { Controller, useWatch } from "react-hook-form";
+
+
 import { CustomButton } from "@/components/custom/CustomButton";
-
-import { useWatch } from "react-hook-form";
-
-import { bankData } from "@/lib/data";
-
+import Image from "next/image";
+import BackButton from "@/components/custom/BackButton";
+import { Label } from "@/components/custom/Label";
+import { Input } from "@/components/custom/Input";
+import { ErrorInfo } from "./ErrorMessage";
+import Spinner from "@/components/custom/ZenfipaySpinnerSmall";
 import {
     Select,
     SelectTrigger,
     SelectValue,
     SelectContent,
     SelectItem,
-} from "@/components/ui/select"
-
+} from "@/components/ui/select";
 import { toast } from "sonner";
 
+// import { useLoadingStore } from "@/store/loadingStore";
+import { bankData } from "@/lib/data";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import BackButton from "@/components/custom/BackButton";
-import { Label } from "@/components/custom/Label";
-import { Input } from "@/components/custom/Input";
-import { ErrorInfo } from "./ErrorMessage";
 import ROUTES from "@/routes";
 
 import { settlementSchema, addStaffSchema } from "@/lib/schemas";
-import Spinner from "@/components/custom/ZenfipaySpinnerSmall";
 
 
 type SettlementFormData = z.infer<typeof settlementSchema>
 type StaffFormData = z.infer<typeof addStaffSchema>
 
-export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () => void, onComplete: () => void}) {
+export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () => void; onComplete: () => void}) {
 
     const router = useRouter()
 
-   const [ step, setStep ] = useState<"landing" | "settlement" | "addStaff" | "showStaff">("landing")
-   const [ settlementAdded, setSettlementAdded ] = useState(false);
-   const [ staffAdded, setStaffAdded ] = useState(false);
-   const [ staffList, setStaffList ] = useState<StaffFormData[]>([])
+    const [ step, setStep ] = useState<"landing" | "settlement" | "addStaff" | "showStaff">("landing")
+    const [ settlementAdded, setSettlementAdded ] = useState(false);
+    const [ staffAdded, setStaffAdded ] = useState(false);
+    const [ staffList, setStaffList ] = useState<StaffFormData[]>([])
 
-   const [ accountName, setAccountName ] = useState<string | null>(null);
-   const [ isVerifying, setIsVerifying ] = useState(false);
+    const [ accountName, setAccountName ] = useState<string | null>(null);
+    const [ isVerifying, setIsVerifying ] = useState(false);
+    // const { isLoading, setIsLoading } = useLoadingStore()
 
     // SETTLEMENT FORM
     const {
@@ -122,7 +121,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
     const handleRemoveStaff = ( index: number) => {
         setStaffList((prev) => prev.filter((_, i) => i !== index))
     }
-    const onConfirmStaff = (data: StaffFormData[]) => {
+    const onConfirmStaff = async (data: StaffFormData[]) => {
         console.log("Total staffs added: ", data)
         setStaffAdded(true);
 
@@ -304,7 +303,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                             ): accountName && !isVerifying && (
                                 <div className='bg-[#EEF3FF] p-3 rounded-2xl'>
                                     <p className='text-[#014DFF] font-semibold uppercase'>
-                                        Account Name: {accountName}
+                                        {accountName}
                                     </p>
                                 </div>
                             )}
@@ -325,9 +324,6 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
             {/* STAFF FORM */}
             {step === "addStaff" && (
                 <div className="space-y-8">
-                    {staffList.length > 0 && (
-                        <div className=""></div>
-                    )}
                     <h2 className="font-neue font-medium text-3xl leading-8 text-[#212121]">Add your staff</h2>
                     
 
@@ -396,7 +392,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                                             <SelectItem value="co-owner" className="cursor-pointer">Co-owner</SelectItem>
                                             <SelectItem value="Admin/GM" className="cursor-pointer">Admin/GM</SelectItem>
                                             <SelectItem value="Branch manager" className="cursor-pointer">Branch manager</SelectItem>
-                                            <SelectItem value="Staff" className="cursor-pointer">Staff</SelectItem>
+                                            <SelectItem value="Cashier" className="cursor-pointer">Cashier</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 )}

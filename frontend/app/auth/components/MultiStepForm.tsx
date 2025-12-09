@@ -34,7 +34,7 @@ export default function MultiStepForm() {
         <div className='transition-all duration-500 ease-in-out'>
             {
                 loading ? (
-                    <div className='fixed inset-0 flex items-center justify-center bg-white'>
+                    <div className='fixed inset-0 z-50 flex items-center justify-center bg-white'>
                         <Spinner />
                     </div>
                 ) : (

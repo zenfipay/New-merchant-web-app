@@ -49,7 +49,7 @@ export default function LCDTerminalPage() {
       {/* HEADER */}
       <header className='w-[900px] mx-auto flex justify-between items-center py-8 px-2.5'>
         <Image src='/icons/logo-white.svg' alt='zenfipay logo white variant' width={100} height={100} />
-        <Link href='app.zenfipay.com' className='text-white text-[10px] font-normal'>Zenfipay.com</Link>
+        <Link href='app.zenfipay.com' className='text-white text-[10px] font-normal'>app.zenfipay.com</Link>
       </header>
 
       {/* MAIN CONTENT + TEXT */}
@@ -63,12 +63,8 @@ export default function LCDTerminalPage() {
         {/* LINKS */}
         <div className='flex items-center gap-3'>
           <figure className='flex items-center gap-2.5'>
-            <Link href='https://www.app.zenfipay.com'>
-              <Image src='/icons/apple.svg' alt='alt' width={44} height={44} />
-            </Link>
-            <Link href='https://www.app.zenfipay.com'>
-              <Image src='/icons/playstore.svg' alt='alt' width={44} height={44} />
-            </Link>
+            <Image src='/icons/apple.svg' alt='alt' width={44} height={44} />
+            <Image src='/icons/playstore.svg' alt='alt' width={44} height={44} />
           </figure>
           <div className='w-px h-10 bg-[#CDDCFF]' />
           <h5 className='w-[142px] font-neue font-light text-white text-[14px] leading-[100%] tracking-[-0.23px]'>
@@ -78,7 +74,7 @@ export default function LCDTerminalPage() {
       </div>
 
       {/* FOOTER */}
-      <footer className='relative bottom-0 h-20 text-red-900'>
+      <footer className='relative bottom-0 h-20'>
         <button onClick={handleLogout} className=' absolute bottom-6 right-6 z-60 flex items-center gap-1 cursor-pointer'>
           <Image src='/icons/logoutWhite.svg' alt='alt' width={14} height={14} />
           <p className='text-white text-[10px] font-normal'>Staff logout</p>

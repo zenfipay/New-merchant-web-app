@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 export type StaffRole = "owner" | "cashier" | "admin" | "branch-manager";
 
@@ -135,6 +135,7 @@ export const useLCDAuthStore = create<LCDAuthStore>()(
     }),
     {
       name: "lcd-auth-store",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

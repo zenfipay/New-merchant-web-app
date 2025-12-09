@@ -19,7 +19,6 @@ import { CustomButton } from '@/components/custom/CustomButton';
 import DividerHorizontal from '@/components/custom/dividerHorizontal';
 import { signInSchema } from '@/lib/schemas';
 
-// --- Schemas ---
 const emailSignInSchema = signInSchema;
 const pinSignInSchema = z.object({
   staffPin: z
@@ -96,7 +95,7 @@ function PinBoxes({
   };
 
   return (
-    <div className="flex justify-center gap-3">
+    <div className="flex justify-center gap-2 mt-3">
       {Array.from({ length }).map((_, i) => (
         <Input
           key={i}
@@ -123,8 +122,8 @@ function PinBoxes({
           }}
           onKeyDown={(e) => handleKeyDown(i, e)}
           onPaste={handlePaste}
-          className={`w-12 h-12 rounded-lg border-2 flex items-center justify-center text-2xl font-bold text-center outline-none transition-colors
-            ${(value[i]) ? 'bg-blue-600 border-blue-600 text-white' : 'bg-gray-100 border-gray-300 text-gray-400'}
+          className={`bg-transparent w-[62px] h-9 flex justify-center items-center rounded-lg border border-[#EEEEEE] text-[#2B2B2B] text-[11px] font-bold text-center outline-none transition-colors
+            ${(value[i]) ? 'border-[#20195F]' : ''}
           `}
         />
       ))}
@@ -141,7 +140,6 @@ export default function LCDLoginPage() {
 
   const { loginLCD, isAuthenticated } = useLCDAuthStore();
 
-  // Initialize form
   const form = useForm<EmailSignInData | PinSignInData>({
     resolver: zodResolver(step === 'email' ? emailSignInSchema : pinSignInSchema),
     mode: 'onChange',
@@ -155,9 +153,9 @@ export default function LCDLoginPage() {
   const {
     register,
     handleSubmit,
-    control, // Needed for PinBoxes
+    control,
     reset,
-    setError, // Use form setError
+    setError,
     formState: { errors, isValid, isSubmitting },
   } = form;
 
@@ -182,8 +180,8 @@ export default function LCDLoginPage() {
     console.log("Email Login:", data.email);
     await new Promise((resolve) => setTimeout(resolve, 1500));
     
-    // If successful:
-    // router.push('/terminal');
+    // if successful:
+    router.push('/terminal');
     setIsLoading(false);
   };
 
@@ -200,7 +198,7 @@ export default function LCDLoginPage() {
       router.push('/terminal');
     } else {
       setError('staffPin', { message: 'Invalid PIN. Please try again.' });
-      reset({ staffPin: '' }); // Clear pin on error
+      reset({ staffPin: '' });
     }
 
     setIsLoading(false);
@@ -208,10 +206,8 @@ export default function LCDLoginPage() {
 
   const changeStep = async () => {
     setIsLoading(true);
-    // Simulating a loading transition
     await new Promise((resolve) => setTimeout(resolve, 500));
     
-    // Reset form state when switching to avoid carry-over errors
     reset({ staffPin: '', email: '', password: '' });
     
     setStep((prev) => (prev === 'email' ? 'pin' : 'email'));
@@ -261,9 +257,9 @@ export default function LCDLoginPage() {
           <DividerHorizontal />
         </div>
 
-        {/* Global Loading Overlay (if that's desired behavior) or conditional form rendering */}
+        
         {isLoading && (
-          <div className='fixed inset-0 z-50 bg-white/80 flex justify-center items-center'>
+          <div className='fixed inset-0 z-50 bg-white flex justify-center items-center'>
             <Spinner />
           </div>
         )}
@@ -273,7 +269,7 @@ export default function LCDLoginPage() {
           <form onSubmit={handleSubmit(handleEmailSubmit)} className='space-y-10'>
             <div className='space-y-6'>
               {/* EMAIL ADDRESS */}
-              <div className=''>
+              <div className='flex flex-col gap-1'>
                 <Label htmlFor='email' text='Email address' />
                 <Input
                   type='email'
@@ -284,7 +280,7 @@ export default function LCDLoginPage() {
               </div>
 
               {/* PASSWORD */}
-              <div className='relative'>
+              <div className='relative flex flex-col gap-1'>
                 <Label htmlFor='password' text='Password' />
                 <Input
                   type={showPassword ? 'text' : 'password'}
@@ -294,7 +290,7 @@ export default function LCDLoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-8 cursor-pointer transition-transform duration-300 ease-in-out"
+                  className="absolute right-3 top-9 cursor-pointer transition-transform duration-300 ease-in-out"
                   tabIndex={0}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -322,8 +318,6 @@ export default function LCDLoginPage() {
           <form onSubmit={handleSubmit(handlePinSubmit)} className='space-y-10'>
             <div className='space-y-4'>
               <Label htmlFor='staffPin' text='Staff PIN' />
-              
-              {/* Connected PinBoxes using Controller */}
               <Controller
                 control={control}
                 name="staffPin"
@@ -335,11 +329,7 @@ export default function LCDLoginPage() {
                   />
                 )}
               />
-              
-              {/* Central Error display for PIN */}
-              <div className="flex justify-center">
-                 <ErrorInfo message={pinErrors.staffPin?.message} />
-              </div>
+              <ErrorInfo message={pinErrors.staffPin?.message} />
             </div>
 
             <CustomButton

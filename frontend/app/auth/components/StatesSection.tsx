@@ -1,21 +1,16 @@
 "use client"
 
 import React, { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import BackButton from "@/components/custom/BackButton";
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { CustomButton } from "@/components/custom/CustomButton";
 import Image from "next/image";
+import { Label } from "@/components/custom/Label";
+import { Input } from "@/components/custom/Input";
+import { ErrorInfo } from "./ErrorMessage";
 import AuthSignInLink from "./SignInLink";
-
-import { motion, AnimatePresence } from "framer-motion";
-
-import { Controller } from "react-hook-form";
-
-
-import { countryData, industries } from "@/lib/data";
-
 import {
     Select,
     SelectContent,
@@ -24,12 +19,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { motion, AnimatePresence } from "framer-motion";
 
 
-import { Label } from "@/components/custom/Label";
-import { Input } from "@/components/custom/Input";
-import { ErrorInfo } from "./ErrorMessage";
-
+import { countryData, industries } from "@/lib/data";
 import { businessProfileSchema, businessAddressSchema, businessDocumentsSchema } from "@/lib/schemas";
 
 const businessDataSchema = businessProfileSchema.merge(businessAddressSchema).merge(businessDocumentsSchema);
@@ -52,13 +45,12 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
         handleSubmit,
         setValue,
         getValues,
-        watch,
         reset,
         setError,
         formState: { errors },
     } = useForm<BusinessFormData>({
         resolver: zodResolver(businessDataSchema),
-        mode: "all",
+        mode: "onChange",
         defaultValues: {
             countryCode: "+234",
             country: "Nigeria",
@@ -71,8 +63,8 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
     });
     
 
-    const cacFile = watch("cacDocument") as File | undefined;
-    const directorFile = watch("directorId") as File | undefined;
+    const cacFile = useWatch({control, name:"cacDocument"}) as File | undefined;
+    const directorFile = useWatch({ control, name: "directorId"}) as File | undefined;
 
     const cacRef = useRef<HTMLInputElement>(null);
     const directorRef = useRef<HTMLInputElement>(null)
@@ -128,6 +120,12 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
         if (isValid) setStep((prev) => prev + 1);
     };
 
+    const prevStep = () => {
+        if(step > 1) {
+            setStep((prev) => prev - 1 )
+        }
+    }
+
     const onSubmit = ( data: BusinessFormData ) => {
         console.log("Submitted: ", data);
         alert("Form successfully submitted");
@@ -141,25 +139,40 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
 
            {/* BACK BUTTON AND PROGRESS BAR */}
             <div className="flex justify-between items-center mt-5">
-                {step > 1 ? (
-                <CustomButton variant="divider" onClick={onBack}>
-                    <Image src="/icons/larr.svg" alt="Back" width={14} height={14} />
-                </CustomButton>
-                ) : (
-                <BackButton />
-                )}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={step === 1 ? "customButton_onBack" : "customButton_prevStep"}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <CustomButton
+                        variant="divider"
+                        onClick={step === 1 ? onBack : prevStep}
+                        >
+                        <Image
+                            src="/icons/larr.svg"
+                            alt="Back"
+                            width={14}
+                            height={14}
+                        />
+                        </CustomButton>
+                    </motion.div>
+                </AnimatePresence>
+
 
                 <div className="flex space-x-1">
-                {[1, 2, 3].map((s) => (
-                    <span
-                    key={s}
-                    className={`inline-block h-1 w-14 transition-all ${
-                        step >= s ? "bg-brand" : "bg-disabled"
-                    } ${s === 1 ? "rounded-l-full" : ""} ${
-                        s === 3 ? "rounded-r-full" : ""
-                    }`}
-                    />
-                ))}
+                    {[1, 2, 3].map((s) => (
+                        <span
+                            key={s}
+                            className={`inline-block h-1 w-14 transition-all ${
+                                step >= s ? "bg-[#014DFF]" : "bg-[#DCE1EC]"
+                            } ${s === 1 ? "rounded-l-full" : ""} ${
+                                s === 3 ? "rounded-r-full" : ""
+                            }`}
+                        />
+                    ))}
                 </div>
             </div>
 
@@ -174,7 +187,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                         </div>
 
                         {/* FORM */}
-                        <div className="space-y-5 mt-10">
+                        <div className="h-[400px] overflow-y-auto space-y-5 mt-10">
 
                             {/* BUSINESS NAME */}
                             <div className="flex flex-col gap-2">
@@ -222,13 +235,17 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                             {/* TYPE && INDUSTRY */}
                             <div className="w-full flex items-center gap-3">
                                 {/* BUSINESS TYPE */}
-                                <div className="w-1/2 flex flex-col gap-2">
+                                <div className="max-h-20 w-1/2 flex flex-col gap-2">
                                     <Label htmlFor="businessType" text="Business type" />
                                     <Controller
                                         control={control}
                                         name="businessType"
+                                        rules={{ required: "Business type is required"}}
                                         render={({ field }) => (
-                                            <Select {...field} onValueChange={(val)=> setValue("businessType", val as BusinessFormData["businessType"])}>
+                                            <Select {...field} onValueChange={(val)=> {
+                                                field.onChange(val);
+                                                setValue("businessType", val as BusinessFormData["businessType"])
+                                            }}>
                                                 <SelectTrigger className="w-full cursor-pointer">
                                                     <SelectValue placeholder="Select Business type" />
                                                 </SelectTrigger>
@@ -245,11 +262,12 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                 </div>
                                 
                                 {/* BUSINESS INDUSTRY */}
-                                <div className="w-1/2 flex flex-col gap-2">
+                                <div className="max-h-20 w-1/2 flex flex-col gap-2">
                                     <Label htmlFor="businessIndustry" text="Business industry" />
                                     <Controller
                                             control={control}
                                             name="businessIndustry"
+                                            rules={{ required: "Business industry is required"}}
                                             render={({ field }) => {
                                                 // FILTERED OPTIONS BASED ON SEARCH ITEM
                                                 const filtered = industries.filter((i) =>
@@ -261,7 +279,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
                                                     <Select
                                                     onValueChange={(val) => {
                                                         field.onChange(val);
-                                                        setValue("businessIndustry", val as BusinessFormData["businessIndustry"]);
+                                                        setValue("businessIndustry", val as BusinessFormData["businessIndustry"], { shouldValidate: true });
                                                         setIndustrySearch("");
                                                     }}
                                                     value={field.value || ""}
@@ -319,7 +337,7 @@ export default function StatesSection( { onBack, onComplete }: { onBack?: () => 
 
                 {/* BUSINESS ADDRESS */}
                 { step === 2 && (
-                    <div className="space-y-5 mt-10">
+                    <div className="h-[400px] overflow-y-auto space-y-5 mt-10">
 
                         {/* HEADER */}
                         <div className="flex flex-row justify-between items-center">

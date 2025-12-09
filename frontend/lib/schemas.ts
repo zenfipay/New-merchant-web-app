@@ -51,8 +51,10 @@ export const businessProfileSchema = z.object({
     businessPhoneNumber: z.string().trim().regex(/^\d{10}$/g, {
         message: "Enter a valid phone number",
     }),
-    businessType: z.enum(["Sole proprietorship", "Limited Liability Company (LLC)", "Private Limited Company (Ltd)", "Freelancer"]),
-    businessIndustry: z.string().min(1, "Select a business type"),
+    businessType: z.enum(["Sole proprietorship", "Limited Liability Company (LLC)", "Private Limited Company (Ltd)", "Freelancer"], {
+        message: "Select a business type"
+    }),
+    businessIndustry: z.string().min(1, "Select a business Industry"),
     proofOfBusiness: z.string().url("Enter a valid url").min(1, "This field cannot be empty")
 })
 
@@ -112,7 +114,7 @@ export const addStaffSchema = z.object({
     staffFirstName: z.string().min(1, "Field cannot be empty"),
     staffLastName: z.string().min(1, "Field cannot be empty"),
     staffEmail: z.string().min(1, "Field cannot be empty").email("Enter a valid email address"),
-    role: z.enum(["co-owner", "Admin/GM", "Branch manager", "Staff"])
+    role: z.enum(["co-owner", "Admin/GM", "Branch manager", "Cashier"])
 })
 
 // ADD NEW SETTLEMENT ACCOUNT

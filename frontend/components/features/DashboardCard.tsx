@@ -29,44 +29,44 @@ export const DashboardCard = ({
 }: DashboardCardPropsWithStatus) => {
     return (
         <Box {...props}>
-            <div className='w-full flex justify-between items-center'>
-                <p className='font-inter font-medium text-[13px] leading-[100%] text-[#636363]'>{title}</p>
-                {href && (
-                    <Link href={href} className="transition-transform hover:translate-x-0.5">
-                        <Image src="/icons/rarrBlue.svg" alt={`link to ${title}`} width={15} height={15} />
-                    </Link>
-                )}
-            </div>
+            {href && (
+                <Link href={href} className="min-h-full flex flex-col justify-between">
+                    <div className='w-full flex justify-between items-center'>
+                        <p className='font-inter font-medium text-[13px] leading-[100%] text-[#636363]'>{title}</p>
+                        <Image src="/icons/rightArrowBlue.svg" alt={`link to ${title}`} width={15} height={15} />
+                    </div>
 
-            <div className='flex flex-col gap-1'>
-                <p className='font-inter font-semibold text-[19px] leading-[100%] text-[#101010]'>
-                    <CountUp
-                        isCounting
-                        end={value}
-                        duration={1}
-                        formatter={(val) => formatCurrency( val, currency )}
-                    />
-                </p>
-                <div className="h-[13px] flex gap-0.5 font-inter font-medium text-[11px]">
-                    {status && rate && (
-                        <span 
-                            className={
-                                status === "profit" 
-                                ? "text-[#34C759]" 
-                                : "text-[#E41D24]"
-                            }
-                        >
+                    <div className='flex flex-col gap-1'>
+                        <p className='font-inter font-semibold text-[19px] leading-[100%] text-[#101010]'>
                             <CountUp
                                 isCounting
-                                end={rate}
-                                duration={0.6}
-                                formatter={(val) => `${status === "profit" ? "+" : ""}${val}%`}
+                                end={value}
+                                duration={1}
+                                formatter={(val) => formatCurrency( val, currency )}
                             />
-                        </span>
-                    )}
-                    <span className="text-[#636363]">{subTitle}</span>
-                </div>
-            </div>
+                        </p>
+                        <div className="h-[13px] flex gap-0.5 font-inter font-medium text-[11px]">
+                            {status && rate && (
+                                <span 
+                                    className={
+                                        status === "profit" 
+                                        ? "text-[#34C759]" 
+                                        : "text-[#E41D24]"
+                                    }
+                                >
+                                    <CountUp
+                                        isCounting
+                                        end={rate}
+                                        duration={0.6}
+                                        formatter={(val) => `${status === "profit" ? "+" : ""}${val}%`}
+                                    />
+                                </span>
+                            )}
+                            <span className="text-[#636363]">{subTitle}</span>
+                        </div>
+                    </div>
+                </Link>
+            )}
         </Box>
     )
 }

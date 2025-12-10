@@ -13,10 +13,10 @@ import DividerHorizontal from '../custom/dividerHorizontal';
 import { CurrentDate } from '@/utils/formatDate';
 import { stableCoinsData } from '@/lib/data';
 
-import { usePaymentStore, PaymentSession } from '@/store/paymentStore';
+import { usePaymentStore } from '@/store/paymentStore';
+import { PaymentSession, Chain, stableCoinsRecord } from '@/types';
 import { useLCDAuthStore } from '@/store/lcdAuthStore';
-import { Chain } from '@/store/paymentStore';
-import { AlertCircle, ExternalLink } from 'lucide-react';
+import { AlertCircle, } from 'lucide-react';
 
 export default function RateChecker() {
 
@@ -100,7 +100,6 @@ export default function RateChecker() {
     }, [activeSessionId, getSession]);
 
     const handleAcceptPayment = () => {
-        // Check if LCD is authenticated
         if (!isLCDAuthenticated) {
             setRenderStep(RenderStep.LCD_NOT_READY);
             return;
@@ -113,8 +112,10 @@ export default function RateChecker() {
         // CREATE SESSION
         const session = createSession({
             amount: convertedAmount,
+            amountNGN: Number(purchasePrice),
             currency: "NGN",
-            chainOptions: stableCoinsData.map(c => c.label as Chain),
+            chosenChain: selectedCoin as Chain,
+            stableCoins: stableCoinsRecord,
             recipientAddress: recipient,
         });
 
@@ -137,6 +138,13 @@ export default function RateChecker() {
         if (!currentSession) return;
         
         updateSession(currentSession.id, { status: 'cancelled' });
+
+        const channel = new BroadcastChannel('zenfipay_channel');
+        channel.postMessage({
+            type: 'PAYMENT_CANCELLED',
+            payload: { sessionId: currentSession.id}
+        });
+        channel.close()
         setCurrentSession(null);
         setRenderStep(RenderStep.NONE);
         setPurchasePrice("");
@@ -144,10 +152,10 @@ export default function RateChecker() {
         setConvertedAmount(null);
     };
 
-    const getPaymentStatus = () => {
-        if (!currentSession) return 'pending';
-        return currentSession.status;
-    };
+    // const getPaymentStatus = () => {
+    //     if (!currentSession) return 'pending';
+    //     return currentSession.status;
+    // };
     
     return (
         <>
@@ -223,7 +231,7 @@ export default function RateChecker() {
                 <div className='fixed inset-0 z-50 bg-[#20195F]/10 backdrop-blur-lg flex justify-center items-center'>
                     <div className='absolute z-60 bg-white w-[480px] rounded-3xl overflow-hidden border border-white'>
                         <header className='bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4 border-b border-[#F5F5F5]'>
-                            <p className='font-normal tracking-[1.4px] text-[11px] text-[#636363]'>LCD NOT READY</p>
+                            <p className='font-normal tracking-[1.4px] text-[11px] text-[#636363]'></p>
                             <CustomButton
                                 variant="secondary"
                                 size="sm"
@@ -233,9 +241,23 @@ export default function RateChecker() {
                             </CustomButton>
                         </header>
                         {!isLCDAuthenticated && (
-                            <div className="flex items-center gap-2 text-xs text-amber-600 bg-amber-50 px-3 py-2 rounded-lg">
-                                <AlertCircle className="w-4 h-4" />
-                                <span>LCD not paired - Login required</span>
+                            <div className="bg-white flex flex-col gap-6 py-6 px-8 rounded-lg">
+                                <div className='space-y-3'>
+                                    <figure className='bg-[#FFF0E0] w-8 h-8 py-2 border border-[#F5D0A5] text-[#FDA23A] rounded-lg'>
+                                        <AlertCircle className="w-4 h-4 mx-auto" />
+                                    </figure>
+                                    <div className='text-[15px]'>
+                                        <span>You are not logged in on the LCD device.</span><br />
+                                        <span className=''>Please sign in on the LCD screen to start accepting payment.</span>
+                                    </div>
+                                </div>
+
+                                <CustomButton
+                                    variant='secondaryBrand'
+                                    className='w-full'
+                                    text='Close'
+                                    onClick={() => setRenderStep(RenderStep.NONE)}
+                                />
                             </div>
                         )}
                         
@@ -386,54 +408,3 @@ export default function RateChecker() {
         </>
     )
 }
-
-
-
-
-{/* <div className='fixed inset-0 z-50 bg-[#20195F]/10 backdrop-blur-lg flex justify-center items-center'>
-                    <div className='absolute z-60 bg-white w-[480px] rounded-3xl overflow-hidden border border-white'>
-                        <header className='bg-[#FAFAFA] w-full flex justify-between items-center py-2 px-4 border-b border-[#F5F5F5]'>
-                            <p className='font-normal tracking-[1.4px] text-[11px] text-[#636363]'>LCD NOT READY</p>
-                            <CustomButton
-                                variant="secondary"
-                                size="sm"
-                                onClick={() => setRenderStep(RenderStep.NONE)}
-                            >
-                                <Image src="/icons/closeIconBlack.svg" alt="close icon" width={16} height={16} />
-                            </CustomButton>
-                        </header>
-
-                        <div className="flex flex-col gap-6 py-6 px-8 text-center">
-                            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto">
-                                <AlertCircle className="w-8 h-8 text-amber-600" />
-                            </div>
-                            
-                            <div>
-                                <h3 className="text-xl font-semibold mb-2">LCD Not Paired</h3>
-                                <p className='text-[15px] text-gray-600'>
-                                    The customer LCD screen needs to be logged in before accepting payments. 
-                                    Please login on the LCD screen with your staff PIN.
-                                </p>
-                            </div>
-
-                            <div className='flex flex-col gap-3'>
-                                <CustomButton
-                                    variant="primary"
-                                    className='w-full flex items-center justify-center gap-2'
-                                    text="Open LCD Login"
-                                    onClick={() => {
-                                        window.open('/login', 'CustomerLCD', 'width=800,height=1000');
-                                        setRenderStep(RenderStep.NONE);
-                                    }}
-                                />
-                                
-                                <CustomButton
-                                    variant="secondary"
-                                    text="Cancel"
-                                    className='w-full'
-                                    onClick={() => setRenderStep(RenderStep.NONE)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div> */}

@@ -1,3 +1,4 @@
+import { stableCoinsData } from "@/lib/data";
 import { SetStateAction } from "react";
 
 export interface User {
@@ -185,6 +186,30 @@ export interface StableCoin {
   }[];
   
 }
+
+export type PaymentStatus = "pending" | "awaiting_chain" | "awaiting_payment" | "paid" | "expired" | "cancelled";
+export type Chain = "USDT" | "USDC" | "CNGN"
+export type PaymentSession = {
+  id: string;
+  amount: number;
+  amountNGN: number;
+  currency: string;
+  status: PaymentStatus;
+  stableCoins: Record<Chain, StableCoin>, 
+  chosenChain: Chain;
+  chosenNetwork?: string;
+  recipientAddress: string;
+  transactionHash?: string;
+  createdAt: number;
+  expiresAt: number;
+  paidAt?: number;
+};
+
+export const stableCoinsRecord: Record<Chain, StableCoin> =
+  stableCoinsData.reduce((acc, coin) => {
+    acc[coin.label as Chain] = coin;
+    return acc;
+  }, {} as Record<Chain, StableCoin>)
 
 export interface ActivityFiltersProps {
     filters: {

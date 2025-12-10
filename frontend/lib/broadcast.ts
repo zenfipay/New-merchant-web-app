@@ -1,5 +1,5 @@
 // /lib/broadcast.ts
-import { PaymentSession } from "@/store/paymentStore";
+import { PaymentSession } from "@/types";
 
 export const broadcastPaymentSession = (session: PaymentSession) => {
   const channel = new BroadcastChannel("lcd_channel");

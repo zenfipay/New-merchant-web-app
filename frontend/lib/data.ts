@@ -1439,16 +1439,28 @@ export const stableCoinsData: StableCoin[] = [
         icon: "/icons/USDTflag.svg",
         items: [
             {
-                label: "TRC-20",
-                value: "USDT(TRC-20)",
-            },
-            {
-                label: "Solana",
+                label: "Solana(SOL)",
                 value: "USDT(Solana)",
             },
             {
                 label: "Base",
                 value: "USDT(Base)",
+            },
+            {
+                label: "BNB Smart Chain(BSC)",
+                value: "USDT(BSC)",
+            },
+            {
+                label: "Arbitrum",
+                value: "USDT(Arbitrum)",
+            },
+            {
+                label: "Celo",
+                value: "USDT(Celo)",
+            },
+            {
+                label: "Tron",
+                value: "USDT(Tron)",
             },
         ]
     },
@@ -1458,16 +1470,16 @@ export const stableCoinsData: StableCoin[] = [
         icon: "/icons/USDCflag.svg",
         items: [
             {
-                label: "TRC-20",
-                value: "USDC(TRC-20)",
-            },
-            {
-                label: "Solana",
+                label: "Solana(SOL)",
                 value: "USDC(Solana)",
             },
             {
                 label: "Base",
                 value: "USDC(Base)",
+            },
+            {
+                label: "Arbitrum",
+                value: "USDC(Arbitrum)",
             },
         ]
     },
@@ -1477,16 +1489,16 @@ export const stableCoinsData: StableCoin[] = [
         icon: "/icons/NGNflag.svg",
         items: [
             {
-                label: "TRC-20",
-                value: "CNGN(TRC-20)",
-            },
-            {
-                label: "Solana",
-                value: "CNGN(Solana)",
+                label: "BNB Smart Chain(BSC)",
+                value: "CNGN(BSC)",
             },
             {
                 label: "Base",
                 value: "CNGN(Base)",
+            },
+            {
+                label: "Polygon PoS",
+                value: "CNGN(Polygon PoS)",
             },
         ]
     },

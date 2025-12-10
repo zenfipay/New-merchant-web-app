@@ -2,23 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-export type PaymentStatus = "pending" | "awaiting_chain" | "awaiting_payment" | "paid" | "expired" | "cancelled";
-export type Chain = "USDT" | "USDC" | "DAI";
-
-export type PaymentSession = {
-  id: string;
-  amount: number;
-  currency: string;
-  status: PaymentStatus;
-  chainOptions: Chain[];
-  chosenChain?: Chain | null;
-  recipientAddress: string;
-  transactionHash?: string;
-  createdAt: number;
-  expiresAt: number;
-  paidAt?: number;
-};
+import { PaymentSession } from "@/types";
 
 type PaymentStore = {
   sessions: Record<string, PaymentSession>;

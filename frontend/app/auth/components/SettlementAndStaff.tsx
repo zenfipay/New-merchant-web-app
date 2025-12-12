@@ -13,7 +13,6 @@ import BackButton from "@/components/custom/BackButton";
 import { Label } from "@/components/custom/Label";
 import { Input } from "@/components/custom/Input";
 import { ErrorInfo } from "./ErrorMessage";
-import Spinner from "@/components/custom/ZenfipaySpinnerSmall";
 import {
     Select,
     SelectTrigger,
@@ -21,6 +20,7 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/custom/ZenfipaySpinner";
 import { toast } from "sonner";
 
 // import { useLoadingStore } from "@/store/loadingStore";
@@ -298,7 +298,7 @@ export default function SettlementAndStaff({ onBack, onComplete }: { onBack: () 
                             <ErrorInfo message={settlementErrors.accountNumber?.message} />
                             {isVerifying ? (
                                 <div className='bg-[#EEF3FF] flex justify-center items-center p-3 rounded-2xl'>
-                                    <Spinner />
+                                    <Spinner variant='whiteBg' size='sm' />
                                 </div>
                             ): accountName && !isVerifying && (
                                 <div className='bg-[#EEF3FF] p-3 rounded-2xl'>

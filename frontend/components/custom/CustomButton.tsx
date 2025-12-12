@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority"
-import{ Loader2 } from "lucide-react";
+import{ Loader2 } from "lucide-react"
 
 const buttonVariants = cva(
     "inline-flex items-center justify-center rounded-lg text-[15px] font-inter font-semibold focus:outline-none focus:ring-2 focus:ring-[#D4E3FF] transition-colors duration-500 ease-in-out cursor-pointer",

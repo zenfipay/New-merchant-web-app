@@ -6,7 +6,7 @@ import { usePaymentStore } from '@/store/paymentStore';
 import { PaymentSession } from '@/types';
 import { Timer } from 'lucide-react';
 import Image from 'next/image';
-import Spinner from '@/components/custom/ZenfipaySpinner';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import { InfoDiv } from '@/components/custom/infoDiv';
 import { CustomButton } from '@/components/custom/CustomButton';
 import { CustomCheckbox } from '@/components/custom/CustomCheckbox';

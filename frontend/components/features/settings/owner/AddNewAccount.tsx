@@ -18,8 +18,7 @@ import {
 } from '@/components/ui/select'
 import { toast } from 'sonner';
 import Image from 'next/image';
-import Spinner from '@/components/custom/ZenfipaySpinner';
-import SmallerSpinner from '@/components/custom/ZenfipaySpinnerSmall';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 
 import { useLoadingStore } from '@/store/loadingStore';
 import { bankData } from '@/lib/data';
@@ -209,7 +208,7 @@ export default function AddNewSettlementAccount() {
                                             {/* ACCOUNT NAME */}
                                             {isVerifying ? (
                                                 <div className='bg-[#EEF3FF] flex justify-center items-center p-3 rounded-2xl'>
-                                                    <SmallerSpinner />
+                                                    <Spinner variant='whiteBg' size='sm' />
                                                 </div>
                                             ): accountName && !isVerifying && (
                                                 <div className='bg-[#EEF3FF] p-3 rounded-2xl'>

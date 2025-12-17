@@ -1,5 +1,8 @@
 "use client"
 
+interface BranchSelectorProps {
+    className?: string;
+}
 import Divider from "../custom/divider"
 
 import {
@@ -11,8 +14,11 @@ import {
 } from "@/components/ui/select"
 import { useBranchStore } from '@/store/branchStore'
 import { mockUserData } from '@/lib/data'
+import { cn } from "@/utils";
 
-export default function BranchSelector() {
+export default function BranchSelector({
+    className
+}: BranchSelectorProps) {
 
     const { selectedBranch, setSelectedBranch } = useBranchStore()
 
@@ -27,7 +33,7 @@ export default function BranchSelector() {
 
     return (
         <>    {/* BRANCH SELECTION */}
-            <div className="w-fit flex justify-evenly items-center gap-3">
+            <div className={cn('w-fit flex justify-evenly items-center gap-3', className)}>
                 <Select onValueChange={setSelectedBranch} value={selectedBranch}>
                     <SelectTrigger className="max-h-8 py-1.5 px-2 text-[13px]">
                         <SelectValue placeholder="All branches" />

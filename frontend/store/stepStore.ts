@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 type stepStore = {
     step: number
-    setStep: ( value: number ) => void
+    setStep: ( value: number ) => void;
 }
 
 export const useStepStore = create<stepStore>((set) => ({

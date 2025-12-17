@@ -24,13 +24,22 @@ export default function ProfileHeader() {
   const [ searchTerm, setSearchTerm ] = React.useState('')
   const allMenuItems = menuList.flatMap((section) => section.items)
   const currentPage = allMenuItems.find((item) => item.href === pathname)
-  const pageTitle = currentPage?.title || ""
+  const pageTitle = currentPage?.title || "L"
   const fullName = `${user.firstName} ${user.lastName}`
+  const initials = `${user.firstName.charAt(0)} ${user.lastName.charAt(0)}`
+
+  console.log('All menu items', allMenuItems);
+  console.log('Current pathname', pathname);
+  console.log('Current page found: ', currentPage)
+
+  if(!user) {
+    return null
+  }
 
   return (
     <header className="sticky top-0 w-full flex justify-between items-center py-3 px-5 border-b border-[#F5F5F5] bg-white z-50 shadow-bottom">
-      <h1 className="font-inter font-semibold text-[15px] text-[#101010] leading-[100%]">
-        {pageTitle}
+      <h1 className="font-inter font-semibold text-[15px] leading-[100%]">
+        {pageTitle}ll{pageTitle}
       </h1>
 
       <div className="flex items-center gap-3.5">
@@ -44,7 +53,7 @@ export default function ProfileHeader() {
 
           <Avatar className="bg-[#EEF3FF] w-[30px] h-[30px] rounded-md p-1.5 ring ring-[#CDDCFF] flex items-center justify-center">
             <AvatarFallback className="font-inter font-semibold text-[13px] text-[#20195F]">
-              EA
+              {initials}
             </AvatarFallback>
           </Avatar>
 

@@ -9,6 +9,7 @@ import BusinessProfile from '@/components/features/settings/owner/businessProfil
 import AccountSetting from '@/components/features/settings/owner/accounts';
 import ManageBranches from '@/components/features/settings/owner/branches';
 import StaffAndRoles from '@/components/features/settings/owner/StaffAndRoles';
+import Subscription from '@/components/features/settings/owner/Subscription';
 
 const settingsNav = [
     {
@@ -34,7 +35,7 @@ const settingsNav = [
     },
     {
         id: "subscription",
-        content:<p> SUBSCRIPTION</p>
+        content:<Subscription />
     },
 ]
 

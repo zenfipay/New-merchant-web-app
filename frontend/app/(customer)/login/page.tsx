@@ -14,7 +14,7 @@ import { Input } from '@/components/custom/Input';
 import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
 import Link from 'next/link';
 import Image from 'next/image';
-import Spinner from '@/components/custom/ZenfipaySpinner';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import { CustomButton } from '@/components/custom/CustomButton';
 import DividerHorizontal from '@/components/custom/dividerHorizontal';
 import { signInSchema } from '@/lib/schemas';

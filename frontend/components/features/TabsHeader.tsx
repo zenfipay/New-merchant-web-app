@@ -44,5 +44,5 @@ export const TabsHeader: React.FC<Props> = ({ tabs, activeTab, onChange }) => {
         style={{ left: sliderStyle.left, width: sliderStyle.width }}
       />
     </div>
-  );
+  )
 };

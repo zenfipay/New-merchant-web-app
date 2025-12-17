@@ -188,6 +188,7 @@ export default function SignUpSection( { onComplete }: { onComplete: () => void}
                                         type="text" 
                                         placeholder="Enter first name" 
                                         {...register("firstName")} 
+                                        autoComplete="false"
                                         className={errors.firstName ? "border-[#FFC0C2]" : ""} 
                                     />
                                     <ErrorInfo message={errors.firstName?.message} />

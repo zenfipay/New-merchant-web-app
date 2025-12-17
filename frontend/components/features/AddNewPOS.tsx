@@ -15,7 +15,7 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
-import Spinner from '../custom/ZenfipaySpinner';
+import { Spinner } from '../custom/ZenfipaySpinner';
 import AnimatedCheckmark from './AnimatedCheckmark';
 
 import { useLoadingStore } from '@/store/loadingStore';

@@ -10,7 +10,7 @@ import { Input } from '@/components/custom/Input';
 import { InfoDiv } from '@/components/custom/infoDiv';
 import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
 import { CustomButton } from '@/components/custom/CustomButton';
-import Spinner from '@/components/custom/ZenfipaySpinner';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import {
     Select,
     SelectTrigger,

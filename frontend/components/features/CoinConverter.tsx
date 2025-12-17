@@ -9,7 +9,7 @@ import { InfoDiv } from '../custom/infoDiv';
 import { CustomButton } from '../custom/CustomButton';
 import { Input } from '../custom/Input';
 import { Label } from '../custom/Label';
-import Spinner from '../custom/ZenfipaySpinner';
+import { Spinner } from '../custom/ZenfipaySpinner';
 import AnimatedCheckmark from './AnimatedCheckmark';
 import Image from 'next/image';
 import { ErrorInfo } from '@/app/auth/components/ErrorMessage';

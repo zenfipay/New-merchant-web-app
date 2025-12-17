@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import{ Loader2 } from "lucide-react"
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center rounded-lg text-[15px] font-inter font-semibold focus:outline-none focus:ring-2 focus:ring-[#D4E3FF] transition-colors duration-500 ease-in-out cursor-pointer",
+    "relative select-none inline-flex items-center justify-center rounded-lg text-[15px] font-inter font-semibold transition-transform duration-150 ease-[cubic bezier(.4,0,.2,1)] active:translate-y-[1.5px] active:scale-[0.98] focus:outline-none after:content-[''] after:absolute after:inset-0 after:ring-2 after:ring-[#D4E3FF] after:rounded-lg after:opacity-0 after:transition-opacity after:duration-[600ms] after:delay-[100ms] after:ease-[var(--ease)] active:after:opacity-100 active:after:duration-0 cursor-pointer",
     {
         variants: {
             variant: {
@@ -15,7 +15,7 @@ const buttonVariants = cva(
                 secondaryBrand: "bg-white outline outline-[#eeeeee] drop-shadow-3xl drop-shadow-[#A4ACB9] text-[#014DFF] hover:bg-[#FAFAFA]",
                 divider: "bg-[#FAFAFA] outline outline-[#eeeeee] text-black hover:bg-[#F5F5F5]",
                 blankBrand: "bg-transparent text-[#014DFF]",
-                disabled: "bg-[#DCE1EC] text-white cursor-not-allowed",
+                disabled: "bg-[#DCE1EC] text-white cursor-not-allowed pointer-events-none transform-none shadow-none transition-none after:content-none after:opacity-0",
                 destructive: "bg-white text-[#E41D24] hover:bg-[FFF0F1] focus:ring-red-500",
             },
             size: {
@@ -60,3 +60,6 @@ export interface ButtonProps
     );
 
     CustomButton.displayName = "CustomButton";
+
+
+    // focus:ring-2 focus:ring-red-900

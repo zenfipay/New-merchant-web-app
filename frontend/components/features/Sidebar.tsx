@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { filterMenuByRole } from "@/lib/data"; // Keep this import
+import { filterMenuByRole } from "@/lib/data"; 
 
 import { useSidebarStore } from "@/store/useSidebarStore";
 import BusinessSelection from "./ActiveBusinessSelection";
@@ -17,15 +17,14 @@ export default function Sidebar() {
 
   const pathname = usePathname();
 
-  const { user } = useUser(); // Change this line
+  const { user } = useUser();
   
-  // Add this line - filter menu based on user role
   const filteredMenuList = filterMenuByRole(user.role);
 
   useEffect(() => {
     if (!pathname) return;
 
-    const flattened = filteredMenuList.flatMap((section) => section.items); // Change menuList to filteredMenuList
+    const flattened = filteredMenuList.flatMap((section) => section.items);
     const match = flattened.find((it) => it.href === pathname);
     if (match) {
       setActiveItem(match.title);
@@ -33,10 +32,10 @@ export default function Sidebar() {
       const prefixMatch = flattened.find((it) => it.href && pathname.startsWith(it.href));
       if (prefixMatch) setActiveItem(prefixMatch.title);
     }
-  }, [pathname, setActiveItem, filteredMenuList]); // Add filteredMenuList to dependencies
+  }, [pathname, setActiveItem, filteredMenuList]);
 
-  const mainItems = filteredMenuList.find((s) => s.section === "Main")?.items ?? []; // Change menuList to filteredMenuList
-  const otherItems = filteredMenuList.find((s) => s.section === "Other")?.items ?? []; // Change menuList to filteredMenuList
+  const mainItems = filteredMenuList.find((s) => s.section === "Main")?.items ?? [];
+  const otherItems = filteredMenuList.find((s) => s.section === "Other")?.items ?? [];
 
   return (
     <div className="flex flex-col h-screen bg-white border-r border-[#F5F5F5] justify-between">

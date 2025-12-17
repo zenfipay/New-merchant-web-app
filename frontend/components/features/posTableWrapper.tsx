@@ -28,7 +28,7 @@ import { useBranchStore } from '@/store/branchStore';
 import { useStepStore } from '@/store/stepStore';
 import { useLoadingStore } from '@/store/loadingStore';
 import { staffProps } from '@/types';
-import Spinner from '../custom/ZenfipaySpinner';
+import { Spinner } from '../custom/ZenfipaySpinner';
 import { staffData } from '@/lib/data';
 import AnimatedCheckmark from './AnimatedCheckmark';
 

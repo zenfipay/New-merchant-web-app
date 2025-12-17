@@ -8,7 +8,7 @@ import { useLoadingStore } from '@/store/loadingStore';
 
 import { CustomButton } from '../custom/CustomButton';
 import AnimatedCheckmark from './AnimatedCheckmark';
-import Spinner from '../custom/ZenfipaySpinner';
+import { Spinner } from '../custom/ZenfipaySpinner';
 import Image from 'next/image';
 import { Input } from '../custom/Input';
 import { Label } from '../custom/Label';

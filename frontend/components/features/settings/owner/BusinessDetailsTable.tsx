@@ -19,7 +19,7 @@ import {
     SelectContent,
     SelectItem,
 } from '@/components/ui/select';
-import SmallerSpinner from '@/components/custom/ZenfipaySpinnerSmall';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 
 import { settlementAccounts } from '@/types';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -193,7 +193,7 @@ export const BusinessDetailsTable: React.FC<BusinessDetailsTableProps> = ({
                             {/* ACCOUNT NAME */}
                             {isVerifying ? (
                                 <div className='bg-[#EEF3FF] flex justify-center items-center p-3 rounded-2xl'>
-                                    <SmallerSpinner />
+                                    <Spinner size='sm' />
                                 </div>
                             ): accountName && !isVerifying && (
                                 <div className='bg-[#EEF3FF] p-3 rounded-2xl'>

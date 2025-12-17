@@ -8,7 +8,7 @@ import { Label } from '@/components/custom/Label';
 import { Input } from '@/components/custom/Input';
 import { Check, Eye, EyeOff } from 'lucide-react';
 import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
-import Spinner from '@/components/custom/ZenfipaySpinner';
+import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import Image from 'next/image';
 import { toast } from 'sonner';
 
@@ -53,6 +53,7 @@ export default function UserProfile() {
         register: registerUser,
         handleSubmit: handleUserSubmit,
         reset: resetUserInfo,
+        getValues,
         formState: { errors, isValid }
     } = useForm<UserInfoData>({
         resolver: zodResolver(userInfoSchema),
@@ -175,6 +176,7 @@ export default function UserProfile() {
                                 type="text"
                                 placeholder='Emmanuel'
                                 {...registerUser('firstName')}
+                                defaultValue={"firstName"}
                                 className={errors.firstName ? "border-[[#FFC0C2]" : ""}
                             />
                             <ErrorInfo message={errors.firstName?.message} />
@@ -198,7 +200,7 @@ export default function UserProfile() {
                         <Label htmlFor="email" text="Email address" />
                         <Input
                             type="email" 
-                            placeholder="example@yahoo.com" 
+                            placeholder="example@yahoo.com"
                             {...registerUser("email")} 
                             className={errors.email ? "border-[#FFC0C2]" : ""} 
                         />

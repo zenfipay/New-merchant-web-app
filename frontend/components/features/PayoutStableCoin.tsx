@@ -12,7 +12,7 @@ import { Spinner } from '../custom/ZenfipaySpinner';
 import Image from 'next/image';
 import { Input } from '../custom/Input';
 import { Label } from '../custom/Label';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from './authComponents/ErrorMessage';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { InfoDiv } from '../custom/infoDiv';
 import DividerHorizontal from '../custom/dividerHorizontal';

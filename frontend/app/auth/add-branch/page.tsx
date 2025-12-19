@@ -6,7 +6,7 @@ import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CustomButton } from '@/components/custom/CustomButton'
 import { Controller } from 'react-hook-form'
-import Spinner from '@/components/custom/ZenfipaySpinner'
+import { Spinner } from '@/components/custom/ZenfipaySpinner'
 
 import { Label } from '@/components/custom/Label'
 import { Input } from '@/components/custom/Input'

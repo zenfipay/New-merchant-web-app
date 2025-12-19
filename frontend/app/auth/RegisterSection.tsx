@@ -11,10 +11,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react"
 import BackButton from "@/components/custom/BackButton";
-import AuthSignInLink from "./SignInLink";
+import AuthSignInLink from "@/components/features/authComponents/SignInLink";
 import { Label } from "@/components/custom/Label";
 import { Input } from "@/components/custom/Input";
-import { ErrorInfo } from "./ErrorMessage";
+import { ErrorInfo } from "@/components/features/authComponents/ErrorMessage";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { signUpFormSchema, verifyAccountSchema } from "@/lib/schemas";

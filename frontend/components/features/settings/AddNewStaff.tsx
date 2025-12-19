@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Label } from '@/components/custom/Label';
 import { Input } from '@/components/custom/Input';
 import { InfoDiv } from '@/components/custom/infoDiv';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from '../authComponents/ErrorMessage';
 import { CustomButton } from '@/components/custom/CustomButton';
 import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import {

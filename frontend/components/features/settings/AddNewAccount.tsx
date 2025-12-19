@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CustomButton } from '@/components/custom/CustomButton';
 import { Label } from '@/components/custom/Label';
 import { Input } from '@/components/custom/Input';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from '../authComponents/ErrorMessage';
 import {
     Select,
     SelectTrigger,

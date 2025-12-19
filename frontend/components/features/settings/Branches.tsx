@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import Link from 'next/link';
-import { Pagination } from '../../paginationComponent';
+import { Pagination } from '../paginationComponent';
 
 import { ManageBranchesTable } from './ManageBranchesTable';
 import { mockUserData } from '@/lib/data';

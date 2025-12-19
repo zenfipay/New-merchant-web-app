@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import Image from 'next/image';
-import { BranchManagementStatusBadge } from '../shared/BranchManagementStatusBadge';
+import { BranchManagementStatusBadge } from './BranchManagementStatusBadge';
 import { CustomButton } from '@/components/custom/CustomButton';
 import DividerHorizontal from '@/components/custom/dividerHorizontal';
 import { DataTable, TableColumn, TableAction } from '@/components/custom/Table';
-import { mockUserData } from '@/lib/data';
+// import { mockUserData } from '@/lib/data';
 import { branch } from '@/types';
 
 interface ManageBranchesTableProps {

@@ -7,7 +7,7 @@ import { CustomButton } from '@/components/custom/CustomButton';
 import { Label } from '@/components/custom/Label';
 import { Input } from '@/components/custom/Input';
 import { Check, Eye, EyeOff } from 'lucide-react';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from '../authComponents/ErrorMessage';
 import { Spinner } from '@/components/custom/ZenfipaySpinner';
 import Image from 'next/image';
 import { toast } from 'sonner';

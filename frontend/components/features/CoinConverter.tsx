@@ -12,7 +12,7 @@ import { Label } from '../custom/Label';
 import { Spinner } from '../custom/ZenfipaySpinner';
 import AnimatedCheckmark from './AnimatedCheckmark';
 import Image from 'next/image';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from './authComponents/ErrorMessage';
 import DividerHorizontal from '../custom/dividerHorizontal';
 import { stableCoinsData } from '@/lib/data';
 import { formatCurrency } from '@/utils/formatCurrency';

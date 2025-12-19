@@ -4,12 +4,12 @@ import * as React from 'react';
 
 
 import { TabsHeader } from '@/components/features/TabsHeader';
-import UserProfile from '@/components/features/settings/owner/userProfile';
-import BusinessProfile from '@/components/features/settings/owner/businessProfile';
-import AccountSetting from '@/components/features/settings/owner/accounts';
-import ManageBranches from '@/components/features/settings/owner/branches';
-import StaffAndRoles from '@/components/features/settings/owner/StaffAndRoles';
-import Subscription from '@/components/features/settings/owner/Subscription';
+import UserProfile from '@/components/features/settings/UserProfile';
+import BusinessProfile from '@/components/features/settings/BusinessProfile';
+import AccountSetting from '@/components/features/settings/accounts';
+import ManageBranches from '@/components/features/settings/Branches';
+import StaffAndRoles from '@/components/features/settings/StaffAndRoles';
+import Subscription from '@/components/features/settings/Subscription';
 
 const settingsNav = [
     {

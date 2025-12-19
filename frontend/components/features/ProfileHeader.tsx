@@ -16,6 +16,7 @@ import Image from "next/image"
 import Link from "next/link"
 import SearchBar from "../custom/SearchBar"
 import { CopyButton } from '../custom/CopyButton'
+import UserInitials from '../custom/userInitials'
 
 export default function ProfileHeader() {
   const pathname = usePathname()
@@ -26,7 +27,7 @@ export default function ProfileHeader() {
   const currentPage = allMenuItems.find((item) => item.href === pathname)
   const pageTitle = currentPage?.title || "L"
   const fullName = `${user.firstName} ${user.lastName}`
-  const initials = `${user.firstName.charAt(0)} ${user.lastName.charAt(0)}`
+  
 
   console.log('All menu items', allMenuItems);
   console.log('Current pathname', pathname);
@@ -37,7 +38,7 @@ export default function ProfileHeader() {
   }
 
   return (
-    <header className="sticky top-0 w-full flex justify-between items-center py-3 px-5 border-b border-[#F5F5F5] bg-white z-50 shadow-bottom">
+    <header className="sticky top-0 w-full flex justify-between items-center py-3 px-5 border-b border-[#F5F5F5] bg-white z-10 shadow-bottom">
       <h1 className="font-inter font-semibold text-[15px] leading-[100%]">
         {pageTitle}ll{pageTitle}
       </h1>
@@ -53,7 +54,7 @@ export default function ProfileHeader() {
 
           <Avatar className="bg-[#EEF3FF] w-[30px] h-[30px] rounded-md p-1.5 ring ring-[#CDDCFF] flex items-center justify-center">
             <AvatarFallback className="font-inter font-semibold text-[13px] text-[#20195F]">
-              {initials}
+              <UserInitials />
             </AvatarFallback>
           </Avatar>
 

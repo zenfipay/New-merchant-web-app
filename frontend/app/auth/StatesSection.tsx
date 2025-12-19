@@ -9,8 +9,8 @@ import { CustomButton } from "@/components/custom/CustomButton";
 import Image from "next/image";
 import { Label } from "@/components/custom/Label";
 import { Input } from "@/components/custom/Input";
-import { ErrorInfo } from "./ErrorMessage";
-import AuthSignInLink from "./SignInLink";
+import { ErrorInfo } from "@/components/features/authComponents/ErrorMessage";
+import AuthSignInLink from "@/components/features/authComponents/SignInLink";
 import {
     Select,
     SelectContent,

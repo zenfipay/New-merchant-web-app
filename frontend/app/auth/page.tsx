@@ -10,7 +10,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Input } from "@/components/custom/Input"
 import { Label } from "@/components/custom/Label"
-import { ErrorInfo } from "./components/ErrorMessage"
+import { ErrorInfo } from '@/components/features/authComponents/ErrorMessage';
 import { Eye, EyeOff } from "lucide-react"
 
 import { useRouter } from "next/navigation"

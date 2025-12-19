@@ -18,12 +18,13 @@ const spinnerVariants = cva(
 )
 
 const innerVariants = cva(
-    "absolute inset-0.5 rounded-full",
+    "absolute inset-0.5 rounded-full aspect-square",
     {
         variants: {
             variant: {
                 whiteBg: "bg-white",
-                blurredBg: "bg-[#20195F]/10 backdrop-blur-lg"
+                blurredBg: "bg-white/85 backdrop-blur-md",
+                blueBg: "bg-[#EEF3FF]"
             }
         },
         defaultVariants: {

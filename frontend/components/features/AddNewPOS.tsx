@@ -15,10 +15,9 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
-import { Spinner } from '../custom/ZenfipaySpinner';
+import { Loading } from '../custom/Loading';
 import AnimatedCheckmark from './AnimatedCheckmark';
 
-import { useLoadingStore } from '@/store/loadingStore';
 import Image from 'next/image';
 import { InfoDiv } from '../custom/infoDiv';
 import { Label } from '../custom/Label';
@@ -69,7 +68,7 @@ const staffData = [
 
 export default function AddNewPOS() {
 
-    const { isLoading, setIsLoading } = useLoadingStore();
+    const [ isLoading, setIsLoading ] = React.useState<boolean>(false);
     const [ step, setStep ] = React.useState<number>(1);
     const [ openModal, setOpenModal ] = React.useState<boolean>(false);
 
@@ -113,9 +112,7 @@ export default function AddNewPOS() {
             </CustomButton>
 
             {openModal && isLoading ? (
-                <div className='fixed inset-0 z-50 bg-[#20195F]/10 backdrop-blur-lg flex justify-center items-center'>
-                    <Spinner />
-                </div>
+                <Loading variant='brandBg' />
             ): openModal && !isLoading && (
                 <div className='fixed inset-0 z-50 bg-[#20195F]/10 backdrop-blur-lg flex justify-center items-center'>
 
@@ -222,7 +219,7 @@ export default function AddNewPOS() {
                                                                     <SelectItem
                                                                         key={staff.name}
                                                                         value={staff.name}
-                                                                        className="w-full [&>[data-radix-select-item-text]]:w-full"
+                                                                        className="w-full *:data-radix-select-item-text:w-full"
                                                                         >
                                                                         <div className="flex justify-between w-full items-center">
                                                                             <p className="uppercase">{staff.name}</p>

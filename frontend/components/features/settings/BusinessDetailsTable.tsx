@@ -11,7 +11,7 @@ import { CustomButton } from '@/components/custom/CustomButton';
 import Image from 'next/image';
 import { Label } from '@/components/custom/Label';
 import { Input } from '@/components/custom/Input';
-import { ErrorInfo } from '@/app/auth/components/ErrorMessage';
+import { ErrorInfo } from '../authComponents/ErrorMessage';
 import {
     Select,
     SelectTrigger,
@@ -193,7 +193,7 @@ export const BusinessDetailsTable: React.FC<BusinessDetailsTableProps> = ({
                             {/* ACCOUNT NAME */}
                             {isVerifying ? (
                                 <div className='bg-[#EEF3FF] flex justify-center items-center p-3 rounded-2xl'>
-                                    <Spinner size='sm' />
+                                    <Spinner variant='blueBg' size='sm' />
                                 </div>
                             ): accountName && !isVerifying && (
                                 <div className='bg-[#EEF3FF] p-3 rounded-2xl'>

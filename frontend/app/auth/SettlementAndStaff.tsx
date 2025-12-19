@@ -12,7 +12,7 @@ import Image from "next/image";
 import BackButton from "@/components/custom/BackButton";
 import { Label } from "@/components/custom/Label";
 import { Input } from "@/components/custom/Input";
-import { ErrorInfo } from "./ErrorMessage";
+import { ErrorInfo } from "@/components/features/authComponents/ErrorMessage";
 import {
     Select,
     SelectTrigger,

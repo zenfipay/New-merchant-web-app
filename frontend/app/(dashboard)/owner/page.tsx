@@ -11,6 +11,7 @@ import { PaymentTable } from "@/components/features/paymentTable";
 import { PaymentReceiptPDF } from "@/components/features/PaymentReceiptPDF";
 import { CustomButton } from "@/components/custom/CustomButton";
 import { pdf } from "@react-pdf/renderer";
+import UserInitials from "@/components/custom/userInitials";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -91,8 +92,7 @@ export default function OwnerDashboard() {
       <header className="w-full flex justify-between py-3">
         <div className="flex items-center gap-2.5">
           <div className="bg-[#EEF3FF] h-8 w-8 rounded-full flex items-center justify-center">
-            <span className="font-inter font-semibold text-[#20195f]">
-            </span>
+            <UserInitials />
           </div>
           <div className="space-y-0.5">
             <p className="font-inter font-semibold text-[15px] leading-[100%] text-[#101010]">

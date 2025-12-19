@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils'
 import Image from 'next/image'
 import * as React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'

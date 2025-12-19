@@ -780,8 +780,8 @@ export const mockUserData: User[] = [
                 branchData: [
                     {
                         dateCreated: "03 July, 2025 9:45 PM",
-                        branchId: 1,
-                        branchLocation: "Agege",
+                        branchId: 5,
+                        branchLocation: "Alimosho",
                         numberOfBranchManagers: 2,
                         branchManagers: ["Oluwatimilehin Adedimeji", "John Doe"],
                         numberOfStaff: 4,

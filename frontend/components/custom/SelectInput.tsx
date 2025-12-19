@@ -10,7 +10,7 @@ import{
     SelectItem,
 } from '@/components/ui/select';
 import { Label } from "./Label";
-import { ErrorInfo } from "@/app/auth/components/ErrorMessage";
+import { ErrorInfo } from "../features/authComponents/ErrorMessage";
 
 interface SelectInputProps<T extends FieldValues> {
   control: Control<T>;

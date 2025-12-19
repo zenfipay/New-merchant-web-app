@@ -51,15 +51,14 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   onClick={() => setActiveItem(item.title)}
-                  className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out hover:bg-[#FAFAFA]
-                    ${activeItem === item.title ? "bg-[#EEF3FF] text-[#20195F]" : "text-[#636363]"}`}
+                  className={`h-8 flex items-center justify-start px-5 py-[5.5px] gap-2.5 text-[11px] transition-all duration-300 ease-out
+                    ${activeItem === item.title ? "bg-[#EEF3FF] text-[#20195F] hover:bg-[#EEF3FF]/60" : "text-[#636363] hover:bg-[#FAFAFA]"}`}
                 >
                   <Image
                     src={activeItem === item.title ? item.activeIcon : item.icon}
                     alt={item.title}
                     width={18}
                     height={18}
-                    className={activeItem ? "text-brand" : "text-[#636363]"}
                   />
                   <span className="text-[13px]">{item.title}</span>
                 </Link>
